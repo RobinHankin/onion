@@ -1,0 +1,17 @@
+Package: onion
+Version: 1.2-7
+Date: 2017-07-10
+Title: Octonions and Quaternions
+LazyData: TRUE
+Author: Robin K. S. Hankin
+Description:
+  Quaternions and Octonions are four- and eight- dimensional
+  extensions of the complex numbers.  They are normed division
+  algebras over the real numbers and find applications in spatial
+  rotations (quaternions) and string theory and relativity
+  (octonions).  The quaternions are noncommutative and the octonions
+  nonassociative.  See RKS Hankin 2006, Rnews Volume 6/2: 49-51, and
+  the package vignette, for more details.
+Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
+License: GPL
+Packaged: 2011-03-28 07:54:01 UTC; rksh

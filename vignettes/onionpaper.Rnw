@@ -1,0 +1,281 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+\documentclass[nojss]{jss}
+
+\usepackage{dsfont}
+\usepackage{bbm}
+\usepackage{amsfonts}
+\usepackage{wasysym}
+
+%% just as usual
+\author{Robin K. S. Hankin\\Auckland University of Technology}
+\title{Normed division algebras with \proglang{R}: introducing the \pkg{onion} package}
+%\VignetteIndexEntry{The onion package}
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Robin K. S. Hankin}
+\Plaintitle{The onion package}
+\Shorttitle{The \pkg{onion} package}
+
+%% an abstract and keywords
+\Abstract{
+  This vignette is based on~\cite{Rnews:Hankin:a:2006} and corrects an
+  algebraic error therein.
+
+  This vignette introduces the \pkg{onion} package of \proglang{R}
+  routines, for manipulation of quaternions and octonions.  A simple
+  application of the quaternions in use is given, using the package.}
+
+\Keywords{Onion, quaternions, octonions, \proglang{R}}
+\Plainkeywords{Onion, quaternions, octonions, R}
+
+%% publication information
+%% NOTE: This needs to filled out ONLY IF THE PAPER WAS ACCEPTED.
+%% If it was not (yet) accepted, leave them commented.
+%% \Volume{13}
+%% \Issue{9}
+%% \Month{September}
+%% \Year{2004}
+%% \Submitdate{2004-09-29}
+%% \Acceptdate{2004-09-29}
+
+%% The address of (at least) one author should be given
+%% in the following format:
+\Address{
+  Robin K. S. Hankin\\
+  Auckland University of Technology\\
+  New Zealand\\
+  E-mail: \email{hankin.robin@gmail.com}
+}
+%% It is also possible to add a telephone and fax number
+%% before the e-mail in the following format:
+%% Telephone: +43/1/31336-5053
+%% Fax: +43/1/31336-734
+
+%% for those who use Sweave please include the following line (with % symbols):
+%% need no \usepackage{Sweave.sty}
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\SweaveOpts{echo=FALSE}
+\begin{document}
+
+\newsymbol\leqslant 1336
+
+
+
+\newcommand{\bx}{\mathbf x}
+\newcommand{\by}{\mathbf y}
+\newcommand{\bz}{\mathbf z}
+\newcommand{\ba}{\mathbf a}
+\newcommand{\bb}{\mathbf b}
+\newcommand{\bv}{\mathbf v}
+
+
+\section{Preface}
+
+An \emph{algebra} is a vector space~$V$ over a field (here the real
+numbers) in which the vectors may be multiplied.  In addition to the
+usual vector space axioms, one requires, for any
+$\lambda,\mu\in{\mathbbm R}$ and~$\bx,\by,\bz\in V$:
+\begin{itemize}
+\item $\bx(\lambda\by + \mu\bz) = \lambda\bx\by  + \mu\bx\bz$
+\item $(\lambda\by + \mu\bz)\bx = \lambda\by\bx  + \mu\bz\bx$
+\end{itemize} 
+where multiplication is denoted by juxtaposition; note the absence of
+associativity.  A \emph{division algebra} is a nontrivial algebra in
+which division is possible: for any~$\ba\in V$ and any nonzero~$\bb\in
+V$, there exists precisely one element~$\bx$ with $\ba=\bb\bx$ and
+precisely one element~$\by$ with~$\ba=\by\bb$.  A \emph{normed division
+algebra} is a division algebra with a
+norm~$\left|\left|\cdot\right|\right|$
+satisfying~$\left|\left|\bx\by\right|\right|=\left|\left|\bx\right|\right|\,\left|\left|\by\right|\right|$.
+
+There are precisely four normed division algebras: the reals
+themselves ($\mathbbm{R}$), the complex numbers~($\mathbbm{C}$), the
+quaternions ($\mathbbm{H}$) and the octonions ($\mathbbm{O}$); the
+generic term is ``onion'', although the term includes other algebras
+such as the sedenions.
+
+The \proglang{R} computer language~\citep{R} is well-equipped to deal
+with the first two: here, I introduce the \pkg{onion} package that
+provides some functionality for the quaternions and the octonions, and
+illustrate these interesting algebras using numerical examples.
+
+\section{Introduction}
+Historically, the complex numbers arose from a number of independent
+lines of inquiry and our current understanding of them (viz $z=x+iy$;
+the Argand plane) developed over the eighteenth and nineteenth
+centuries.
+
+Hamilton was one of many mathematicians to attempt to extend the
+complex numbers to a third dimension and discover what would in our
+terminology be a three dimensional normed division algebra.  We now
+know that no such thing exists: division algebras all have
+dimension~$2^n$ for~$n$ some non-negative integer.
+
+Hamilton came upon the multiplicative structure of the quaternions in
+a now-famous flash of inspiration on 16th October 1843: the
+quaternions are obtained by adding the elements~$i$, $j$, and~$k$ to
+the real numbers and requiring that
+\begin{equation}\label{quat.mult}
+i^2=j^2=k^2=ijk=-1.
+\end{equation}
+A general quaternion is thus written $a+bi+cj+dk$ with $a$, $b$, $c$,
+$d$ being real numbers; complex arithmetic is recovered if~$c=d=0$.
+Hamilton's relations above, together with distributivity and
+associativity, yield the full multiplication table and the quaternions
+are the unique four dimensional normed division algebra.
+
+However, Hamilton's scheme was controversial as his multiplication was
+noncommutative: a shocking suggestion at the time.  Today we recognize
+many more noncommutative operations (such as matrix multiplication),
+but even Hamilton had difficulty convincing his contemporaries that
+such operations were consistent, let alone worth studying.
+
+\subsection{The octonions}
+The fourth and final normed division algebra is that of the octonions.
+These were discovered around 1844 and are an eight-dimensional algebra
+over the reals.  The full multiplication table is given by~\citet{baez2001}.
+
+\section[Package onion in use]{Package \pkg{onion} in use}
+
+A good place to start is function \code{rquat()}, which returns a
+quaternionic vector of a specified length, whose elements are random
+small integers:
+
+<<require_onion, echo=FALSE,print=FALSE>>=
+<<results=hide>>=
+require(onion)
+@ 
+
+<<rquat5, echo=TRUE,print=FALSE>>=
+x <- rquat(5)
+names(x) <- letters[1:5]
+print(x)
+@ 
+
+This quaternionic vector, of length~5, is of the form of a four-row
+matrix.  The rownames are the standard basis for quaternions, and
+their entries may be manipulated as expected; for example, we may set
+component~$k$ to be component~$j$ plus~10:
+<<add_ten, echo=TRUE,print=FALSE>>=
+k(x) <- j(x)+10
+x
+@
+Quaternionic vectors behave largely as one might expect.  For
+example, we may concatenate \code{a} with a basis quaternion (the four
+bases are represented in the package by \code{H1}, \code{Hi}, \code{Hj},
+and \code{Hk}) and multiply the result by the first element:
+<<cxHk, echo=TRUE,print=FALSE>>=
+c(x,Hk)*x[1]
+@ 
+And indeed we may explicitly verify that quaternionic multiplication
+is not commutative using the \code{commutator()} function, returning
+$xy-yx$: 
+<<comm_user, echo=TRUE,print=FALSE>>=
+y <- rquat(5)
+commutator(x,y)
+@
+It is possible to verify that quaternionic multiplication is
+associative using function \code{associator(x,y,z)} which returns
+$(xy)z-x(yz)$ and is thus identically zero for associative operators:
+<<associator_quat, echo=TRUE,print=FALSE>>=
+associator(x,y,rquat(5))
+@
+Compare the octonions, which are not associative:
+<<associator_oct, echo=TRUE,print=FALSE>>=
+associator(roct(3),roct(3),roct(3))
+@ 
+
+Many transcendental functions operate on onions, via a reasonably
+straightforward generalization of the complex case.  Consider the
+square root, defined as~$\exp(\log(x)/2)$.  That this obeys similar
+rules to the usual square root may be demonstrated for octonions by
+calculating $\sqrt{x}\sqrt{x}-x$, and showing that its modulus is
+small:
+<<mod_of_sqrt, echo=TRUE,print=FALSE>>=
+x <- roct(3)
+Mod(sqrt(x)*sqrt(x)-x)
+@
+showing acceptable accuracy in this context.  However, many
+identities that are true for the real or complex case fail for
+quaternions or octonions; for example, although~$\log(x^2)=2\log(x)$,
+it is not generally the case that~$\log(xy)=\log(x)+\log(y)$, as we
+may verify numerically:
+
+<<use_log_quat, echo=TRUE,print=FALSE>>=
+x <- rquat(3)
+y <- rquat(3)
+Mod(log(x*x)-2*log(x))
+Mod(log(x*y)-log(x)-log(y))
+@
+
+
+\subsection{Practical applications}
+
+I now show the quaternions in use: they can be used to rotate an
+object in 3D space in an elegant and natural way.  If we wish to
+rotate vector~$\overline{v}$, considered to be triple of real numbers,
+we first identify its 3 components with the imaginary part of a
+quaternion with zero real part (ie
+$\bv=0+\overline{v}_1i+\overline{v}_2j+\overline{v}_3k$).  Then the
+transformation defined by
+\[
+\bv\longrightarrow\bv'=\bz\bv\bz^{-1}
+\]
+where~$\bz\in{\mathbbm H}$, is a rotation\footnote{The real part
+of~$\bv'$ is again zero and thus may be interpreted as a three-vector.
+It is straightforward to prove
+that~$\overline{v}\cdot\overline{w}=\overline{v'}\cdot\overline{w'}$.
+In \proglang{R} idiom, one would numerically verify these identities by
+evaluating \code{d=(z*v/z) \%.\% (z*w/z) - v \%.\% w} (where
+\code{v,w,z} are quaternions) and observing that \code{Mod(d)} is
+small.}.  Note that the noncommutativity of the quaternions means that
+the mapping is not necessarily the identity.  This scheme may be used
+to produce figure~\ref{bunny.rotate}.
+
+\begin{figure}[htbp]
+  \begin{center}
+<<figplotter, fig=TRUE>>=
+     data(bunny)
+     par(mfrow=c(2,2))
+     par(mai=rep(0.1,4))
+     p3d(rotate(bunny,H1)   ,box=FALSE,d0=0.4,r=1e6,h=NULL,pch=16,cex=0.3,theta=0,phi=90,main="z=1 (identity)")
+     p3d(rotate(bunny,Hi)   ,box=FALSE,d0=0.4,r=1e6,h=NULL,pch=16,cex=0.3,theta=0,phi=90,main="z=i")
+     p3d(rotate(bunny,H1-Hj),box=FALSE,d0=0.4,r=1e6,h=NULL,pch=16,cex=0.3,theta=0,phi=90,main="z=1-i")
+     p3d(rotate(bunny,Hall) ,box=FALSE,d0=0.4,r=1e6,h=NULL,pch=16,cex=0.3,theta=0,phi=90,main="z=1+i+j+k")
+@
+\caption{The Stanford Bunny~\citep{turk2005}\label{bunny.rotate} in
+  various rotations, plotted using \code{p3d()}; in the package, 3D
+  rotation is carried out by function \code{rotate()}.  Depth cue is
+  via progressive greying out of points further from the eye, as
+  though viewed through a mist}
+  \end{center}
+\end{figure}
+
+Translating between quaternionic rotation and (say) the equivalent
+orthogonal matrix is straightforward.
+
+\section{Conclusions}
+
+Quaternions and octonions are interesting and instructive examples of
+normed division algebras.  Quaternions are a natural and efficient
+representation of three dimensional rotations and this paper includes
+a brief illustration of their use in this context.
+
+Octonions' applicability to physics is currently unclear, but a steady
+trickle of papers has appeared in which the octonions are shown to be
+related to spinor geometry and quantum mechanics (see~\citet{baez2001}
+and references therein).  Reading the literature, one cannot help
+feeling that octonions will eventually reveal some deep physical
+truth.  When this happens, the \pkg{onion} package ensures that
+\proglang{R} will be ready to play its part.
+
+
+\subsubsection*{Acknowledgments}
+I would like to acknowledge the many stimulating and helpful comments
+made by the \proglang{R}-help list over the years.
+
+\bibliography{onionpaper}
+\end{document}
