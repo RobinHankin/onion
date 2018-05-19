@@ -74,7 +74,7 @@ type(x)
 \note{
   An \dfn{onion} is any algebra (over the reals) created by an iterated
   Cayley-Dickson process.  Examples include quaternions, octonions, and
-  sedenions.  There does not appear to be a standard terminology for
+  sedenions.  There does not appear to be a standard generic term for
   such objects (I have seen n-ion, anion and others.  But \dQuote{onion}
   is pronouncable and a bona fide English word).
 
