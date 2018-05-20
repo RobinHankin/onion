@@ -68,7 +68,9 @@ The Euclidean operators have a \dQuote{\code{.}}; they are
 
 There is no binary operator for the ordinary Euclidean product (it is
 not defined because there is no natural, consistent notation available;
-and it seems to be rarely needed in practice).  Use \code{Conj(x)*y}.
+and it seems to be rarely needed in practice).  Use \code{Conj(x)*y}
+(and of course if you need \code{Conj(x)*x}, then \code{Norm(x)} is much
+more efficient and accurate).
 }
 \author{Robin K. S. Hankin}
 \examples{
