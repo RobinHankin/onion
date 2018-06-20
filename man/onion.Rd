@@ -1,4 +1,5 @@
 \name{onion}
+\alias{onion}
 \alias{octonion}
 \alias{Octonion}
 \alias{quaternion}
@@ -120,5 +121,17 @@ kl(x) <- 100
 x
 
 as.quaternion(diag(4))
+
+
+# Cayley table for the quaternion group:
+a <- c(H1,-H1,Hi,-Hi,Hj,-Hj,Hk,-Hk)
+names(a) <- c("+1","-1","+i","-i","+j","-j","+k","-k")
+
+f <- Vectorize(function(x,y){names(a)[a==a[x]*a[y]]})
+X <- noquote(outer(1:8,1:8, f))
+rownames(X) <- names(a)
+colnames(X) <- names(a)
+X
+
 }
 \keyword{misc}
