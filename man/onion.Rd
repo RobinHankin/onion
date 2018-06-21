@@ -110,8 +110,12 @@ type(x)
     }
 Note that function \code{Ops.onion()} need not be changed, as it copes
 with generic onions.
-    
-  }
+
+There is a nice example of the onion package in use in the
+\code{permutations} package, under \code{cayley.Rd}.  This also shows
+the quaternion group Q8, but from a different perspective.
+ 
+}
 \author{Robin K. S. Hankin}
 \examples{
 
@@ -123,7 +127,7 @@ x
 as.quaternion(diag(4))
 
 
-# Cayley table for the quaternion group:
+# Cayley table for the quaternion group Q8:
 a <- c(H1,-H1,Hi,-Hi,Hj,-Hj,Hk,-Hk)
 names(a) <- c("+1","-1","+i","-i","+j","-j","+k","-k")
 
