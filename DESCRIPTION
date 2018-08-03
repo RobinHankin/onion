@@ -1,6 +1,6 @@
 Package: onion
-Version: 1.2-8
-Date: 2018-05-22
+Version: 1.2-9
+Date: 2018-08-03
 Title: Octonions and Quaternions
 LazyData: TRUE
 Author: Robin K. S. Hankin
