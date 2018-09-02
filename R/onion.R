@@ -218,26 +218,27 @@ t(as.matrix(H*as.quaternion(t(cbind(0,x)))/H))[,-1]
   NextMethod("as.matrix")
 }
 
-"roct" <- function(n, x=1:8, replace=TRUE, rand="sample", ...){
-  return(switch(rand,
-                sample = as.octonion(matrix(sample(x=x, size=8*n, replace=replace, ...),nrow=8)),
-                norm = as.octonion(matrix(rnorm(n=8*n, ...),nrow=8)),
-                unif = as.octonion(matrix(runif(n=8*n, ...),nrow=8)),
-                binom = as.octonion(matrix(rbinom(n=8*n, ...),nrow=8)),
-                pois = as.octonion(matrix(rpois(n=8*n, ...),nrow=8))
-                )
-         )
+"roct" <- function(n){
+    as.octonion(matrix(sample(0:7, size=8*n, replace=TRUE),nrow=8))
 }
 
-"rquat" <- function(n, x=1:4, replace=TRUE, rand="sample", ...){
-  return(switch(rand,
-                sample = as.quaternion(matrix(sample(x=x, size=4*n, replace=replace, ...),nrow=4)),
-                norm = as.quaternion(matrix(rnorm(n=4*n, ...),nrow=4)),
-                unif = as.quaternion(matrix(runif(n=4*n, ...),nrow=4)),
-                binom = as.quaternion(matrix(rbinom(n=4*n, ...),nrow=4)),
-                pois = as.quaternion(matrix(rpois(n=4*n, ...),nrow=4))
-                )
-         )
+"rquat" <- function(n, sphere=TRUE){
+    if(sphere){
+        u1 <- runif(n)
+        u2 <- runif(n,0,2*pi)
+        u3 <- runif(n,0,2*pi)
+        
+        out <-
+            rbind(
+                sqrt(1-u1)*sin(u2),
+                sqrt(1-u1)*cos(u2),
+                sqrt(  u1)*sin(u3),
+                sqrt(  u1)*cos(u3)
+            )
+    } else {
+        out <- matrix(sample(0:4, 4*n, replace=TRUE),nrow=4)
+    }
+    return(as.quaternion(out))
 }
 
 "associator" <- function(x1,x2,x3){
