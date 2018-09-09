@@ -24,6 +24,11 @@ roct(n)
   to play with.
 }
 \author{Robin K. S. Hankin}
+\references{
+  K. Shoemake 1992. \dQuote{Uniform random rotations}. 
+  In D. Kirk, editor, \emph{Graphics Gems III} pages 129-130. Academic,
+  New York.
+}
 \examples{
 rquat(3)
 roct(3)
