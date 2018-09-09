@@ -22,6 +22,7 @@ roct(n)
 \note{
   These functions give a quick  \dQuote{get you going} random onion
   to play with.
+}
 \author{Robin K. S. Hankin}
 \examples{
 rquat(3)
