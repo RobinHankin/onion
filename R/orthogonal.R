@@ -8,13 +8,12 @@
   i <- i(q)
   j <- j(q)
   k <- k(q)
-  
-  drop(array(matrix(c(
-      1-2*s*(j^2+k^2)  ,   2*s*(i*j-k*r) ,   2*s*(i*k+j*r),
-        2*s*(i*j+k*r)  , 1-2*s*(i^2+k^2) ,   2*s*(j*k-i*r),
-        2*s*(i*k-j*r)  ,   2*s*(j*k+i*r) , 1-2*s*(i^2+j^2)
-  ),nrow=9,byrow=TRUE),c(3,3,length(q))))
 
+  drop(aperm(array(c(
+      1-2*s*(j^2+k^2) ,   2*s*(i*j-k*r) ,   2*s*(i*k+j*r),
+      2*s*(i*j+k*r)   , 1-2*s*(i^2+k^2) ,   2*s*(j*k-i*r),
+      2*s*(i*k-j*r)   ,   2*s*(j*k+i*r) , 1-2*s*(i^2+j^2)
+  ),c(length(q),3,3)), 3:1))
 }
 
 `is_orthogonal` <- function(M,tol=1e-7){ max(abs(crossprod(M)-diag(3))) < tol }
