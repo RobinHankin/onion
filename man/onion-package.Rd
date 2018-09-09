@@ -1,6 +1,5 @@
 \name{onion-package}
 \alias{onion-package}
-\alias{onion}
 \docType{package}
 \title{
 \packageTitle{onion}
