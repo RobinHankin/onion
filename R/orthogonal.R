@@ -19,9 +19,7 @@
 
 
 `matrix2quaternion` <- function(M){  # converts an orthogonal matrix to a quaternion
-    stopifnot(all(abs(crossprod(M)-diag(3))) < 1e-6)
-
-  if(!is_orthogonal(M)){stop("matrix not orthogonal")}
+  stopifnot(all(abs(crossprod(M)-diag(3)) < 1e-6))
 
   if (M[1,1]+M[2,2]+M[3,3] > 0) { 
     S <- 2*sqrt(1 + M[1,1] + M[2,2] + M[3,3])
