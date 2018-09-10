@@ -6,7 +6,7 @@
 
 \title{Orthogonal matrix equivalents}
 \description{
-Convert a quaternion to and from an equivalent orthogonal matrix
+Convert quaternions to and from an equivalent orthogonal matrix
 }
 \usage{
 matrix2quaternion(M)
@@ -20,7 +20,8 @@ as.orthogonal(Q)
   Function \code{matrix2quaternion()} returns a quaternion.
 
   Function \code{as.orthogonal()} returns either a \eqn{3\times 3}{3*3}
-  matrix or a \eqn{3\times3\times n}{3*3*n} array of orthogonal matrices
+  matrix or a \eqn{3\times3\times n}{3*3*n} array of orthogonal
+  matrices.
 }
 \note{
   Function \code{matrix2quaternion()} is low-level; use
@@ -39,7 +40,6 @@ matrix2quaternion(o(1:3) \%*\% o(3:1))
 Q <- rquat(7)
 as.quaternion(as.orthogonal(Q))-Q  # NB not small!
 abs(as.quaternion(as.orthogonal(Q))) - abs(Q)   # zero to numerical precision
-
 
 A <- replicate(7,o(rnorm(3)) \%*\% o(rnorm(3)))
 max(abs(as.orthogonal(as.quaternion(A))-A))

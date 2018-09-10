@@ -16,9 +16,11 @@
   ),c(length(Q),3,3)), 3:1))
 }
 
-`is_orthogonal` <- function(M,tol=1e-7){ max(abs(crossprod(M)-diag(3))) < tol }
+
 
 `matrix2quaternion` <- function(M){  # converts an orthogonal matrix to a quaternion
+    stopifnot(all(abs(crossprod(M)-diag(3))) < 1e-6)
+
   if(!is_orthogonal(M)){stop("matrix not orthogonal")}
 
   if (M[1,1]+M[2,2]+M[3,3] > 0) { 
