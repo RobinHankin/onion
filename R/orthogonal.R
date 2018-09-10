@@ -2,18 +2,18 @@
 #' @details http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 
 
-`as.orthogonal` <- function(q){  # converts a quaternion to an orthogonal matrix
-  s <- 1/Norm(q)
-  r <- Re(q)
-  i <- i(q)
-  j <- j(q)
-  k <- k(q)
+`as.orthogonal` <- function(Q){  # converts a quaternion to an orthogonal matrix
+  s <- 1/Norm(Q)
+  r <- Re(Q)
+  i <- i(Q)
+  j <- j(Q)
+  k <- k(Q)
 
   drop(aperm(array(c(
       1-2*s*(j^2+k^2) ,   2*s*(i*j-k*r) ,   2*s*(i*k+j*r),
       2*s*(i*j+k*r)   , 1-2*s*(i^2+k^2) ,   2*s*(j*k-i*r),
       2*s*(i*k-j*r)   ,   2*s*(j*k+i*r) , 1-2*s*(i^2+j^2)
-  ),c(length(q),3,3)), 3:1))
+  ),c(length(Q),3,3)), 3:1))
 }
 
 `is_orthogonal` <- function(M,tol=1e-7){ max(abs(crossprod(M)-diag(3))) < tol }

@@ -637,8 +637,14 @@ t(as.matrix(H*as.quaternion(t(cbind(0,x)))/H))[,-1]
     if(nrow(x) == 4){
       out <- x
     } else {
-      stop("If matrix supplied, it must have four rows")
+      if( (nrow(x)==3) && ncol(x)==3){ # SO3
+        return(matrix2quaternion(x))
+      } else {
+      stop("If matrix supplied, it must either have four rows or be 3x3")
+      }
     }
+  } else if(is.array(x)){
+    out <- apply(x,3,matrix2quaternion) # 4-row matrix
   } else {
     if(single){
       if(is.vector(x)){
