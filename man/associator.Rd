@@ -11,7 +11,6 @@ threeform(x1, x2, x3)
 associator(x1, x2, x3)
 commutator(x1, x2)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x1,x2,x3}{onionic vectors}
 }
