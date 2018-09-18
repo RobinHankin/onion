@@ -2,7 +2,7 @@
 \alias{str.onion}
 \title{Compactly display an onion}
 \description{
-A very basic implementation of str for onions
+A very basic implementation of \code{str()} for onions
 }
 \usage{
 \method{str}{onion}(object, vec.len=4, ...)
