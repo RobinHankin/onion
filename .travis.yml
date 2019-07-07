@@ -13,3 +13,4 @@ before_install:
     - sudo apt-get install texlive-fonts-recommended texlive-fonts-extra texlive-latex-recommended
 language: R
 cache: packages
+r_build_args: '--resave-data --compact-vignettes="both" '
