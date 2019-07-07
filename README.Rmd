@@ -1,0 +1,140 @@
+---
+title: "Quaternions and octonions in R"
+output:
+  github_document:
+    pandoc_args: --webtex
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+
+<!-- badges: start -->
+[![Build Status](https://travis-ci.org/RobinHankin/onion.svg?branch=master)](https://travis-ci.org/RobinHankin/onion)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/onion)](https://cran.r-project.org/package=onion)
+[![Rdoc](http://www.rdocumentation.org/badges/version/onion)](http://www.rdocumentation.org/packages/onion)
+<!-- badges: end -->
+
+# Overview
+
+The ```onion``` package provides functionality for working with
+quaternions and octonions in R.  A detailed vignette is provided in
+the package.
+
+Informally, the *quaternions*, usually denoted $\mathbb{H}$, are a
+generalization of the complex numbers represented as a
+four-dimensional vector space over the reals.  An arbitrary quaternion
+$q$ represented as
+
+$$
+q=a + b\mathbf{i} + c\mathbf{j}+ d\mathbf{k}
+$$
+
+where $a,b,c,d\in\mathbb{R}$ and $\mathbf{i},\mathbf{j},\mathbf{k}$
+are the quaternion units linked by the equations
+
+$$
+\mathbf{i}^2=
+\mathbf{j}^2=
+\mathbf{k}^2=
+\mathbf{i}\mathbf{j}\mathbf{k}=-1.$$
+
+which, together with distributivity, define quaternion multiplication.
+We can see that the quaternions are not commutative, for while
+$\mathbf{i}\mathbf{j}=\mathbf{k}$, it is easy to show that
+$\mathbf{j}\mathbf{i}=-\mathbf{k}$.  Quaternion multiplication is,
+however, associative (the proof is messy and long).
+
+Defining
+
+$$
+\left( a+b\mathbf{i} + c\mathbf{j}+ d\mathbf{k}\right)^{-1}=
+\frac{1}{a^2 + b^2 + c^2 + d^2}
+\left(a-b\mathbf{i} - c\mathbf{j}- d\mathbf{k}\right)
+$$
+
+shows that the quaternions are a division algebra: division works as
+expected (although one has to be careful about ordering terms).
+
+
+The *octonions* $\mathbb{O}$ are essentially a pair of quaternions,
+with a general octonion written
+
+$$
+a           + b\mathbf{i} + c\mathbf{j}+ d\mathbf{k} +
+e\mathbf{l} + f\mathbf{il} + g\mathbf{jl}+ h\mathbf{kl}
+$$
+
+(other notations are sometimes used); Baez gives a multiplication
+table for the unit octonions and together with distributivity we have
+a well-defined division algebra.  However, octonion multiplication is
+not associative and we have $x(yz)\neq (xy)z$ in general.
+
+# Installation
+
+You can install the released version of onion from
+[CRAN](https://CRAN.R-project.org) with:
+
+```{r, message=FALSE}
+# install.packages("onion")  # uncomment this to install the package
+library("onion")
+```
+
+# The ```onion``` package in use
+
+The basic quaternions are denoted ```H1```, ```Hi```, ```Hj``` and
+```Hk``` and these should behave as expected in R idiom:
+
+```{r}
+a <- 1:9 + Hi -2*Hj
+a
+a*Hk
+Hk*a
+```
+
+Function ```rquat()``` generates random quaternions:
+
+```{r, echo=FALSE}
+set.seed(0)
+```
+
+```{r}
+a <- rquat(9)
+names(a) <- letters[1:9]
+a
+a[6] <- 33
+a
+cumsum(a)
+```
+
+## Octonions
+
+Octonions follow the same general pattern and we may show
+nonassociativity numerically:
+
+```{r}
+x <- roct(5)
+y <- roct(5)
+z <- roct(5)
+x*(y*z) - (x*y)*z
+```
+
+# References
+
+- RKS Hankin (2006).  "Normed division algebras with R: introducing the onion package". _R News_, 6(2):49-52
+- JC Baez (2001). "The octonions".  _Bulletin of the American Mathematical Society_, 39(5), 145--205
+
+
+# Further information
+
+For more detail, see the package vignette
+
+```vignette("onionpaper")```
