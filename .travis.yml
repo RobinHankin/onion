@@ -6,6 +6,8 @@ before_install:
     - tlmgr install letltxmacro
     - tlmgr install wasysym
     - tlmgr install yfonts
+    - tlmgr install bbm
+    - tlmgr install bbm-macros
     - tlmgr update --self --all
 
 language: R
