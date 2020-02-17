@@ -4,7 +4,6 @@ before_install:
     - tlmgr install collection-latexrecommended
     - tlmgr install collection-fontsrecommended
     - tlmgr install letltxmacro
-    - tlmgr install wasysym
     - tlmgr install yfonts
     - tlmgr install bbm
     - tlmgr install bbm-macros
