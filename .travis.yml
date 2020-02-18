@@ -5,7 +5,6 @@ before_install:
     - tlmgr install collection-fontsrecommended
     - tlmgr install letltxmacro
     - tlmgr install bbm
-    - tlmgr update --self --all
 
 language: R
 cache: packages
