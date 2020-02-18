@@ -5,7 +5,6 @@ before_install:
     - tlmgr install collection-fontsrecommended
     - tlmgr install letltxmacro
     - tlmgr install bbm
-    - tlmgr install bbm-macros
     - tlmgr update --self --all
 
 language: R
