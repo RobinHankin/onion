@@ -12,4 +12,7 @@ branches:
   only:
   - master 
 
-r_build_args: '--resave-data --compact-vignettes="both" '
+env:
+   global:
+     - R_BUILD_ARGS: '--resave-data --compact-vignettes="both" '
+     
