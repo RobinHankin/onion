@@ -14,4 +14,4 @@ branches:
 
 warnings_are_errors: true
 r_build_args: ' --resave-data --compact-vignettes="both" '
-
+r_check_args: ' --no-build-vignettes '
