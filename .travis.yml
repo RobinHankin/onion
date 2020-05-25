@@ -12,6 +12,6 @@ branches:
   only:
   - master 
 
-warnings_are_errors: true
+warnings_are_errors: false
 r_build_args: ' --resave-data --compact-vignettes="both" '
 r_check_args: ' --no-build-vignettes '
