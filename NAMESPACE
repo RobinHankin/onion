@@ -40,6 +40,7 @@ S3method(sign,onion)
 S3method(sqrt,onion)
 S3method(get.comp,onion)
 S3method(Ops,onion)
+S3method(Ops,onionmat)
 
 S3method("Re<-", quaternion)
 S3method("Im<-", quaternion)

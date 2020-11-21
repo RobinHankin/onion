@@ -1,4 +1,5 @@
 newonionmat <- function(d,M){
+    stopifnot(length(d) == length(M))
     if(is.matrix(M)){
         M[] <- seq_along(M)
         out <- list(d=d,M=M)
@@ -9,20 +10,21 @@ newonionmat <- function(d,M){
     }
 }
 
-`is_ok_onionmat` <- function(x){
-    stopifnot(getM(x))
-    stopifnot(length(getd(x)) == length(getM(x)))
-    return(TRUE)
-}
-
-`onionmat` <- function(x,rows,cols){
-  M <- matrix(TRUE,rows,cols)
-  stopifnot(is_ok_onionmat(x,M))
-  newonionmat(x,M)
-}
-
 `getd` <- function(o){o$d}
-`getm` <- function(o){o$M}
+`getM` <- function(o){o$M}
+
+`onionmat` <- function(data=NA,nrow=1,ncol=1,byrow=FALSE,dimnames=NULL){
+    M <- matrix(seq_len(nrow*ncol),nrow,ncol)
+    dimnames(M) <- dimnames
+    d <- 0*c(M)+data[1]
+
+    if(byrow){
+        d[c(matrix(seq_len(nrow*ncol),nrow,ncol,byrow=TRUE))] <- data
+    } else {
+        d[] <- data
+    }
+    newonionmat(d,M)
+}
 
 `[.onionmat` <- function(x,...){
   with(x,
