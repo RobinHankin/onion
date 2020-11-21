@@ -79,7 +79,7 @@ newonionmat <- function(d,M){
             f()
         }
 
-    } else if (.Generic == "*") {
+    } else if (.Generic == "*") {  # NB pointwise 
         if (lclass && rclass) {
             return(OMprodOM(e1, e2))
         } else if (lclass) {
@@ -91,7 +91,7 @@ newonionmat <- function(d,M){
         }
     } else if (.Generic == "/") {
         if (lclass && rclass) {
-            return(OMquotientS(e1, e2))  # error
+            return(OMquotientOM(e1, e2))  # error
         } else if (lclass) {
             return(OMprodS(e1, 1/e2))
         } else if (rclass) {
@@ -105,12 +105,10 @@ newonionmat <- function(d,M){
         } else if (lclass) {
             return(OMpowerS(e1, e2)) # works
         } else if (rclass) {
-            return(OMprodOM(e1, e2))  # error
+            return(SpowerOM(e1, e2))  # error
         } else {
             f()
         }
-
-
 
     } else if (.Generic == "^") {
         if (lclass && rclass) {
@@ -134,7 +132,18 @@ newonionmat <- function(d,M){
 `OMneg` <- function(e1){ newonionmat(-getd(e1),getM(e1)) }
 `OMplusOM` <- function(e1,e2){ newonionmat(getd(e1)+getd(e2),getM(e1)+getM(e2)) }
 `OMplusS` <- function(e1,e2){ newonionmat(getd(e1)+e2,getM(e1)) }
+`OMpowerS` <- function(e1,e2){ newonionmat(getd(e1)^e2,getM(e1)) }
+`OMequalOM` <- function(e1,e2){
+    jj <- getM(e1) == getM(e2) # traps nonconformant matrices
+    out <- getd(e1) == getd(e2)
+    attributes(out) <- attributes(jj)
+    return(out)
+}
 
-ni <- function(...){stop("not yet implemented")}
-OMprodOM <- ni
+`SpowerOM` <- function(...){stop("not defined")}
+`OMpowerOM` <- function(...){stop("not defined")}
+`OMquotientOM` <- function(...){stop("onionic matrices not a division algebra")}
+
+`OMprodOM` <- function(...){ newonionmat(getd(e1)*getd(e2),getM(e1)*getM(e2)) }
+
 
