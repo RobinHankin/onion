@@ -133,6 +133,8 @@ newonionmat <- function(d,M){
 `OMplusOM` <- function(e1,e2){ newonionmat(getd(e1)+getd(e2),getM(e1)+getM(e2)) }
 `OMplusS` <- function(e1,e2){ newonionmat(getd(e1)+e2,getM(e1)) }
 `OMpowerS` <- function(e1,e2){ newonionmat(getd(e1)^e2,getM(e1)) }
+`OMprodS` <- function(e1,e2){ newonionmat(getd(e1)*e2,getM(e1)) }
+`OMprodOM` <- function(e1,e2){ newonionmat(getd(e1)*getd(e2),getM(e1)*getM(e2)) }
 `OMequalOM` <- function(e1,e2){
     jj <- getM(e1) == getM(e2) # traps nonconformant matrices
     out <- getd(e1) == getd(e2)
