@@ -1,14 +1,15 @@
 newonionmat <- function(d,M){
-  if(is.matrix(M)){
-    M[] <- seq_along(M)
-    out <- list(d=d,M=M)
-    class(out) <- "onionmat"
-    return(out)
-  } else {
-    return(d)
+    if(is.matrix(M)){
+        M[] <- seq_along(M)
+        out <- list(d=d,M=M)
+        class(out) <- "onionmat"
+        return(out)
+    } else {
+        return(d)
+    }
 }
 
-isokonionmat <- function(x){
+`is_ok_onionmat` <- function(x){
   with(x,
        stopifnot(length(x$d) == length(x$M))
        )
@@ -17,7 +18,7 @@ isokonionmat <- function(x){
 
 `onionmat` <- function(x,rows,cols){
   M <- matrix(TRUE,rows,cols)
-  stopifnot(isokonionmat(x,M))
+  stopifnot(is_ok_onionmat(x,M))
   newonionmat(x,M)
 }
 
