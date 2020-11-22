@@ -98,6 +98,7 @@ S3method("rownames",onionmat)
 S3method("colnames",onionmat)
 
 S3method("dimnames", onionmat)
+S3method("dimnames<-", onionmat)
 S3method("rownames<-", onionmat)
 S3method("colnames<-", onionmat)
 

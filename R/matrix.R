@@ -173,6 +173,14 @@ setGeneric("colnames")
 setGeneric("dimnames")
 `dimnames.onionmat` <- function(x){dimnames(getM(x))}
 
+setGeneric("dimnames<-")
+`dimnames<-.onionmat` <- function(x,value){
+  print("here at dimnames becomes")
+  m <- getM(x)
+  dimnames(m) <- value
+  return(newonionmat(getd(x),m))
+}
+
 setGeneric("rownames<-")
 setGeneric("colnames<-")
 
