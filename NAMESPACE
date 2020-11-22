@@ -97,8 +97,9 @@ S3method("ncol",onionmat)
 S3method("rownames",onionmat)
 S3method("colnames",onionmat)
 
-S3method("rownames<-", onionmat)
-S3method("rownames<-", onionmat)
+S3method("dimnames", onionmat)
+S3method("colnames<-", onionmat)
+S3method("colnames<-", onionmat)
 
 importFrom("grDevices", "hsv")
 importFrom("graphics", "persp", "plot", "points")

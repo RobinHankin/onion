@@ -170,20 +170,24 @@ setGeneric("rownames")
 setGeneric("colnames")
 `colnames.onionmat` <- function(x){colnames(getM(x))}
 
+setGeneric("dimnames")
+`dimnames.onionmat` <- function(x){dimnames(getM(x))}
+
+setGeneric("rownames<-")
+setGeneric("colnames<-")
+
 `rownames<-.onionmat` <- function(x,value){
+    print("here at rownames becomes")
     m <- getM(x)
     rownames(m) <- value
     return(newonionmat(getd(x),m))
 }
 
-`rownames<-.onionmat` <- function(x,value){
+`colnames<-.onionmat` <- function(x,value){
     m <- getM(x)
     colnames(m) <- value
     return(newonionmat(getd(x),m))
-    }
-
-
-
+}
 
 `onionmatprod` <- function(x,y){
     jj <- getM(x) %*% getM(y)
@@ -193,7 +197,7 @@ setGeneric("colnames")
             out[i,j] <- sum(x[i,]*y[,j])
         }
     }
-    rownames(out) <- 
-    colnames(out) <- d
+    rownames(out) <- rownames(jj)
+    colnames(out) <- colnames(jj)
     return(out)
 }
