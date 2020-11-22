@@ -89,7 +89,16 @@ S3method("%>*<%", onion)
 S3method("%<.>%", onion)
 S3method("%>.<%", onion)
 
+S3method("%*%", default)
 
+S3method("dim",onionmat)
+S3method("nrow",onionmat)
+S3method("ncol",onionmat)
+S3method("rownames",onionmat)
+S3method("colnames",onionmat)
+
+S3method("rownames<-", onionmat)
+S3method("rownames<-", onionmat)
 
 importFrom("grDevices", "hsv")
 importFrom("graphics", "persp", "plot", "points")

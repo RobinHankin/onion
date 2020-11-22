@@ -17,7 +17,6 @@ newonionmat <- function(d,M){
     M <- matrix(seq_len(nrow*ncol),nrow,ncol)
     dimnames(M) <- dimnames
     d <- 0*c(M)+data[1]
-
     if(byrow){
         d[c(matrix(seq_len(nrow*ncol),nrow,ncol,byrow=TRUE))] <- data
     } else {
@@ -147,7 +146,54 @@ newonionmat <- function(d,M){
 `SpowerOM` <- function(...){stop("not defined")}
 `OMpowerOM` <- function(...){stop("not defined")}
 `OMquotientOM` <- function(...){stop("onionic matrices not a division algebra")}
-
 `OMprodOM` <- function(...){ newonionmat(getd(e1)*getd(e2),getM(e1)*getM(e2)) }
 
+## Following lines modified from the gmp package:
+`%*%` <- function(x,y){ UseMethod("%*%") }
+`%*%.default` <- function(x,y) {
+    if(inherits(y, "onionmat")){
+        return(onionmatprod(x,y))
+    } else {
+        return(base::"%*%"(x,y))
+    }
+}
 
+setGeneric("dim")
+`dim.onionmat` <- function(x){dim(getM(x))}
+setGeneric("nrow")
+`nrow.onionmat` <- function(x){nrow(getM(x))}
+setGeneric("ncol")
+`ncol.onionmat` <- function(x){ncol(getM(x))}
+
+setGeneric("rownames")
+`rownames.onionmat` <- function(x){rownames(getM(x))}
+setGeneric("colnames")
+`colnames.onionmat` <- function(x){colnames(getM(x))}
+
+`rownames<-.onionmat` <- function(x,value){
+    m <- getM(x)
+    rownames(m) <- value
+    return(newonionmat(getd(x),m))
+}
+
+`rownames<-.onionmat` <- function(x,value){
+    m <- getM(x)
+    colnames(m) <- value
+    return(newonionmat(getd(x),m))
+    }
+
+
+
+
+`onionmatprod` <- function(x,y){
+    jj <- getM(x) %*% getM(y)
+    out <- newonionmat(as.quaternion(rep(0,length(jj))),jj)
+    for(i in seq_len(nrow(getM(x)))){
+        for(j in seq_len(ncol(getM(y)))){
+            out[i,j] <- sum(x[i,]*y[,j])
+        }
+    }
+    rownames(out) <- 
+    colnames(out) <- d
+    return(out)
+}
