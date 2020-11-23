@@ -6,6 +6,7 @@ newonionmat <- function(d,M){
         class(out) <- "onionmat"
         return(out)
     } else {
+        names(d) <- names(M)
         return(d)
     }
 }
