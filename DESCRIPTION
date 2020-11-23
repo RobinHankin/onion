@@ -12,5 +12,6 @@ Description:
   nonassociative.  See the package vignette for more details.
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 License: GPL-2
+Depends: methods
 URL: https://github.com/RobinHankin/onion.git
 BugReports: https://github.com/RobinHankin/onion/issues
