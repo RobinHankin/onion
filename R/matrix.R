@@ -175,7 +175,6 @@ setGeneric("dimnames")
 
 setGeneric("dimnames<-")
 `dimnames<-.onionmat` <- function(x,value){
-  print("here at dimnames becomes")
   m <- getM(x)
   dimnames(m) <- value
   return(newonionmat(getd(x),m))
@@ -185,7 +184,6 @@ setGeneric("rownames<-")
 setGeneric("colnames<-")
 
 `rownames<-.onionmat` <- function(x,value){
-    print("here at rownames becomes")
     m <- getM(x)
     rownames(m) <- value
     return(newonionmat(getd(x),m))
@@ -199,7 +197,7 @@ setGeneric("colnames<-")
 
 `onionmatprod` <- function(x,y){
     jj <- getM(x) %*% getM(y)
-    out <- newonionmat(as.quaternion(rep(0,length(jj))),jj)
+    out <- newonionmat(rep(0*getd(x)[1],length(jj)),jj)
     for(i in seq_len(nrow(getM(x)))){
         for(j in seq_len(ncol(getM(y)))){
             out[i,j] <- sum(x[i,]*y[,j])
@@ -208,4 +206,24 @@ setGeneric("colnames<-")
     rownames(out) <- rownames(jj)
     colnames(out) <- colnames(jj)
     return(out)
+}
+`Conj.onionmat` <- function(x){ newonionmat(Conj(getd(x)),getM(x)) }
+
+`t.onionmat` <- function(x){ # NB ensures that emulator::ht() works.
+  jj <- t(getM(x))
+  newonionmat(getd(x)[jj],jj)
+}
+
+`herm_onion_mat` <- function(real_diagonal, onions){
+  n <- length(real_diagonal)
+  m <- round(n*(n-1)/2)
+  stopifnot(length(onions) == m)
+  mind <- diag(real_diagonal,nrow=length(real_diagonal))
+  rownames(mind) <- names(real_diagonal)
+  colnames(mind) <- names(real_diagonal)
+  out <- newonionmat(d=rep(onions[1]*0,n*n),M=mind)
+  out[upper.tri(mind)] <- onions
+  out <- out + t(Conj(out))
+  out[cbind(seq_len(n),seq_len(n))] <- real_diagonal # diag() does not work
+  return(out)
 }

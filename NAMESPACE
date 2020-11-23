@@ -102,6 +102,9 @@ S3method("dimnames<-", onionmat)
 S3method("rownames<-", onionmat)
 S3method("colnames<-", onionmat)
 
+S3method("Conj",onionmat)
+S3method("t",onionmat)
+
 importFrom("grDevices", "hsv")
 importFrom("graphics", "persp", "plot", "points")
 importFrom("stats", "rbinom", "rnorm", "rpois", "runif")
