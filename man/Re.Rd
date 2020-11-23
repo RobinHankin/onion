@@ -53,8 +53,25 @@
 \alias{set.comp<-.onion}
 \alias{set.comp<-.octonion}
 \alias{set.comp<-.quaternion}
+\alias{Re.onionmat}
+\alias{Im.onionmat}
+\alias{i.onionmat}
+\alias{j.onionmat}
+\alias{k.onionmat}
+\alias{l.onionmat}
+\alias{il.onionmat}
+\alias{jl.onionmat}
+\alias{kl.onionmat}
+\alias{Re<-.onionmat}
+\alias{i<-.onionmat}
+\alias{j<-.onionmat}
+\alias{k<-.onionmat}
+\alias{l<-.onionmat}
+\alias{il<-.onionmat}
+\alias{jl<-.onionmat}
+\alias{kl<-.onionmat}
 \title{Octonion components}
-\description{Get or set each component of an onionic vector}
+\description{Get or set each component of an onionic vector or matrix}
 \usage{
 \method{Re}{octonion}(z)
 \method{Im}{octonion}(z)
@@ -86,6 +103,23 @@
 \method{k}{quaternion}(x) <- value
 \method{get.comp}{onion}(x,i)
 \method{set.comp}{onion}(x,i) <- value
+\method{Re}{octonion}(z)
+\method{Im}{octonion}(z)
+\method{i}{octonion}(x)
+\method{j}{octonion}(x)
+\method{k}{octonion}(x)
+\method{l}{octonion}(x)
+\method{il}{octonion}(x)
+\method{jl}{octonion}(x)
+\method{kl}{onionmat}(x)
+\method{Re}{onionmat}(x) <- value
+\method{i}{onionmat}(x) <- value
+\method{j}{onionmat}(x) <- value
+\method{k}{onionmat}(x) <- value
+\method{l}{onionmat}(x) <- value
+\method{il}{onionmat}(x) <- value
+\method{jl}{onionmat}(x) <- value
+\method{kl}{onionmat}(x) <- value
 }
 \arguments{
   \item{x,z}{An onionic vector}
