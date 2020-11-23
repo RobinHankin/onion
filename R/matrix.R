@@ -146,7 +146,6 @@ newonionmat <- function(d,M){
 `SpowerOM` <- function(...){stop("not defined")}
 `OMpowerOM` <- function(...){stop("not defined")}
 `OMquotientOM` <- function(...){stop("onionic matrices not a division algebra")}
-`OMprodOM` <- function(...){ newonionmat(getd(e1)*getd(e2),getM(e1)*getM(e2)) }
 
 ## Following lines modified from the gmp package:
 `%*%` <- function(x,y){ UseMethod("%*%") }
@@ -207,7 +206,7 @@ setGeneric("colnames<-")
     colnames(out) <- colnames(jj)
     return(out)
 }
-`Conj.onionmat` <- function(x){ newonionmat(Conj(getd(x)),getM(x)) }
+`Conj.onionmat` <- function(z){ newonionmat(Conj(getd(z)),getM(z)) }
 
 `t.onionmat` <- function(x){ # NB ensures that emulator::ht() works.
   jj <- t(getM(x))
