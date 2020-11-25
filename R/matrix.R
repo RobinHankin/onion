@@ -1,8 +1,19 @@
 newonionmat <- function(d,M){
     stopifnot(length(d) == length(M))
     if(is.matrix(M)){
-        M[] <- seq_along(M)
-        names(d) <- apply(expand.grid(seq_len(nrow(M)),seq_len(ncol(M))),1,function(x){paste("[",x[1],",",x[2],"]",sep="")})
+      M[] <- seq_along(M)
+      if(is.null(rownames(M))){
+        rowlabs <- seq_len(nrow(M))
+      } else {
+        rowlabs <- rownames(M)
+      }
+
+      if(is.null(colnames(M))){
+        collabs <- seq_len(ncol(M))
+      } else {
+        collabs <- colnames(M)
+      }
+      names(d) <- apply(expand.grid(rowlabs,collabs),1,function(x){paste("[",x[1],",",x[2],"]",sep="")})
         out <- list(d=d,M=M)
         class(out) <- "onionmat"
         return(out)
