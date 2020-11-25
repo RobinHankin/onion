@@ -2,6 +2,7 @@ newonionmat <- function(d,M){
     stopifnot(length(d) == length(M))
     if(is.matrix(M)){
         M[] <- seq_along(M)
+        names(d) <- apply(expand.grid(seq_len(nrow(M)),seq_len(ncol(M))),1,function(x){paste("[",x[1],",",x[2],"]",sep="")})
         out <- list(d=d,M=M)
         class(out) <- "onionmat"
         return(out)
@@ -378,4 +379,5 @@ setGeneric("colnames<-")
   Re(d) <- value
   newonionmat(d,getM(x))
   }
+
 
