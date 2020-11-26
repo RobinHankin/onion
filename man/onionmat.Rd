@@ -54,6 +54,7 @@
 \alias{ncol}
 \alias{colnames<-}
 \alias{rownames<-}
+\alias{print.onionmat}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -71,6 +72,7 @@ OMplusOM(e1,e2)
 colnames.onionmat(x)
 rownames.onionmat(x)
 \method{Conj}{onionmat}(z)
+\method{print}{onionmat}(x,...)
 nrow(x)
 ncol(x)
 herm_onion_mat(real_diagonal, onions)
@@ -81,7 +83,8 @@ herm_onion_mat(real_diagonal, onions)
   \item{data,nrow,ncol,byrow,dimnames}{In function
     \code{onionmat()}, as for \code{matrix()}}
   \item{...}{In functions like \code{OMpowerOM()}, which are designed to
-    return informative errors, ignored further arguments}
+    return informative errors; and \code{print()}, ignored further
+    arguments}
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
 }

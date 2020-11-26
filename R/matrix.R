@@ -240,6 +240,10 @@ setGeneric("colnames<-")
   return(out)
 }
 
+`print.onionmat` <- function(x,...){
+  print(x$d)
+  return(x)
+}
 
 `Re.onionmat` <- function(x){
   out <- getM(x)

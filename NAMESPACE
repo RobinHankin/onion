@@ -124,8 +124,11 @@ S3method("il<-", onionmat)
 S3method("jl<-", onionmat)
 S3method("kl<-", onionmat)
 
+S3method("print",onionmat)
+
 importFrom("grDevices", "hsv")
 importFrom("graphics", "persp", "plot", "points")
 importFrom("stats", "rbinom", "rnorm", "rpois", "runif")
+
 
 import("methods")
