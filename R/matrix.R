@@ -232,7 +232,7 @@ setGeneric("colnames<-")
 }
 `Conj.onionmat` <- function(z){ newonionmat(Conj(getd(z)),getM(z)) }
 
-`t.onionmat` <- function(x){ # NB ensures that emulator::ht() works.
+`t.onionmat` <- function(x){ # NB1: this  ensures that emulator::ht() works; NB2: t(x) DOES NOT TAKE CONJUGATE
   jj <- t(getM(x))
   newonionmat(getd(x)[jj],jj)
 }
