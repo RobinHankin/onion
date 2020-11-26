@@ -260,7 +260,7 @@ null <- dev.off()
   \begin{center}
     \includegraphics{wp_figure.png}
 \caption{The Stanford Bunny~\citep{turk2005}\label{bunny.rotate} in
-  various rotations, plotted using \code{p3d()}; in the package, 3D
+  various orientations, plotted using \code{p3d()}; in the package, 3D
   rotation is carried out by function \code{rotate()}.  Depth cue is
   via progressive greying out of points further from the eye, as
   though viewed through a mist}
