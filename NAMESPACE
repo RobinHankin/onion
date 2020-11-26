@@ -130,5 +130,4 @@ importFrom("grDevices", "hsv")
 importFrom("graphics", "persp", "plot", "points")
 importFrom("stats", "rbinom", "rnorm", "rpois", "runif")
 
-
 import("methods")
