@@ -82,14 +82,14 @@ romat(type="quaternion", nrow=5,ncol=6,...)
 \arguments{
   \item{d,M}{data and matrix index}
   \item{x,z,e1,e2}{Objects of class \code{onionmat}}
-  \item{data,nrow,ncol,byrow,dimnames}{In function
-    \code{onionmat()}, as for \code{matrix()}}
+  \item{data,nrow,ncol,byrow,dimnames}{In functions
+    \code{onionmat()} and \code{romat()}, as for \code{matrix()}}
   \item{...}{In functions like \code{OMpowerOM()}, which are designed to
     return informative errors; and \code{print()}, ignored further
     arguments}
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
-  \item{type,nrow,ncol}{In \code{romat()}, controls for the output}
+  \item{type}{In \code{romat()}, type of output}
 }
 \details{
 

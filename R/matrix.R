@@ -45,7 +45,7 @@ romat <- function(type="quaternion", nrow=5,ncol=6,...){
               )
   out <- newonionmat(d=d,M=matrix(0,nrow,ncol,...))
   rownames(out) <- letters[seq_len(nrow)]
-  colnames(out) <- state.abb[seq_len(ncol)]
+  colnames(out) <- datasets::state.abb[seq_len(ncol)]
   return(out)
 }
  
