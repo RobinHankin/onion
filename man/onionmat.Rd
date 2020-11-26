@@ -55,6 +55,7 @@
 \alias{colnames<-}
 \alias{rownames<-}
 \alias{print.onionmat}
+\alias{romat}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -76,6 +77,7 @@ rownames.onionmat(x)
 nrow(x)
 ncol(x)
 herm_onion_mat(real_diagonal, onions)
+romat(type="quaternion", nrow=5,ncol=6,...)
 }
 \arguments{
   \item{d,M}{data and matrix index}
@@ -87,6 +89,7 @@ herm_onion_mat(real_diagonal, onions)
     arguments}
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
+  \item{type,nrow,ncol}{In \code{romat()}, controls for the output}
 }
 \details{
 

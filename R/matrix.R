@@ -38,6 +38,17 @@ newonionmat <- function(d,M){
     newonionmat(d,M)
 }
 
+romat <- function(type="quaternion", nrow=5,ncol=6,...){
+  d <- switch(type, 
+              octonion = roct(nrow*ncol,...),
+              rquat(nrow*ncol,...)  # quaternion
+              )
+  out <- newonionmat(d=d,M=matrix(0,nrow,ncol,...))
+  rownames(out) <- letters[seq_len(nrow)]
+  colnames(out) <- state.abb[seq_len(ncol)]
+  return(out)
+}
+ 
 `[.onionmat` <- function(x,...){
   with(x,
        return(newonionmat(
