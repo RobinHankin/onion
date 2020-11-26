@@ -235,9 +235,14 @@ small.}.  Note that the noncommutativity of the quaternions means that
 the mapping is not necessarily the identity.  This scheme may be used
 to produce figure~\ref{bunny.rotate}.
 
-\begin{figure}[htbp]
-  \begin{center}
-<<figplotter, fig=TRUE>>=
+
+
+%% Thanks to Dario Strbenac for the following structure
+<<wp_figure_file>>=   
+png("wp_figure.png",width=800,height=800)
+@ 
+
+<<label=wp_figure_plot>>=
      data(bunny)
      par(mfrow=c(2,2))
      par(mai=rep(0.1,4))
@@ -245,7 +250,15 @@ to produce figure~\ref{bunny.rotate}.
      p3d(rotate(bunny,Hi)   ,box=FALSE,d0=0.4,r=1e6,h=NULL,pch=16,cex=0.3,theta=0,phi=90,main="z=i")
      p3d(rotate(bunny,H1-Hj),box=FALSE,d0=0.4,r=1e6,h=NULL,pch=16,cex=0.3,theta=0,phi=90,main="z=1-i")
      p3d(rotate(bunny,Hall) ,box=FALSE,d0=0.4,r=1e6,h=NULL,pch=16,cex=0.3,theta=0,phi=90,main="z=1+i+j+k")
-@
+@ 
+
+<<label=wp_figure_close>>=
+null <- dev.off()
+@ 
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics{wp_figure.png}
 \caption{The Stanford Bunny~\citep{turk2005}\label{bunny.rotate} in
   various rotations, plotted using \code{p3d()}; in the package, 3D
   rotation is carried out by function \code{rotate()}.  Depth cue is
