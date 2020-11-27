@@ -38,6 +38,14 @@ newonionmat <- function(d,M){
     newonionmat(d,M)
 }
 
+`as.quaternionmat` <- function(M){
+  newonionmat(as.quaternion(c(M)),M)
+}
+  
+`as.octonionmat` <- function(M){
+  newonionmat(as.octonion(c(M)),M)
+}
+  
 romat <- function(type="quaternion", nrow=5,ncol=6,...){
   d <- switch(type, 
               octonion = roct(nrow*ncol,...),
