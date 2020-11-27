@@ -292,7 +292,7 @@ setGeneric("cprod",function(x,y){standardGeneric("cprod")})
 setMethod("cprod",signature=c(x="onionmat",y="onionmat"),function(x,y){om_cprod(x,y)})
 setMethod("cprod",signature=c(x="onionmat",y="missing"),function(x,y){om_cprod(x,x)})
 setMethod("cprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_cprod(x,y)})
-setMethod("cprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_crossprod(Conj(x),y)})
-setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::crossprod(Conj(x),y)})
+setMethod("cprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_cprod(Conj(x),y)})
+setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::crprod(Conj(x),y)})
 
 
