@@ -175,7 +175,7 @@ romat <- function(type="quaternion", nrow=5,ncol=6,...){
 `%*%` <- function(x,y){ UseMethod("%*%") }
 `%*%.default` <- function(x,y) {
     if(inherits(y, "onionmat")){
-        return(onionmatprod(x,y))
+        return(om_prod(x,y))
     } else {
         return(base::"%*%"(x,y))
     }
@@ -218,7 +218,7 @@ setGeneric("colnames<-")
     return(newonionmat(getd(x),m))
 }
 
-`onionmatprod` <- function(x,y){
+`om_prod` <- function(x,y){
     jj <- getM(x) %*% getM(y)
     out <- newonionmat(rep(0*getd(x)[1],length(jj)),jj)
     for(i in seq_len(nrow(getM(x)))){
@@ -230,6 +230,37 @@ setGeneric("colnames<-")
     colnames(out) <- colnames(jj)
     return(out)
 }
+
+`om_cprod` <- function(x,y=x){  # t(Conj(x)) %*% y
+    x <- Conj(x)
+    jj <- crossprod(getM(x), getM(y))
+    out <- newonionmat(rep(0*getd(x)[1],length(jj)),jj)
+    for(i in seq_len(ncol(getM(x)))){
+        for(j in seq_len(ncol(getM(y)))){
+            out[i,j] <- sum(x[,i]*y[,j])
+        }
+    }
+    rownames(out) <- rownames(jj)
+    colnames(out) <- colnames(jj)
+    return(out)
+}
+
+`om_tcprod` <- function(x,y=x){  # x %*% t(Conj(y))
+    y <- Conj(y)
+    jj <- tcrossprod(getM(x), getM(y))
+    out <- newonionmat(rep(0*getd(x)[1],length(jj)),jj)
+    for(i in seq_len(nrow(getM(x)))){
+        for(j in seq_len(nrow(getM(y)))){
+            out[i,j] <- sum(x[i,]*y[j,])
+        }
+    }
+    rownames(out) <- rownames(jj)
+    colnames(out) <- colnames(jj)
+    return(out)
+}
+
+`om_ht` <- function(x){ t(Conj(x)) }
+
 `Conj.onionmat` <- function(z){ newonionmat(Conj(getd(z)),getM(z)) }
 
 `t.onionmat` <- function(x){ # NB1: this  ensures that emulator::ht() works; NB2: t(x) DOES NOT TAKE CONJUGATE
@@ -255,4 +286,13 @@ setGeneric("colnames<-")
   print(x$d)
   return(x)
 }
+
+setOldClass("onionmat")
+setGeneric("cprod",function(x,y){standardGeneric("cprod")})
+setMethod("cprod",signature=c(x="onionmat",y="onionmat"),function(x,y){om_cprod(x,y)})
+setMethod("cprod",signature=c(x="onionmat",y="missing"),function(x,y){om_cprod(x,x)})
+setMethod("cprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_cprod(x,y)})
+setMethod("cprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_crossprod(Conj(x),y)})
+setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::crossprod(Conj(x),y)})
+
 
