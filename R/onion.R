@@ -1,3 +1,4 @@
+if(FALSE){
 "biggest" <- function(...){
   a <-  unlist(lapply(list(...),type))
   if("octonion" %in% a){
@@ -969,3 +970,4 @@ if(FALSE){
 }
 
 "%.%" <- function(x,y){dotprod(x,y)}
+}
