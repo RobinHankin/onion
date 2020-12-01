@@ -66,14 +66,26 @@ setReplaceMethod("names",signature(x="onion"),
 
 
 
-`as.onion` <- function(x){
-  x <- cbind(x)
+`as.onion` <- function(x,type=NA){
+  if(type=="quaternion"){
+    if(is.quaternion(x)){
+      return(x)
+    } else { 
+      return(as.quaternion(rbind(x,matrix(0,3,length(x)))))
+    }
+  } else if(type=="octonion"){
+    if(is.octonion(x)){
+      return(x)
+    } else {
+      return(as.octonion(rbind(x,matrix(0,7,length(x)))))
+    }
+  }
   if(nrow(x)==4){
     return(as.quaternion(x))
   } else if(nrow(x)==8){
     return(as.octonion(x))
   } else {
-    stop("must have either 4 or 8 rows")
+    stop("supplied matrix must have either 4 or 8 rows")
   }
 }
 
@@ -325,6 +337,8 @@ setReplaceMethod("[",signature(x="onion"),
   return(list(u1=A[jj[1,]],u2=B[jj[2,]],names=names.out))
 }
 
+setGeneric("Norm",function(z){standardGeneric("Norm")})
+setMethod("Norm","onion",function(z){rowsums(as.matrix(z)^2)})
 
 "onion_complex" <- function(z){
   switch(.Generic,
@@ -374,6 +388,56 @@ setReplaceMethod("Im",signature(x="onion"),
                    x[-1,] <- value
                    return(as.onion(x))
                  } )
+
+
+setMethod("Arith",signature(e1 = "onion", e2="missing"),
+          function(e1,e2){
+            switch(.Generic,
+                   "+" = e1,
+                   "-" = onion_negative(e1),
+                   stop(paste("Unary operator", .Generic,
+                              "not allowed on onions"))
+                   )
+          } )
+
+`onion_negative` <- function(z){as.onion(-as.matrix(z))}
+`onion_inverse` <- function(z){as.onion(sweep(as.matrix(Conj(z)),2,Norm(z),FUN = "/"))}
+
+"onion_arith_onion" <- function(e1,e2){
+  switch(.Generic,
+         "+" = onion_add (e1, e2),
+         "-" = onion_add (e1,onion_negative(e2)),
+         "*" = onion_prod(e1, e2),
+         "/" = onion_prod(e1, onion_inverse(e2)),
+         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+"numeric_arith_onion" <- function(e1,e2){
+  switch(.Generic,
+         "+" = onion_add (e1, e2),
+         "-" = onion_add (e1,onion_negative(e2)),
+         "*" = onion_prod(e1, e2),
+         "/" = onion_prod(e1, onion_inverse(e2)),
+         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+"onion_arith_numeric" <- function(e1,e2){
+  switch(.Generic,
+         "+" = onion_add (e1, e2),
+         "-" = onion_add (e1,onion_negative(e2)),
+         "*" = onion_prod(e1, e2),
+         "/" = onion_prod(e1, onion_inverse(e2)),
+         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+
+setMethod("Arith",signature(e1 = "onion"  , e2="onion"  ),   onion_arith_onion  )
+setMethod("Arith",signature(e1 = "onion"  , e2="numeric"),   onion_arith_numeric)
+setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  )
+
 
 setGeneric("i",function(z){standardGeneric("i")})
 setGeneric("j",function(z){standardGeneric("j")})
