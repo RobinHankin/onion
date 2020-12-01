@@ -45,6 +45,7 @@ setValidity("octonion", valid_octonion)
 
 "is.quaternion" <- function(x){is(x,"quaternion")}
 "is.octonion" <- function(x){is(x,"octonion")}
+"is.onion" <- function(x){is(x,"onion")}
 
 
 setAs("onion", "matrix", function(from){ from@x} )
@@ -325,6 +326,33 @@ setReplaceMethod("[",signature(x="onion"),
 }
 
 
+"onion_complex" <- function(z){
+  switch(.Generic,
+         Arg  = stop("not defined for onions"),
+         Conj = onion_conjugate(z),
+         Im   = onion_imag(z),
+         Mod  = onion_mod(z),
+         Re   = onion_re(z),
+         stop(paste("Complex operator \"", .Generic, "\" not defined for Glub numbers"))
+         )
+}
+
+setMethod("Complex","onion", onion_complex)
+
+onion_conjugate <- function(z){
+  Im(z) <- -Im(z)
+  return(z)
+}
+
+onion_imag <- function(z){
+  z <- as.matrix(z)
+  z[1,] <- 0
+  return(as.onion(z))
+}
+
+`onion_mod` <- function(z){ colSums(as.matrix(z)^2) }
+`onion_re` <- function(z){as.matrix(z)[,1]}
+
 setGeneric("Re<-",function(z,value){standardGeneric("Re<-")})
 setGeneric("Im<-",function(x,value){standardGeneric("Im<-")})
 
@@ -335,31 +363,17 @@ setMethod("Re<-","onion",
             return(as.onion(z))
           } )
 
-if(FALSE){
-setMethod("Im<-","onion",
-          function(z,value){
-            z <- as.matrix(z)
-            z[-1,] <- value
-            return(as.onion(z))
-          } )
-}
-
 setReplaceMethod("Im",signature(x="onion"),
                  function(x,value){
                    if(is.onion(value) && all(Re(value)==0)){
                      value <- as.matrix(value)[-1,1]
+                   } else if(is.onion(value)){
+                     value <- as.matrix(value)[-1,]
                    }
                    x <- as.matrix(x)
                    x[-1,] <- value
-                   return(as.onion(value))
+                   return(as.onion(x))
                  } )
-
-
-setMethod("Re","onion",function(z){as.matrix(z)[1,]})
-setMethod("Im","onion",function(z){
-  Re(z) <- 0
-  return(z)
-} )
 
 setGeneric("i",function(z){standardGeneric("i")})
 setGeneric("j",function(z){standardGeneric("j")})
@@ -429,8 +443,5 @@ setReplaceMethod("kl",signature(x="octonion"), function(x,value){
   return(as.onion(x))
 } )
 
-setMethod("Conj",signature(z="onion"),
-          function(z){
-            Im(z) <- -Im(z)
-            return(z)
-          } )
+
+
