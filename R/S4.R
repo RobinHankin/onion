@@ -51,6 +51,19 @@ setValidity("octonion", valid_octonion)
 setAs("onion", "matrix", function(from){ from@x} )
 setMethod("as.matrix",signature(x="onion"),function(x){as(x,"matrix")})
 
+`quaternion_to_octonion` <- function(from){
+  stopifnot(is.quaternion(from))
+  as.octonion(rbind(as.matrix(from),matrix(0,4,length(from))))
+}
+
+`octonion_to_quaternion` <- function(from){
+  stopifnot(is.octonion(from))
+  as.quaternion(as.matrix(from)[1:4,,drop=FALSE])
+}
+
+setAs("quaternion","octonion",quaternion_to_octonion)
+setAs("octonion","quaternion",octonion_to_quaternion)
+      
 setGeneric("length")
 setMethod("length","onion",function(x){ncol(x@x)})
 
@@ -64,30 +77,43 @@ setReplaceMethod("names",signature(x="onion"),
                    return(as.onion(out))
                  } ) 
 
-
-
-`as.onion` <- function(x,type=NA){
-  if(type=="quaternion"){
-    if(is.quaternion(x)){
-      return(x)
-    } else { 
-      return(as.quaternion(rbind(x,matrix(0,3,length(x)))))
-    }
-  } else if(type=="octonion"){
-    if(is.octonion(x)){
+`as.onion` <- function(x,type){
+  if(missing(type)){
+    if(is.onion(x)){
       return(x)
     } else {
-      return(as.octonion(rbind(x,matrix(0,7,length(x)))))
+      if(nrow(x)==4){
+        return(as.quaternion(x))
+      } else if(nrow(x)==8){
+        return(as.octonion(x))
+      } else {
+        stop("supplied matrix must have either 4 or 8 rows")
+      }
+    }
+  } else {  # type supplied
+    if(is.onion(type)){type <- class(type)}
+    if(type == "quaternion"){
+      if(is.quaternion(x)){
+        return(x)
+      } else if(is.octonion(x)) { 
+        return(octonion_to_quaternion(x))
+      } else {
+        return(as.quaternion(rbind(x,matrix(0,3,length(x)))))
+      }
+    } else if(type == "octonion"){
+      if(is.octonion(x)){
+        return(x)
+      } else if(is.quaternion(x)){
+        return(quaternion_to_octonion(x))
+      } else {
+        return(as.octonion(rbind(x,matrix(0,7,length(x)))))
+      }
+    } else {
+      stop("type not recognised")
     }
   }
-  if(nrow(x)==4){
-    return(as.quaternion(x))
-  } else if(nrow(x)==8){
-    return(as.octonion(x))
-  } else {
-    stop("supplied matrix must have either 4 or 8 rows")
-  }
 }
+
 
 `as.quaternion` <- function(x,single=FALSE,names=NULL){
   if(is.quaternion(x)){return(x)}
@@ -290,7 +316,6 @@ setReplaceMethod("[",signature(x="onion"),
                    if(!missing(j)){
                      warning("second argument to extractor function ignored")
                    }
-                   
                    out <- as.matrix(x)
                    if(is.vector(value)){
                      value <- kronecker(t(value),c(1,rep(0,nrow(out)-1)))
@@ -299,44 +324,24 @@ setReplaceMethod("[",signature(x="onion"),
                    return(as.onion(out))
                  } )
 
+`process` <- function(A,B){
+  ## takes two onions, returns a list of two same-sized matrices with appropriate (col)names
 
-"harmonize" <- function(A,B=A){
-  same <- all(class(A)==class(B))
-  jj <- Amassage(A,B)
-  A <- jj$u1
-  B <- jj$u2
-  if(is.octonion(A) | is.octonion(B)){
-    A <- as.octonion(A)
-    B <- as.octonion(B)
-  } else if (is.quaternion(A) | is.quaternion(B)){
-    A <- as.quaternion(A)
-    B <- as.quaternion(B)
-  } 
-  return(
-         list(
-              A=A,
-              B=B,
-              names=jj$names,
-              type=type(A),
-              same=same
-              )
-         )
+  sA <- seq_along(A)
+  sB <- seq_along(B)
+  names(sA) <- names(A)
+  names(sB) <- names(B)
+  ind <-  rbind(sA,sB)
+
+  A <- as.matrix(A)[,ind[1,,drop=TRUE]]
+  B <- as.matrix(B)[,ind[2,,drop=TRUE]]
+
+  colnames(A) <- colnames(ind)
+  colnames(B) <- colnames(ind)
+
+  list(A,B)
 }
-
-"Amassage" <- function(A,B){
-  lA <- length(A)
-  lB <- length(B)
-  A <- as.matrix(A)
-  B <- as.matrix(B)
-  if( (lA >= lB) & (!is.null(names(A)))){
-    names.out <- names(A)
-  } else {
-    names.out <- names(B)
-  }
-  jj <- rbind(seq(length.out=lA),seq(length.out=lB))
-  return(list(u1=A[jj[1,]],u2=B[jj[2,]],names=names.out))
-}
-
+  
 setGeneric("Norm",function(z){standardGeneric("Norm")})
 setMethod("Norm","onion",function(z){rowsums(as.matrix(z)^2)})
 
@@ -400,35 +405,38 @@ setMethod("Arith",signature(e1 = "onion", e2="missing"),
                    )
           } )
 
+## unary operators:
 `onion_negative` <- function(z){as.onion(-as.matrix(z))}
 `onion_inverse` <- function(z){as.onion(sweep(as.matrix(Conj(z)),2,Norm(z),FUN = "/"))}
 
+
+
 "onion_arith_onion" <- function(e1,e2){
   switch(.Generic,
-         "+" = onion_add (e1, e2),
-         "-" = onion_add (e1,onion_negative(e2)),
-         "*" = onion_prod(e1, e2),
-         "/" = onion_prod(e1, onion_inverse(e2)),
+         "+" = onion_plus_onion(e1, e2),
+         "-" = onion_plus_onion(e1,onion_negative(e2)),
+         "*" = onion_prod_onion(e1, e2),
+         "/" = onion_prod_onion(e1, onion_inverse(e2)),
          stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
          )
 }
 
-"numeric_arith_onion" <- function(e1,e2){
+"onion_arith_numeric" <- function(e1,e2){  # e1 onion, e2 numeric
   switch(.Generic,
-         "+" = onion_add (e1, e2),
-         "-" = onion_add (e1,onion_negative(e2)),
-         "*" = onion_prod(e1, e2),
-         "/" = onion_prod(e1, onion_inverse(e2)),
+         "+" = onion_plus_numeric(e1,  e2),
+         "-" = onion_plus_numeric(e1, -e2),
+         "*" = onion_prod_numeric(e1,  e2),
+         "/" = onion_prod_numeric(e1,1/e2),
          stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
          )
 }
 
-"onion_arith_numeric" <- function(e1,e2){
+"numeric_arith_onion" <- function(e1,e2){ # e1 numeric, e2 onion
   switch(.Generic,
-         "+" = onion_add (e1, e2),
-         "-" = onion_add (e1,onion_negative(e2)),
-         "*" = onion_prod(e1, e2),
-         "/" = onion_prod(e1, onion_inverse(e2)),
+         "+" = onion_plus_numeric(e2,  e1),
+         "-" = onion_plus_numeric(e2, -e1),
+         "*" = onion_prod_numeric(e2,  e1),
+         "/" = onion_prod_numeric(e2,1/e1),  # onions commute with numeric multiplication
          stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
          )
 }
@@ -438,6 +446,57 @@ setMethod("Arith",signature(e1 = "onion"  , e2="onion"  ),   onion_arith_onion  
 setMethod("Arith",signature(e1 = "onion"  , e2="numeric"),   onion_arith_numeric)
 setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  )
 
+`onion_plus_onion` <- function(a,b){
+  jj <- process(a,b)
+  as.onion(jj[[1]]+jj[[2]])
+}
+
+`onion_plus_numeric`  <- function(a,b){ onion_plus_onion(a,as.onion(b,a)) }
+
+`onion_prod_onion`    <- function(a,b){stop()}
+
+`onion_prod_numeric`  <- function(a,b){  # faster than onion_prod_onion(a,as.onion(b,a))
+  sA <- seq_along(a) 
+  sB <- seq_along(b)
+  names(sA) <- names(a)
+  names(sB) <- names(b)
+  ind <-  rbind(sA,sB)
+
+  out <- as.onion(sweep(as.matrix(a)[,ind[1,,drop=TRUE],drop=FALSE],2,b[ind[2,,drop=TRUE]],"*"))
+  names(out) <- colnames(ind)
+  return(out)
+}
+
+`onion_power_numeric` <- function(a,b){stop("not implemented")
+  sA <- seq_along(a) 
+  sB <- seq_along(b)
+  names(sA) <- names(a)
+  names(sB) <- names(b)
+  ind <-  rbind(sA,sB)
+
+  out <- 
+
+  out <- as.onion(sweep(as.matrix(a)[,ind[1,,drop=TRUE],drop=FALSE],2,b[ind[2,,drop=TRUE]],"*"))
+  names(out) <- colnames(ind)
+  return(out)
+}
+
+`onion_power_singlenumber` <- function(o,n){
+  stopifnot(length(n)==1)
+  stopifnot(n == round(n))
+  stopifnot(is.onion(o))
+  if(n>1){
+    return(o*Recall(o,n-1)) 
+  } else if(n==0){
+    return(1+o*0)
+  } else if(n==1){
+    return(o)
+  } else if(n<0){
+    return(Recall(onion_inverse(o),-n))  
+  } else {
+    stop("this cannot happen")
+  }
+}
 
 setGeneric("i",function(z){standardGeneric("i")})
 setGeneric("j",function(z){standardGeneric("j")})
