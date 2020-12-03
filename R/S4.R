@@ -629,7 +629,20 @@ setMethod("prod","quaternion",function(x){quaternion_allprod(x)})
 setMethod("prod","octonion",function(x){stop("octonion multiplication is not associative")})
 
 
+setMethod("show", "quaternion", function(object){quaternion_show(object)})
+`quaternion_show` <- function(x){
+  out <- as.matrix(x)
+  print(out)
+  return(invisible(x))
+}
 
+setMethod("show", "octonion", function(object){quaternion_show(object)})
+`quaternion_show` <- function(x){
+  out <- as.matrix(x)
+  rownames(out) <- c("Re","i","j","k","l","il","jl","kl")
+  print(out)
+  return(invisible(x))
+}
 
 setGeneric("i",function(z){standardGeneric("i")})
 setGeneric("j",function(z){standardGeneric("j")})
