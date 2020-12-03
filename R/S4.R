@@ -349,7 +349,7 @@ setReplaceMethod("[",signature(x="onion"),
 }
   
 setGeneric("Norm",function(z){standardGeneric("Norm")})
-setMethod("Norm","onion",function(z){rowsums(as.matrix(z)^2)})
+setMethod("Norm","onion",function(z){rowSums(as.matrix(z)^2)})
 
 "onion_complex" <- function(z){
   switch(.Generic,
