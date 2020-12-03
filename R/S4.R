@@ -49,7 +49,7 @@ setValidity("octonion", valid_octonion)
 setAs("onion", "matrix", function(from){ from@x} )
 setMethod("as.matrix",signature(x="onion"),function(x){as(x,"matrix")})
 
-setAs("onion", "double", function(from){ as.double(from@x)})
+setAs("onion", "double", function(from){ as.double(from@x)})  # there are no occurences of "@" below this line
 setMethod("as.double",signature(x="onion"),function(x){as(x,"double")})
 
 `quaternion_to_octonion` <- function(from){
@@ -165,8 +165,8 @@ setReplaceMethod("names",signature(x="onion"),
       out <- kronecker(t(x),c(1,rep(0,3)))
     }
   }
-  rownames(out) <- NULL
-  return(new("quaternion",x=out))
+  rownames(out) <- c("Re","i","j","k")
+  return(new("quaternion",x=out))  # this is the only place new("quaternion",...) is called
 }
 
 `quaternion` <- function(length.out=NULL, Re=0, i=0, j=0, k=0){
@@ -257,7 +257,8 @@ setReplaceMethod("names",signature(x="onion"),
       out <- kronecker(t(x),c(1,rep(0,7)))
     }
   }
-  return(new("octonion",x=out))
+  rownames(out) <- c("Re","i","j","k","l","il","jl","kl")
+  return(new("octonion",x=out))  # this is the only place new("octonion",...) is called
 }
 
 
@@ -637,9 +638,8 @@ setMethod("show", "quaternion", function(object){quaternion_show(object)})
 }
 
 setMethod("show", "octonion", function(object){quaternion_show(object)})
-`quaternion_show` <- function(x){
+`octonion_show` <- function(x){
   out <- as.matrix(x)
-  rownames(out) <- c("Re","i","j","k","l","il","jl","kl")
   print(out)
   return(invisible(x))
 }
