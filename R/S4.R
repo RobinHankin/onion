@@ -26,7 +26,6 @@ setClass("octonion",
   }
 }
 
-
 `valid_octonion` <- function(object){
   x <- object@x
   if(!is.numeric(x)){
@@ -46,7 +45,6 @@ setValidity("octonion", valid_octonion)
 "is.quaternion" <- function(x){is(x,"quaternion")}
 "is.octonion" <- function(x){is(x,"octonion")}
 "is.onion" <- function(x){is(x,"onion")}
-
 
 setAs("onion", "matrix", function(from){ from@x} )
 setMethod("as.matrix",signature(x="onion"),function(x){as(x,"matrix")})
@@ -81,10 +79,10 @@ setMethod("c",signature(x="onion"),
           } )
 
 setGeneric("length")
-setMethod("length","onion",function(x){ncol(x@x)})
+setMethod("length","onion",function(x){ncol(as.matrix(x))})
 
 setGeneric("names")
-setMethod("names","onion",function(x){colnames(x@x)})
+setMethod("names","onion",function(x){colnames(as.matrix(x))})
 
 setReplaceMethod("names",signature(x="onion"),
                  function(x,value){
@@ -131,7 +129,7 @@ setReplaceMethod("names",signature(x="onion"),
 }
 
 
-`as.quaternion` <- function(x,single=FALSE,names=NULL){
+`as.quaternion` <- function(x,single=FALSE){
   if(is.quaternion(x)){return(x)}
   if(is.complex(x)){
     if(single){
@@ -168,11 +166,10 @@ setReplaceMethod("names",signature(x="onion"),
     }
   }
   rownames(out) <- NULL
-  colnames(out) <- names
   return(new("quaternion",x=out))
 }
 
-`quaternion` <- function(length.out=NULL, names=NULL, Re=0, i=0, j=0, k=0){
+`quaternion` <- function(length.out=NULL, Re=0, i=0, j=0, k=0){
   if (
       (missing(Re) | length(Re)==0) &
       (missing(i)  | length( i)==0) &
@@ -195,13 +192,10 @@ setReplaceMethod("names",signature(x="onion"),
       length(out) <- length.out
     }
   }
-  if(!is.null(names)){
-    colnames(out) <- names
-  }
   return(out)
 }
 
-`octonion` <- function(length.out=NULL, names=NULL, Re=0, i=0, j=0, k=0, l=0, il=0, jl=0, kl=0){
+`octonion` <- function(length.out=NULL, Re=0, i=0, j=0, k=0, l=0, il=0, jl=0, kl=0){
   if (
       (missing(Re) | length(Re)==0) &
       (missing(i)  | length( i)==0) &
@@ -228,22 +222,18 @@ setReplaceMethod("names",signature(x="onion"),
       length(out) <- length.out
     }
   }
-  if(!is.null(names)){
-    colnames(out) <- names
-  }
   return(out)
 }
 
-"as.octonion" <- function(x, single=FALSE, names=NULL){
+"as.octonion" <- function(x, single=FALSE){
   if(is.octonion(x)){return(x)}
-  if(is.quaternion(x)){return(as.octonion(rbind(x,x*0),names=names))}
-  if(is.null(names(x))){names <- colnames(x)}
+  if(is.quaternion(x)){return(as.octonion(rbind(x,x*0)))}
 
   if(is.complex(x)){
     if(single){
       stop("single cannot be TRUE with complex x")
     } else {
-      return(Recall(rbind(Re(x),Im(x),matrix(0,6,length(x))),names=names))
+      return(Recall(rbind(Re(x),Im(x),matrix(0,6,length(x)))))
     }
   }
   if(is.matrix(x)){
@@ -267,7 +257,6 @@ setReplaceMethod("names",signature(x="onion"),
       out <- kronecker(t(x),c(1,rep(0,7)))
     }
   }
-  colnames(out) <- names
   return(new("octonion",x=out))
 }
 
@@ -638,6 +627,8 @@ setMethod("Math","onion",
 setMethod("sum","onion",function(x){onion_allsum(x)})
 setMethod("prod","quaternion",function(x){quaternion_allprod(x)})
 setMethod("prod","octonion",function(x){stop("octonion multiplication is not associative")})
+
+
 
 
 setGeneric("i",function(z){standardGeneric("i")})
