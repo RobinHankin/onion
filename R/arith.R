@@ -86,8 +86,8 @@ setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  
   names(sA) <- names(a)
   names(sB) <- names(b)
   ind <-  rbind(sA,sB)
-  a <- as.matrix(a)[,ind[1,,drop=TRUE]]
-  b <- b[ind[2,,drop=TRUE]]  # differs here from harmonize_oo()
+  a <- as.matrix(a)[,ind[1,,drop=TRUE],drop=FALSE]
+  b <- b[ind[2,,drop=TRUE],drop=TRUE]  # differs here from harmonize_oo()
   names(a) <- colnames(ind)
   names(b) <- colnames(ind)
   return(list(a,b))
