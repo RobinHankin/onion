@@ -47,8 +47,6 @@ function (x, y, z, xlim = NULL, ylim = NULL, zlim = NULL, d0=0.2, h=1, ...)
 t(as.matrix(H*as.quaternion(t(cbind(0,x)))/H))[,-1]
 }
   
-"sqrt.onion" <- function(x){exp(log(x)/2)}
-
 "associator" <- function(x1,x2,x3){
   return((x1*x2)*x3 - x1*(x2*x3))
 }
@@ -87,24 +85,11 @@ t(as.matrix(H*as.quaternion(t(cbind(0,x)))/H))[,-1]
   return(as.quaternion(out))
 }
 
-
-"condense" <- function(x){UseMethod("condense")}
-"condense.onion" <- function(x){
-  x <- as.matrix(x)
-  out <- x
-  out[x==0] <- "0"
-  out[x> 0] <- "+"
-  out[x< 0] <- "-"
-  return(noquote(apply(out,2,paste,collapse="")))
-  }
-
-
-
 "t.onion" <- function(x){
   x <- as.matrix(x)
   NextMethod("t")
 }
-
+if(FALSE){
 "print.octonion" <- function(x, h=getOption("horiz"), ...){
   x <- as.matrix(x)
   rownames(x) <- c("Re","i","j","k","l","il","jl","kl")
@@ -130,7 +115,7 @@ t(as.matrix(H*as.quaternion(t(cbind(0,x)))/H))[,-1]
     return(invisible(print(x)))
   }
 }
-
+}
 "seq.onion" <-
   function (from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, slerp = FALSE, ...) 
 {
