@@ -54,7 +54,6 @@ setMethod("as.matrix",signature(x="onion"),function(x){as(x,"matrix")})
 setAs("onion", "double", function(from){ as.double(from@x)})
 setMethod("as.double",signature(x="onion"),function(x){as(x,"double")})
 
-
 `quaternion_to_octonion` <- function(from){
   stopifnot(is.quaternion(from))
   as.octonion(rbind(as.matrix(from),matrix(0,4,length(from))))
@@ -67,7 +66,20 @@ setMethod("as.double",signature(x="onion"),function(x){as(x,"double")})
 
 setAs("quaternion","octonion",quaternion_to_octonion)
 setAs("octonion","quaternion",octonion_to_quaternion)
-      
+
+`c_onionpair` <- function(x,y){as.onion(cbind(as.matrix(x),as.matrix(y)))}
+
+setMethod("c",signature(x="onion"),
+          function(x,...){
+            if(nargs()==1){
+              return(x)
+            } else if(nargs() <= 2){
+              return(c_onionpair(x,...))
+            } else {
+              return(c_onionpair(x,Recall(...)))
+            }
+          } )
+
 setGeneric("length")
 setMethod("length","onion",function(x){ncol(x@x)})
 
@@ -413,14 +425,13 @@ setMethod("Arith",signature(e1 = "onion", e2="missing"),
 `onion_negative` <- function(z){as.onion(-as.matrix(z))}
 `onion_inverse` <- function(z){as.onion(sweep(as.matrix(Conj(z)),2,Norm(z),FUN = "/"))}
 
-
-
 "onion_arith_onion" <- function(e1,e2){
   switch(.Generic,
          "+" = onion_plus_onion(e1, e2),
          "-" = onion_plus_onion(e1,onion_negative(e2)),
          "*" = onion_prod_onion(e1, e2),
          "/" = onion_prod_onion(e1, onion_inverse(e2)),
+         "^" = stop("onion^onion not defined"),
          stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
          )
 }
@@ -442,6 +453,7 @@ setMethod("Arith",signature(e1 = "onion", e2="missing"),
          "-" = onion_plus_numeric(e2, -e1),
          "*" = onion_prod_numeric(e2,  e1),
          "/" = onion_prod_numeric(e2,1/e1),  # onions commute with numeric multiplication
+         "^" = stop("x^onion not defined"),
          stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
          )
 }
@@ -562,6 +574,70 @@ setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  
   }
   return(out)
 }
+
+`onion_compare` <- function(e1,e2){
+  stopifnot(is.onion(e1) | is.onion(e2))
+  if(!is.onion(e1)){e1 <- as.onion(e1,e2)}
+  if(!is.onion(e2)){e2 <- as.onion(e2,e1)}
+    
+  jj <- harmonize_oo(e1,e2)
+  switch(.Generic,
+         "==" = return(apply(jj[[1]]==jj[[2]],2,all)),
+         "!=" = return(apply(jj[[1]]!=jj[[2]],2,all)),
+         stop(paste("comparision operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+setMethod("Compare",signature(e1 = "onion"  , e2="onion"  ), onion_compare)
+setMethod("Compare",signature(e1 = "onion"  , e2="numeric"), onion_compare)
+setMethod("Compare",signature(e1 = "numeric", e2="onion"  ), onion_compare)
+
+"onion_logic" <- function(e1,e2){
+  stop("No logic currently implemented for onions")
+}
+
+setMethod("Logic",signature(e1="onion",e2="onion"  ), onion_logic)
+setMethod("Logic",signature(e1="ANY"  ,e2="onion"  ), onion_logic)
+setMethod("Logic",signature(e1="onion",e2="ANY"    ), onion_logic)
+setMethod("Logic",signature(e1="onion",e2="missing"), onion_logic)
+
+`onion_abs` <- function(x){apply(as.matrix(x),2,function(z){sum(sqrt(z^2))})}
+`onion_cumprod` <- function(x){
+  if(length(x)==1){return(x)}
+  out <- x
+  for(i in seq_along(x)[-1]){
+    out[i] <- out[i-1]*x[i]
+  }
+  return(out)
+}
+
+`onion_cumsum` <- function(x){as.onion(t(apply(as.matrix(x),1,cumsum)))}
+
+setMethod("Math","onion",
+          function(x){
+          browser()
+            switch(.Generic,
+                   abs     = onion_abs(x),
+                   cumprod = onion_cumprod(x),
+                   cumsum  = onion_cumsum(x),
+                   stop("Not yet implemented for onions")
+                   )
+          } )
+
+`onion_allsum` <- function(x){as.onion(cbind(rowSums(as.matrix(x))))}
+`quaternion_allprod` <- function(x){
+  out <- x[1]
+  for(i in seq(from=2,len=length(x)-1)){
+    out <- out*x[i]
+  }
+  return(out)
+}
+
+# setMethod("Summary","onion",...)does not work
+
+setMethod("sum","onion",function(x){onion_allsum(x)})
+setMethod("prod","quaternion",function(x){quaternion_allprod(x)})
+setMethod("prod","octonion",function(x){stop("octonion multiplication is not associative")})
 
 
 setGeneric("i",function(z){standardGeneric("i")})
