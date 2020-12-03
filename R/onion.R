@@ -116,39 +116,6 @@ if(FALSE){
   }
 }
 }
-"seq.onion" <-
-  function (from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, slerp = FALSE, ...) 
-{
-  b <- biggest(from, to, by)
-  if (identical(length.out,0)) {return(as.onion(0,type=b)[0])}
-
-  from <- as.onion(from,type=b)
-  to <- as.onion(to,type=b)
-  by <- as.onion(by,type=b)
-
-  if (!missing(length.out)){ 
-    length.out <- ceiling(length.out)
-  }
-
-  if(missing(to)){
-    to <- from + by*(length.out-1)
-  }
-  if(missing(from)){
-    from <- to - by*(length.out-1)
-  }
-  del <- to - from
-  if(missing(by)){
-    by <- del/length.out
-  }
-
-  h <- seq(from=0,to=1,len=length.out)
-  if(slerp){
-    return(from*(to/from)^h)
-  } else {
-    return(from*(1-h)+ to*h)
-  }
-}
-
 
 
 "length<-.onion" <- function(x,value){
