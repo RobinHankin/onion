@@ -458,8 +458,8 @@ setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  
   names(sA) <- names(a)
   names(sB) <- names(b)
   ind <- rbind(sA,sB)
-  a <- as.matrix(a)[,ind[1,,drop=TRUE]]
-  b <- as.matrix(b)[,ind[2,,drop=TRUE]]
+  a <- as.matrix(a)[,ind[1,,drop=TRUE],drop=FALSE]
+  b <- as.matrix(b)[,ind[2,,drop=TRUE],drop=FALSE]
   names(a) <- colnames(ind)
   names(b) <- colnames(ind)
   return(list(a,b))
@@ -492,7 +492,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  
 
 `onion_prod_onion` <- function(e1,e2){
   stopifnot(identical(class(e1),class(e2)))
-  switch(class(a),
+  switch(class(e1),
          "quaternion" = quaternion_prod_quaternion(e1,e2),
          "octonion"   =   octonion_prod_octonion(e1,e2)
          )
