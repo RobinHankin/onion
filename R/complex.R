@@ -22,7 +22,6 @@ onion_imag <- function(z){
   return(as.onion(z))
 }
 
-`onion_mod` <- function(z){sqrt(colSums(as.matrix(z)^2))}
 `onion_re` <- function(z){as.matrix(z)[,1]}
 
 setGeneric("Re<-",function(z,value){standardGeneric("Re<-")})
@@ -48,10 +47,9 @@ setReplaceMethod("Im",signature(x="onion"),
                  } )
 
 
-`onion_abs` <- function(x){apply(as.matrix(x),2,function(z){sum(sqrt(z^2))})}
+
 
 setGeneric("Norm",function(z){standardGeneric("Norm")})
 setMethod("Norm","onion",function(z){colSums(as.matrix(z)^2)})
 
-
-
+`onion_mod` <- function(z){sqrt(Norm(z))}

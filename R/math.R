@@ -29,7 +29,6 @@
 
 setMethod("Math","onion",
           function(x){
-          browser()
             switch(.Generic,
                    abs     = onion_abs(x),
                    cumprod = onion_cumprod(x),
@@ -46,3 +45,6 @@ setMethod("Math","onion",
   }
   return(out)
 }
+
+
+`onion_abs` <- function(x){sqrt(Norm(x))}
