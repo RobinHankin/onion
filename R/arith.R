@@ -57,7 +57,7 @@ setMethod("Arith",signature(e1 = "onion", e2="missing"),
          "+" = onion_plus_numeric(e2,  e1),
          "-" = onion_plus_numeric(e2, -e1),
          "*" = onion_prod_numeric(e2,  e1),
-         "/" = onion_prod_numeric(e2,1/e1),  # onions commute with numeric multiplication
+         "/" = onion_prod_numeric(onion_inverse(e2),e1),  # onions commute with numeric multiplication
          "^" = stop("x^onion not defined"),
          stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
          )
