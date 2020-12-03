@@ -49,7 +49,7 @@ setValidity("octonion", valid_octonion)
 setAs("onion", "matrix", function(from){ from@x} )
 setMethod("as.matrix",signature(x="onion"),function(x){as(x,"matrix")})
 
-setAs("onion", "double", function(from){ as.double(from@x)})  # there are no occurences of "@" below this line
+setAs("onion", "double", function(from){ as.double(from@x)})  # there are no occurences of "@" below this line or elsewhere in this directory
 setMethod("as.double",signature(x="onion"),function(x){as(x,"double")})
 
 `quaternion_to_octonion` <- function(from){
