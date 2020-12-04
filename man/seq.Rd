@@ -22,7 +22,7 @@
 }
 \author{Robin K. S. Hankin}
 \examples{
-seq(from=O1,to=Oil,length.out=6)
-seq(from=H1,to=(Hi+Hj)/2,len=10,slerp=TRUE)
+seq_onion(from=O1,to=Oil,length.out=6)
+seq_onion(from=H1,to=(Hi+Hj)/2,len=10,slerp=TRUE)
 }
 \keyword{array}

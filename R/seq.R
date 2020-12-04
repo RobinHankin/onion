@@ -1,4 +1,4 @@
-"onion_seq" <-
+`seq_onion` <-
   function (from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, slerp = FALSE, ...) 
 {
   if (identical(length.out,0)) {return(as.onion(0,type=b)[0])}
@@ -25,6 +25,3 @@
     return(from*(1-h)+ to*h)
   }
 }
-setGeneric("seq",function(from,...){standardGeneric("seq")})
-
-setMethod("seq",signature("onion"),onion_seq)

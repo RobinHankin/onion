@@ -20,11 +20,9 @@ Combines its arguments to form an onionic vector.
 \author{Robin K. S. Hankin}
 \examples{
 a <- roct(3)
-b <- seq(from=Oil,to=Oj,len=6)
+b <- seq_onion(from=Oil,to=Oj,len=6)
 c(a,b)
 
 c(rquat(3),H1,H0,Him)
-
-c(Hi,Oil,1:2)
 }
 \keyword{array}
