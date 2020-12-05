@@ -38,49 +38,49 @@ setMethod("il","octonion",function(z){as.matrix(z)[6,]})
 setMethod("jl","octonion",function(z){as.matrix(z)[7,]})
 setMethod("kl","octonion",function(z){as.matrix(z)[8,]})
 
-setGeneric("i<-",function(x,...){standardGeneric("i<-")})
+setGeneric("i<-",function(x,value){standardGeneric("i<-")})
 setReplaceMethod("i",signature(x="onion"), function(x,value){
   x <-  as.matrix(x)
   x[2,] <- value
   return(as.onion(x))
 } )
 
-setGeneric("j<-",function(x,...){standardGeneric("j<-")})
+setGeneric("j<-",function(x,value){standardGeneric("j<-")})
 setReplaceMethod("j",signature(x="onion"), function(x,value){
   x <-  as.matrix(x)
   x[3,] <- value
   return(as.onion(x))
 } )
 
-setGeneric("k<-",function(x,...){standardGeneric("k<-")})
+setGeneric("k<-",function(x,value){standardGeneric("k<-")})
 setReplaceMethod("k",signature(x="onion"), function(x,value){
   x <-  as.matrix(x)
   x[4,] <- value
   return(as.onion(x))
 } )
 
-setGeneric("l<-",function(x,...){standardGeneric("l<-")})
+setGeneric("l<-",function(x,value){standardGeneric("l<-")})
 setReplaceMethod("l",signature(x="octonion"), function(x,value){
   x <-  as.matrix(x)
   x[5,] <- value
   return(as.onion(x))
 } )
 
-setGeneric("il<-",function(x,...){standardGeneric("il<-")})
+setGeneric("il<-",function(x,value){standardGeneric("il<-")})
 setReplaceMethod("il",signature(x="octonion"), function(x,value){
   x <-  as.matrix(x)
   x[6,] <- value
   return(as.onion(x))
 } )
 
-setGeneric("jl<-",function(x,...){standardGeneric("jl<-")})
+setGeneric("jl<-",function(x,value){standardGeneric("jl<-")})
 setReplaceMethod("jl",signature(x="octonion"), function(x,value){
   x <-  as.matrix(x)
   x[7,] <- value
   return(as.onion(x))
 } )
 
-setGeneric("kl<-",function(x,...){standardGeneric("kl<-")})
+setGeneric("kl<-",function(x,value){standardGeneric("kl<-")})
 setReplaceMethod("kl",signature(x="octonion"), function(x,value){
   x <-  as.matrix(x)
   x[8,] <- value
