@@ -1,7 +1,7 @@
 `seq_onion` <-
   function (from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, slerp = FALSE, ...) 
 {
-  if (identical(length.out,0)) {return(as.onion(0,type=b)[0])}
+  if (identical(length.out,0)) {stop()}
 
   if (!missing(length.out)){ 
     length.out <- ceiling(length.out)
