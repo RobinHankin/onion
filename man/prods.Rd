@@ -1,5 +1,4 @@
 \name{prods}
-\alias{prod}
 \alias{prods}
 \alias{\%<*>\%}
 \alias{\%>*<\%}
@@ -83,8 +82,11 @@ and it seems to be rarely needed in practice).  Use \code{Conj(x)*y}
 (and of course if you need \code{Conj(x)*x}, then \code{Norm(x)} is much
 more efficient and accurate).
 
+Function \code{prod()} is documented at \code{Summary.Rd}.
+
 }
 \author{Robin K. S. Hankin}
+
 \examples{
 Oj \%<.>\% Oall
 }
