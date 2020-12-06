@@ -5,7 +5,7 @@
          Im   = onion_imag(z),
          Mod  = onion_mod(z),
          Re   = onion_re(z),
-         stop(paste("Complex operator \"", .Generic, "\" not defined for Glub numbers"))
+         stop(paste("Complex operator \"", .Generic, "\" not defined for onions"))
          )
 }
 
