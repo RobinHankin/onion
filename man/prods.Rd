@@ -69,11 +69,20 @@ The Euclidean operators have a \dQuote{\code{.}}; they are
 \dQuote{\code{\%<.>\%}} for the even Euclidean product and
 \dQuote{\code{\%>.<\%}} for the odd product.
 
+Function \code{dotprod()} returns the Euclidean even product of two
+onionic vectors.  That is, if \code{x} and \code{y} are eight-element
+vectors of the components of two onions, return \code{sum(x*y)}.
+
+Note that the returned value is a numeric vector (compare
+\code{\%<.>\%}, \code{e.even()}, which return onionic vectors with zero
+imaginary part).
+
 There is no binary operator for the ordinary Euclidean product (it is
 not defined because there is no natural, consistent notation available;
 and it seems to be rarely needed in practice).  Use \code{Conj(x)*y}
 (and of course if you need \code{Conj(x)*x}, then \code{Norm(x)} is much
 more efficient and accurate).
+
 }
 \author{Robin K. S. Hankin}
 \examples{
