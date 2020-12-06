@@ -15,7 +15,8 @@
 \alias{Im<-,onion-method}
 \alias{Conj,onion-method}
 \alias{Norm,onion-method}
-
+\alias{onion_complex}
+\alias{onion_imag}
 \title{Extract or Replace Parts of onions or glubs}
 \description{
   Functionality in the Complex group.
