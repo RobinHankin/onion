@@ -117,7 +117,7 @@ if(FALSE){
 }
 
 
-"length<-.onion" <- function(x,value){
+`length<-.onion` <- function(x,value){
   if(value <= length(x)){
     return(x[1:value])
   } else {
@@ -127,36 +127,26 @@ if(FALSE){
   }
 }
 
-"plot.onion" <- function(x, ...){plot(Re(x),Mod(Im(x)), ...)}
+`plot.onion` <- function(x, ...){plot(Re(x),Mod(Im(x)), ...)}
 
-"rep.onion" <- function(x,  ...){
+`rep.onion` <- function(x,  ...){
   u <- seq(length.out=length(x))
   return(x[rep(u, ...)])
 }
     
-"sign.onion" <- function(x){x/Mod(x)}
+`sign.onion` <- function(x){x/Mod(x)}
 
-"g.even" <- function(x,y){UseMethod("g.even")}
- "g.odd" <- function(x,y){UseMethod("g.odd")}
-"e.even" <- function(x,y){UseMethod("e.even")}
- "e.odd" <- function(x,y){UseMethod("e.odd")}
+`onion_g_even` <- function(x,y){(x*y + y*x)/2}
+`onion_g_odd`  <- function(x,y){(x*y - y*x)/2}
+`onion_e_even` <- function(x,y){(Conj(x)*y + Conj(y)*x)/2}
+`onion_e_odd`  <- function(x,y){(Conj(x)*y - Conj(y)*x)/2}
 
-"g.even.onion" <- function(x,y){(x*y + y*x)/2}
- "g.odd.onion" <- function(x,y){(x*y - y*x)/2}
-"e.even.onion" <- function(x,y){(Conj(x)*y + Conj(y)*x)/2}
- "e.odd.onion" <- function(x,y){(Conj(x)*y - Conj(y)*x)/2}
+`%<*>%` <- function(x,y){onion_g_even(x,y)}
+`%>*<%` <- function(x,y){onion_g_odd (x,y)}
+`%<.>%` <- function(x,y){onion_e_even(x,y)}
+`%>.<%` <- function(x,y){onion_e_odd (x,y)}
 
-"%<*>%" <- function(x,y){UseMethod("%<*>%")}  #g.even
-"%>*<%" <- function(x,y){UseMethod("%>*<%")}  #g.odd
-"%<.>%" <- function(x,y){UseMethod("%<.>%")}  #e.even
-"%>.<%" <- function(x,y){UseMethod("%>.<%")}  #e.odd
-
-"%<*>%.onion" <- function(x,y){g.even.onion(x,y)}
-"%>*<%.onion" <- function(x,y){ g.odd.onion(x,y)}
-"%<.>%.onion" <- function(x,y){e.even.onion(x,y)}
-"%>.<%.onion" <- function(x,y){ e.odd.onion(x,y)}
-
-"dotprod" <- function(x,y){
+`dotprod` <- function(x,y){
   x <- as.matrix(x)
   y <- as.matrix(y)
   if(ncol(x)==1){
@@ -170,4 +160,4 @@ if(FALSE){
   }
 }
 
-"%.%" <- function(x,y){dotprod(x,y)}
+`%.%` <- function(x,y){dotprod(x,y)}

@@ -5,19 +5,21 @@
 \alias{\%>*<\%}
 \alias{\%<.>\%}
 \alias{\%>.<\%}
+\alias{\%.\%}
 \alias{\%<*>\%.onion}
 \alias{\%>*<\%.onion}
 \alias{\%<.>\%.onion}
 \alias{\%>.<\%.onion}
-\alias{g.even}
-\alias{g.odd}
-\alias{e.even}
-\alias{e.odd}
-\alias{g.even.onion}
-\alias{g.odd.onion}
-\alias{e.even.onion}
-\alias{e.odd.onion}
-\title{Various products of two onionic vectors}
+\alias{onion_g_even}
+\alias{onion_g_odd}
+\alias{onion_e_even}
+\alias{onion_e_odd}
+\alias{g_even.onion}
+\alias{g_odd.onion}
+\alias{e_even.onion}
+\alias{e_odd.onion}
+\alias{dotprod}
+\title{Various products of two onions}
 \description{
 Returns the various inner and outer  products of two onionic vectors.
 }
@@ -26,14 +28,15 @@ x \%<*>\% y
 x \%>*<\% y
 x \%<.>\% y
 x \%>.<\% y
-\method{g.even}{onion}(x,y)
-\method{g.odd}{onion}(x,y)
-\method{e.even}{onion}(x,y)
-\method{e.odd}{onion}(x,y)
+x \%.\% y
+onion_g_even(x,y)
+onion_g_odd (x,y)
+onion_e_even(x,y)
+onion_e_odd (x,y)
+dotprod(x,y)
 }
 \arguments{
-  \item{x}{Onionic vector}
-  \item{y}{Onionic vector}
+  \item{x,y}{onions}
 }
 \details{
   This page documents an attempt at a consistent notation for onionic
@@ -44,16 +47,16 @@ x \%>.<\% y
   defined by \eqn{E(p,q)=p'q} where \eqn{x'} is the conjugate of \eqn{x}.
 
   Each of these products separates into an \dQuote{even} and an
-  \dQuote{odd} part, here denoted by functions \code{g.even()} and
-  \code{g.odd()} for the Grassman product, and \code{e.even()} and
-  \code{e.odd()} for the Euclidean product.  These are defined as
+  \dQuote{odd} part, here denoted by functions \code{g_even()} and
+  \code{g_odd()} for the Grassman product, and \code{e_even()} and
+  \code{e_odd()} for the Euclidean product.  These are defined as
   follows:
 
   \itemize{
-    \item \code{g.even(x,y)=(xy+yx)/2}
-    \item \code{g.odd(x,y)=(xy-yx)/2}
-    \item \code{e.even(x,y)=(x'y+y'x)/2} 
-    \item \code{e.odd(x,y)=(x'y-y'x)/2}
+    \item \code{g_even(x,y)=(xy+yx)/2}
+    \item \code{g_odd(x,y)=(xy-yx)/2}
+    \item \code{e_even(x,y)=(x'y+y'x)/2} 
+    \item \code{e_odd(x,y)=(x'y-y'x)/2}
   }
   
 These functions have an equivalent binary operator.
