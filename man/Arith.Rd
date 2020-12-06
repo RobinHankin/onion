@@ -46,6 +46,31 @@ onion_power_numeric(a,b)
 \arguments{
   \item{z,e1,e2,a,b,o,o1,o2,n,q1,q2}{onions or numerics}
 }
+\details{
+
+  The function \code{Ops.onion()} passes unary and binary arithmetic
+  operators (\dQuote{\code{+}}, \dQuote{\code{-}}, \dQuote{\code{*}}, and
+  \dQuote{\code{/}}) to the appropriate specialist function.
+
+  The most interesting operator is \dQuote{\code{*}}, which is passed to
+  \code{AprodA()}.  This function is sensitive to the value of option
+  \code{use.R}.  If this is \code{TRUE}, then arguments are passed, via
+  \code{Amassage()}, to either \code{R_HprodH()} (for quaternions), or
+  \code{R_OprodO()} (for octonions).  If option \code{use.R} is
+  anything other than \code{TRUE} (including being unset, which is the
+  default), the massaged arguments are passed to
+  \code{HprodH()} or \code{OprodO()}.  This is what the user usually
+  wants: it is much faster than using the \code{R_} functions.
+
+  The relative performance of, say, \code{OprodO()} vs
+  \code{R_OprodO()}, will be system dependent but on my little Linux
+  system (Fedora; 256MB) \code{OprodO()} runs more than three hundred
+  times faster than \code{R_OprodO()}.  Your mileage may vary; see
+  examples section for using \code{options()} to set argument \code{ur}.
+
+
+
+  }
 \author{Robin K. S. Hankin}
 \note{
 
