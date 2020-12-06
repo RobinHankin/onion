@@ -56,6 +56,30 @@
 \alias{rownames<-}
 \alias{print.onionmat}
 \alias{romat}
+\alias{as.octonionmat}
+\alias{as.quaternionmat}
+\alias{om_cprod}
+\alias{om_ht}
+\alias{om_prod}
+\alias{om_tcprod}
+\alias{onionmat_complex}
+\alias{onionmat_conjugate}
+\alias{onionmat_imag}
+\alias{onionmat_re}
+\alias{onionmat_mod}
+\alias{i,onionmat-method}
+\alias{j,onionmat-method}
+\alias{k,onionmat-method}
+\alias{l,onionmat-method}
+\alias{il,onionmat-method}
+\alias{jl,onionmat-method}
+\alias{kl,onionmat-method}
+\alias{i<-,onionmat-method}
+\alias{j<-,onionmat-method}
+\alias{k<-,onionmat-method}
+\alias{il<-,onionmat-method}
+\alias{jl<-,onionmat-method}
+\alias{kl<-,onionmat-method}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -78,6 +102,17 @@ nrow(x)
 ncol(x)
 herm_onion_mat(real_diagonal, onions)
 romat(type="quaternion", nrow=5,ncol=6,...)
+onionmat_complex(z)
+onionmat_conjugate(z)
+onionmat_imag(z)
+onionmat_re(z)
+onionmat_mod(z)
+\S4method{i}{onionmat}(z)
+\S4method{j}{onionmat}(z)
+\S4method{k}{onionmat}(z)
+\S4method{il}{onionmat}(z)
+\S4method{jl}{onionmat}(z)
+\S4method{kl}{onionmat}(z)
 }
 \arguments{
   \item{d,M}{data and matrix index}
@@ -90,6 +125,7 @@ romat(type="quaternion", nrow=5,ncol=6,...)
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
   \item{type}{In \code{romat()}, type of output}
+  \item{value}{In replacement methods, value to replace with}
 }
 \details{
 

@@ -1,149 +1,127 @@
-`Re.onionmat` <- function(x){
-  out <- getM(x)
-  out[] <- Re(getd(x))
-  out
-  }
+"onionmat_complex" <- function(z){
+  switch(.Generic,
+         Arg  = stop("not defined for onions"),
+         Conj = onionmat_conjugate(z),
+         Im   = onionmat_imag(z),
+         Mod  = onionmat_mod(z),
+         Re   = onionmat_re(z),
+         stop(paste("Complex operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+setMethod("Complex","onionmat", onionmat_complex)
 
-"i.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- i(getd(x))
-  out
+onionmat_conjugate <- function(z){
+  Im(z) <- -Im(z)
+  return(z)
 }
 
-"j.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- j(getd(x))
-  out
+onionmat_imag <- function(z){
+  Re(z) <- 0
+  return(z)
 }
 
-"k.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- k(getd(x))
-  out
-}
-
-"l.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- l(getd(x))
-  out
-}
-
-"il.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- il(getd(x))
-  out
-}
-
-"jl.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- jl(getd(x))
-  out
-}
-
-"kl.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- kl(getd(x))
-  out
-}
-
-`Re.onionmat` <- function(z){
+`onionmat_re` <- function(z){
   out <- getM(z)
   out[] <- Re(getd(z))
-  out
-  }
+  return(out)
+}
 
-`Im.onionmat` <- function(z){
+`onionmat_mod` <- function(z){
+  out <- getM(z)
+  out[] <- Mod(getd(z))
+  return(out)
+}
+
+`onionmat_imag` <- function(z){
   d <- getd(z)
   Re(d) <- 0
   newonionmat(d,getM(z))
   }
 
-"i.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- i(getd(x))
-  out
-}
+setMethod("i","onionmat", function(z){
+  out <- getM(z)
+  out[] <- i(getd(z))
+  return(out)
+} )
 
-"j.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- j(getd(x))
-  out
-}
+setMethod("j","onionmat", function(z){
+  out <- getM(z)
+  out[] <- j(getd(z))
+  return(out)
+} )
 
-"k.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- k(getd(x))
-  out
-}
+setMethod("k","onionmat", function(z){
+  out <- getM(z)
+  out[] <- k(getd(z))
+  return(out)
+} )
 
-"l.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- l(getd(x))
-  out
-}
+setMethod("l","onionmat", function(z){
+  out <- getM(z)
+  out[] <- l(getd(z))
+  return(out)
+} )
 
-"il.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- il(getd(x))
-  out
-}
+setMethod("il","onionmat", function(z){
+  out <- getM(z)
+  out[] <- il(getd(z))
+  return(out)
+} )
 
-"jl.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- jl(getd(x))
-  out
-}
+setMethod("jl","onionmat", function(z){
+  out <- getM(z)
+  out[] <- jl(getd(z))
+  return(out)
+} )
 
-"kl.onionmat" <- function(x){
-  out <- getM(x)
-  out[] <- kl(getd(x))
-  out
-}
+setMethod("kl","onionmat", function(z){
+  out <- getM(z)
+  out[] <- kl(getd(z))
+  return(out)
+} )
 
-`Re<-.onionmat` <- function(x,value){
-  d <- getd(x)
-  Re(d) <- value
-  newonionmat(d,getM(x))
-  }
 
-`i<-.onionmat` <- function(x,value){
+setReplaceMethod("i",signature(x="onionmat"), function(x,value){
   d <- getd(x)
   i(d) <- value
-  newonionmat(d,getM(x))
-  }
+  return(newonionmat(d,getM(x)))
+} )
 
-`j<-.onionmat` <- function(x,value){
+setReplaceMethod("j",signature(x="onionmat"), function(x,value){
   d <- getd(x)
   j(d) <- value
-  newonionmat(d,getM(x))
-  }
+  return(newonionmat(d,getM(x)))
+} )
 
-`k<-.onionmat` <- function(x,value){
+setReplaceMethod("k",signature(x="onionmat"), function(x,value){
   d <- getd(x)
   k(d) <- value
-  newonionmat(d,getM(x))
-  }
+  return(newonionmat(d,getM(x)))
+} )
 
-`l<-.onionmat` <- function(x,value){
+setReplaceMethod("l",signature(x="onionmat"), function(x,value){
   d <- getd(x)
   l(d) <- value
-  newonionmat(d,getM(x))
-  }
+  return(newonionmat(d,getM(x)))
+} )
 
-`il<-.onionmat` <- function(x,value){
+
+setReplaceMethod("il",signature(x="onionmat"), function(x,value){
   d <- getd(x)
   il(d) <- value
-  newonionmat(d,getM(x))
-  }
+  return(newonionmat(d,getM(x)))
+} )
 
-`jl<-.onionmat` <- function(x,value){
+setReplaceMethod("jl",signature(x="onionmat"), function(x,value){
   d <- getd(x)
   jl(d) <- value
-  newonionmat(d,getM(x))
-  }
+  return(newonionmat(d,getM(x)))
+} )
 
-`kl<-.onionmat` <- function(x,value){
+setReplaceMethod("kl",signature(x="onionmat"), function(x,value){
   d <- getd(x)
-  Re(d) <- value
-  newonionmat(d,getM(x))
-  }
+  kl(d) <- value
+  return(newonionmat(d,getM(x)))
+} )
+
+
