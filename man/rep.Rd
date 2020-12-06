@@ -1,5 +1,6 @@
 \name{rep.onion}
 \alias{rep.onion}
+\alias{rep,onion-method}
 \title{Replicate elements of onionic vectors}
 \description{
   Replicate elements of onionic vectors

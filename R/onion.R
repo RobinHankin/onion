@@ -116,23 +116,13 @@ if(FALSE){
 }
 }
 
-
-`length<-.onion` <- function(x,value){
-  if(value <= length(x)){
-    return(x[1:value])
-  } else {
-    out <- as.matrix(x)
-    out <- cbind(out,matrix(NA,nrow(out),value-ncol(out)))
-    return(as.onion(out,type=type(x)))
-  }
-}
-
 `plot.onion` <- function(x, ...){plot(Re(x),Mod(Im(x)), ...)}
 
-`rep.onion` <- function(x,  ...){
+setGeneric("rep")
+setMethod("rep","onion",function(x,  ...){
   u <- seq(length.out=length(x))
   return(x[rep(u, ...)])
-}
+} )
     
 `sign.onion` <- function(x){x/Mod(x)}
 

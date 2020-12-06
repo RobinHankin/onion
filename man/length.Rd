@@ -1,15 +1,21 @@
-\name{length.onion}
-\alias{length.onion}
+\name{length}
 \alias{length}
+\alias{length.onion}
+\alias{length<-}
+\alias{length<-.onion}
+\alias{length,onion-method}
+\alias{length<-,onion-method}
 \title{Length of an octonionic vector}
 \description{
   Get the length of octonionic vectors.
 }
 \usage{
-\method{length}{onion}(x)
+\S4method{length}{onion}(x)
+length(x) <- value
 }
 \arguments{
   \item{x}{An onionic vector}
+  \item{value}{length of vector}
 }
 \details{
   Operates on the columns of the matrix as expected.

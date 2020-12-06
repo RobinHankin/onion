@@ -55,6 +55,20 @@ setMethod("as.double",signature(x="onion"),function(x){as(x,"double")})
 setGeneric("length")
 setMethod("length","onion",function(x){ncol(as.matrix(x))})
 
+setGeneric("length<-")
+setReplaceMethod("length","onion",function(x,value){
+  if(value <= length(x)){
+    return(x[1:value])
+  } else {
+    out <- as.matrix(x)
+    out <- cbind(out,matrix(NA,nrow(out),value-ncol(out)))
+    return(as.onion(out,type=type(x)))
+  }
+})
+
+
+
+
 `biggest` <- function(...){
   a <-  unlist(lapply(list(...),class))
   if("octonion" %in% a){
