@@ -58,11 +58,11 @@ setMethod("length","onion",function(x){ncol(as.matrix(x))})
 setGeneric("length<-")
 setReplaceMethod("length","onion",function(x,value){
   if(value <= length(x)){
-    return(x[1:value])
+    return(x[seq_len(value)])
   } else {
     out <- as.matrix(x)
     out <- cbind(out,matrix(NA,nrow(out),value-ncol(out)))
-    return(as.onion(out,type=type(x)))
+    return(as.onion(out))
   }
 })
 
