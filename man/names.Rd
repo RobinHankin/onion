@@ -2,13 +2,15 @@
 \alias{names.onion}
 \alias{names.onion<-}
 \alias{names<-.onion}
+\alias{names,onion-method}
+\alias{names<-,onion-method}
 \title{Names of an onionic vector}
 \description{
  Functions to get or set the names of an onionic vector.
 }
 \usage{
-\method{names}{onion}(x)
-\method{names}{onion}(x) <- value
+\S4method{names}{onion}(x)
+names(x) <- value
 }
 \arguments{
   \item{x}{Onionic vector}

@@ -36,7 +36,3 @@ setMethod("str",signature(object="onion"),function(object,...){str_onion(object,
 setMethod("sum","onion",function(x){onion_allsum(x)})
 setMethod("prod","quaternion",function(x){quaternion_allprod(x)})
 setMethod("prod","octonion",function(x){stop("octonion multiplication is not associative")})
-
-
-
-
