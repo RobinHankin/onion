@@ -30,20 +30,18 @@
   The \dfn{sign} of onionic \eqn{O} is the onion with the same
   direction as \eqn{O} but with unit Norm: \code{sign(O)=O/Mod(O)}.
 
-
-
    
  }
  \usage{
 \S4method{Re}{onion}(z)
 \S4method{Im}{onion}(z)
 Re(z) <- value
-Im(z) <- value
+Im(x) <- value
 \S4method{Conj}{onion}(z)
 \S4method{Mod}{onion}(z)
 }
 \arguments{
-  \item{x}{Object of class onion or glub}
+  \item{x,z}{Object of class onion or glub}
   \item{value}{replacement value}
 }
 \value{
