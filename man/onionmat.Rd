@@ -58,6 +58,12 @@
 \alias{romat}
 \alias{as.octonionmat}
 \alias{as.quaternionmat}
+\alias{cprod,onionmat,onionmat-method}
+\alias{cprod,ANY,onionmat-method}
+\alias{cprod,onionmat,ANY-method}
+\alias{cprod,onionmat,missing-method}
+\alias{cprod,ANY,ANY-method}
+\alias{cprod,ANY,ANY-method}
 \alias{om_cprod}
 \alias{om_ht}
 \alias{om_prod}
@@ -67,19 +73,6 @@
 \alias{onionmat_imag}
 \alias{onionmat_re}
 \alias{onionmat_mod}
-\alias{i,onionmat-method}
-\alias{j,onionmat-method}
-\alias{k,onionmat-method}
-\alias{l,onionmat-method}
-\alias{il,onionmat-method}
-\alias{jl,onionmat-method}
-\alias{kl,onionmat-method}
-\alias{i<-,onionmat-method}
-\alias{j<-,onionmat-method}
-\alias{k<-,onionmat-method}
-\alias{il<-,onionmat-method}
-\alias{jl<-,onionmat-method}
-\alias{kl<-,onionmat-method}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,

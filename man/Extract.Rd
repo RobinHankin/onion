@@ -45,6 +45,14 @@
 \alias{j,onion-method}
 \alias{k,onion-method}
 \alias{l,onion-method}
+\alias{l,octonion-method}
+\alias{il,octonion-method}
+\alias{jl,octonion-method}
+\alias{kl,octonion-method}
+\alias{i,onionmat-method}
+\alias{j,onionmat-method}
+\alias{k,onionmat-method}
+\alias{l,onionmat-method}
 \alias{il,octonion-method}
 \alias{jl,octonion-method}
 \alias{kl,octonion-method}
@@ -56,6 +64,15 @@
 \alias{il<-,octonion-method}
 \alias{jl<-,octonion-method}
 \alias{kl<-,octonion-method}
+\alias{il,onionmat-method}
+\alias{jl,onionmat-method}
+\alias{kl,onionmat-method}
+\alias{i<-,onionmat-method}
+\alias{j<-,onionmat-method}
+\alias{k<-,onionmat-method}
+\alias{il<-,onionmat-method}
+\alias{jl<-,onionmat-method}
+\alias{kl<-,onionmat-method}
 \title{Extract or Replace Parts of onions or glubs}
 \description{
    Methods for \code{"["} and  \code{"[<-"}, i.e., extraction or
