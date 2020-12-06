@@ -44,6 +44,7 @@
 \alias{i,onion-method}
 \alias{j,onion-method}
 \alias{k,onion-method}
+\alias{l,onion-method}
 \alias{il,octonion-method}
 \alias{jl,octonion-method}
 \alias{kl,octonion-method}
@@ -51,6 +52,7 @@
 \alias{i<-,onion-method}
 \alias{j<-,onion-method}
 \alias{k<-,onion-method}
+\alias{l<-,octonion-method}
 \alias{il<-,octonion-method}
 \alias{jl<-,octonion-method}
 \alias{kl<-,octonion-method}
@@ -63,9 +65,16 @@
 \S4method{i}{onion}(z)
 \S4method{j}{onion}(z)
 \S4method{k}{onion}(z)
+\S4method{l}{octonion}(z)
 \S4method{il}{octonion}(z)
 \S4method{jl}{octonion}(z)
 \S4method{kl}{octonion}(z)
+\S4method{i}{onionmat}(z)
+\S4method{j}{onionmat}(z)
+\S4method{k}{onionmat}(z)
+\S4method{il}{onionmat}(z)
+\S4method{jl}{onionmat}(z)
+\S4method{kl}{onionmat}(z)
 i(x) <- value
 j(x) <- value
 k(x) <- value
@@ -75,7 +84,7 @@ jl(x) <- value
 kl(x) <- value
 }
 \arguments{
-  \item{x}{Object of class onion or glub}
+  \item{x,z}{Object of class onion}
   \item{value}{replacement value}
 }
 \value{

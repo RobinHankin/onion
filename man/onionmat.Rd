@@ -107,12 +107,6 @@ onionmat_conjugate(z)
 onionmat_imag(z)
 onionmat_re(z)
 onionmat_mod(z)
-\S4method{i}{onionmat}(z)
-\S4method{j}{onionmat}(z)
-\S4method{k}{onionmat}(z)
-\S4method{il}{onionmat}(z)
-\S4method{jl}{onionmat}(z)
-\S4method{kl}{onionmat}(z)
 }
 \arguments{
   \item{d,M}{data and matrix index}
@@ -125,7 +119,6 @@ onionmat_mod(z)
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
   \item{type}{In \code{romat()}, type of output}
-  \item{value}{In replacement methods, value to replace with}
 }
 \details{
 
