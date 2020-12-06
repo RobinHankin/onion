@@ -6,6 +6,13 @@
 \alias{il}
 \alias{jl}
 \alias{kl}
+\alias{i<-}
+\alias{j<-}
+\alias{k<-}
+\alias{l<-}
+\alias{il<-}
+\alias{jl<-}
+\alias{kl<-}
 \alias{i.octonion}
 \alias{j.octonion}
 \alias{k.octonion}
