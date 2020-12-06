@@ -1,14 +1,18 @@
 \name{c.onion}
 \alias{c.onion}
+\alias{concatenate.onion}
+\alias{c_onionpair}
+\alias{c,onion-method}
 \title{Combine onionic vectors into a single vector}
 \description{
 Combines its arguments to form an onionic vector.
 }
 \usage{
-\method{c}{onion}(...)
+c_onionpair(x,y)
+\S4method{c}{onion}(x,...)
 }
 \arguments{
-  \item{\dots}{onionic vectors}
+  \item{x,y,\dots}{onions}
 }
 \details{
   Returns an onionic vector of type \code{biggest()} of the arguments.
