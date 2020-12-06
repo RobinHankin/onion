@@ -18,22 +18,20 @@ Basic onion functions
 Construct, coerce to, test for, and print onions
 }
 \usage{
-octonion(length.out = NULL, names = NULL, Re = 0, i = 0, j = 0, 
+octonion(length.out = NULL, Re = 0, i = 0, j = 0, 
     k = 0, l = 0, il = 0, jl = 0, kl = 0)
-as.octonion(x, single = FALSE, names=NULL)
+as.octonion(x, single = FALSE)
 is.octonion(x)
-quaternion(length.out = NULL, names = NULL, Re = 0, i = 0, j = 0, k = 0)
-as.quaternion(x, single = FALSE, names=NULL)
+quaternion(length.out = NULL,Re = 0, i = 0, j = 0, k = 0)
+as.quaternion(x, single = FALSE)
 is.quaternion(x)
 is.onion(x)
-as.onion(x,type,names=NULL,single=FALSE)
+as.onion(x,type,single=FALSE)
 type(x)
 }
 \arguments{
   \item{length.out}{In functions \code{quaternion()} and
     \code{octonion()}, the length of the onionic vector returned.}
-  \item{names}{In functions \code{quaternion()} and \code{octonion()},
-    the names of the octonionic vector returned.}
   \item{Re}{The real part of the onionic vector returned.}
   \item{i}{Component \eqn{i} of the onionic vector returned.}
   \item{j}{Component \eqn{j} of the onionic vector returned.}
