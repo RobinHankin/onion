@@ -58,7 +58,7 @@ t(as.matrix(H*as.quaternion(t(cbind(0,x)))/H))[,-1]
 "threeform" <- function(x1,x2,x3){
   Re(x1*(Conj(x2)*x3) - x3*(Conj(x2)*x1))/2
 }
-
+if(FALSE){
 "R_OprodO" <- function(oct1,oct2){
   x <- as.matrix(oct1)
   y <- as.matrix(oct2)
@@ -89,7 +89,6 @@ t(as.matrix(H*as.quaternion(t(cbind(0,x)))/H))[,-1]
   x <- as.matrix(x)
   NextMethod("t")
 }
-if(FALSE){
 "print.octonion" <- function(x, h=getOption("horiz"), ...){
   x <- as.matrix(x)
   rownames(x) <- c("Re","i","j","k","l","il","jl","kl")
