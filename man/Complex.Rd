@@ -17,6 +17,8 @@
 \alias{Norm,onion-method}
 \alias{onion_complex}
 \alias{onion_imag}
+\alias{onion_mod}
+\alias{onion_re}
 \title{Extract or Replace Parts of onions or glubs}
 \description{
   Functionality in the Complex group.
@@ -30,7 +32,6 @@
 
   The \dfn{sign} of onionic \eqn{O} is the onion with the same
   direction as \eqn{O} but with unit Norm: \code{sign(O)=O/Mod(O)}.
-
    
  }
  \usage{

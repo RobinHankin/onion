@@ -1,5 +1,6 @@
 \name{seq.onion}
 \alias{seq.onion}
+\alias{seq_onion}
 \alias{slerp}
 \alias{SLERP}
 \title{seq method for onions}
