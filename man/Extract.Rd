@@ -70,6 +70,7 @@
 \alias{i<-,onionmat-method}
 \alias{j<-,onionmat-method}
 \alias{k<-,onionmat-method}
+\alias{l<-,onionmat-method}
 \alias{il<-,onionmat-method}
 \alias{jl<-,onionmat-method}
 \alias{kl<-,onionmat-method}

@@ -2,6 +2,8 @@
 \alias{print.quaternion}
 \alias{print.octonion}
 \alias{print.onion}
+\alias{print.onionmat}
+\alias{print,onion-method}
 \title{Print method for onions}
 \description{
   Prints an onion
@@ -9,6 +11,7 @@
 \usage{
 \method{print}{quaternion}(x, h=getOption("horiz"), ...)
 \method{print}{octonion}(x, h=getOption("horiz"), ...)
+\method{print}{onionmat}(x, h=getOption("horiz"), ...)
 }
 \arguments{
   \item{x}{Onionic vector}

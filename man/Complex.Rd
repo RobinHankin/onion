@@ -41,6 +41,8 @@ Re(z) <- value
 Im(x) <- value
 \S4method{Conj}{onion}(z)
 \S4method{Mod}{onion}(z)
+onion_abs(x)
+onion_conjugate(z)
 }
 \arguments{
   \item{x,z}{Object of class onion or glub}

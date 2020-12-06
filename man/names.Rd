@@ -1,6 +1,7 @@
 \name{names.onion}
 \alias{names.onion}
 \alias{names.onion<-}
+\alias{names<-}
 \alias{names<-.onion}
 \alias{names,onion-method}
 \alias{names<-,onion-method}

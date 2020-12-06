@@ -10,7 +10,7 @@ Returns the onionic sum of all values present in its arguments.
 \method{sum}{onion}(..., na.rm = FALSE)
 }
 \arguments{
-  \item{\dots}{Onionic vectors}
+  \item{...}{Onionic vectors}
   \item{na.rm}{Boolean with default \code{FALSE} meaning to sum with
     \code{NA} values in place and \code{TRUE} meaning to ignore them.}
     

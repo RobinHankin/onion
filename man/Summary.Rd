@@ -21,8 +21,6 @@
 }
 \details{
   For a \code{onion} object
-
-
 }
 \author{Robin K. S. Hankin}
 \note{

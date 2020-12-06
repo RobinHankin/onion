@@ -7,7 +7,7 @@
  elements are positive, zero or negative. 
 }
 \usage{
-\method{condense}{onion}(x)
+condense(x)
 }
 \arguments{
   \item{x}{An onionic vector}

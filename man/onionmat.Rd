@@ -54,10 +54,10 @@
 \alias{ncol}
 \alias{colnames<-}
 \alias{rownames<-}
-\alias{print.onionmat}
 \alias{romat}
 \alias{as.octonionmat}
 \alias{as.quaternionmat}
+\alias{cprod}
 \alias{cprod,onionmat,onionmat-method}
 \alias{cprod,ANY,onionmat-method}
 \alias{cprod,onionmat,ANY-method}
@@ -90,8 +90,11 @@ OMpowerS(e1,e2)
 OMplusOM(e1,e2)
 colnames.onionmat(x)
 rownames.onionmat(x)
-\method{Conj}{onionmat}(z)
-\method{print}{onionmat}(x,...)
+\S4method{Conj}{onionmat}(z)
+\S4method{cprod}{onionmat,onionmat}(x,y)
+\S4method{cprod}{onionmat,missing}(x,y)
+\S4method{cprod}{onionmat,ANY}(x,y)
+\S4method{cprod}{ANY,ANY}(x,y)
 nrow(x)
 ncol(x)
 herm_onion_mat(real_diagonal, onions)
@@ -104,7 +107,7 @@ onionmat_mod(z)
 }
 \arguments{
   \item{d,M}{data and matrix index}
-  \item{x,z,e1,e2}{Objects of class \code{onionmat}}
+  \item{x,y,z,e1,e2}{Objects of class \code{onionmat}}
   \item{data,nrow,ncol,byrow,dimnames}{In functions
     \code{onionmat()} and \code{romat()}, as for \code{matrix()}}
   \item{...}{In functions like \code{OMpowerOM()}, which are designed to
