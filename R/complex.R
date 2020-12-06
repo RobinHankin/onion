@@ -46,9 +46,6 @@ setReplaceMethod("Im",signature(x="onion"),
                    return(as.onion(x))
                  } )
 
-
-
-
 setGeneric("Norm",function(z){standardGeneric("Norm")})
 setMethod("Norm","onion",function(z){colSums(as.matrix(z)^2)})
 
