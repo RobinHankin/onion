@@ -10,6 +10,8 @@
 \alias{is.quaternion}
 \alias{as.quaternion}
 \alias{as.onion}
+\alias{quaternion_to_octonion}
+\alias{octonion_to_quaternion}
 \alias{type}
 \title{
 Basic onion functions
@@ -27,6 +29,8 @@ as.quaternion(x, single = FALSE)
 is.quaternion(x)
 is.onion(x)
 as.onion(x,type,single=FALSE)
+quaternion_to_octonion(from)
+octonion_to_quaternion(from)
 type(x)
 }
 \arguments{
@@ -45,7 +49,7 @@ type(x)
     octonionic vector returned.}
   \item{kl}{In function \code{octonion()}, component \eqn{kl} of the
     octonionic vector returned.}
-  \item{x}{Onion to be tested or printed}
+  \item{x,from}{Onion to be tested or printed}
   \item{single}{In functions \code{as.octonion()} and
     \code{as.quaternion()}, a Boolean variable with
     default \code{FALSE} meaning to interpret \code{x} as a vector of
