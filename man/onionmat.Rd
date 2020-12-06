@@ -73,6 +73,7 @@
 \alias{onionmat_imag}
 \alias{onionmat_re}
 \alias{onionmat_mod}
+\alias{Conj,onionmat-method}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
