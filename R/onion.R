@@ -116,7 +116,8 @@ if(FALSE){
 }
 }
 
-`plot.onion` <- function(x, ...){plot(Re(x),Mod(Im(x)), ...)}
+setGeneric("plot")
+setMethod("plot","onion",function(x, ...){plot(Re(x),Mod(Im(x)), ...)})
 
 setGeneric("rep")
 setMethod("rep","onion",function(x,  ...){

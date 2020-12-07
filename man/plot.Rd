@@ -1,11 +1,13 @@
-\name{plot.onion}
+\name{plot}
+\alias{plot}
 \alias{plot.onion}
+\alias{plot,onion-method}
 \title{Plot onions}
 \description{
   Plotting method for onionic vectors
 }
 \usage{
-\method{plot}{onion}(x, ...)
+\S4method{plot}{onion}(x, ...)
 }
 \arguments{
   \item{x}{Onionic vector}
