@@ -1,4 +1,5 @@
-`as.onion` <- function(x,type){
+`as.onion` <- function(x,type,single=FALSE){
+  if(single){return(Recall(x=matrix(x,ncol=1),single=FALSE))}
   if(missing(type)){
     if(is.onion(x)){
       return(x)
