@@ -116,7 +116,6 @@ rownames.onionmat(x)
 \S4method{cprod}{ANY,ANY}(x,y)
 \S4method{dim}{onionmat}(x)
 \S4method{dimnames}{onionmat}(x)
-\S4method{dimnames<-}{onionmat}(x,value)
 \S4method{t}{onionmat}(x)
 nrow(x)
 ncol(x)
@@ -140,7 +139,6 @@ onionmat_matrixprod_onionmat(x,y)
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
   \item{type}{In \code{romat()}, type of output}
-  \item{value}{Replacement value}
 }
 \details{
 
