@@ -124,8 +124,9 @@ setMethod("rep","onion",function(x,  ...){
   u <- seq(length.out=length(x))
   return(x[rep(u, ...)])
 } )
-    
-`sign.onion` <- function(x){x/Mod(x)}
+
+setGeneric("sign")
+setMethod("sign","onion",function(x){x/Mod(x)})
 
 `onion_g_even` <- function(x,y){(x*y + y*x)/2}
 `onion_g_odd`  <- function(x,y){(x*y - y*x)/2}
