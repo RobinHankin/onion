@@ -166,7 +166,7 @@ setReplaceMethod("[",signature(x="onionmat"),
 }
 
 setGeneric("dim")
-`dim.onionmat` <- function(x){dim(getM(x))}
+setMethod("dim","onionmat",function(x){dim(getM(x))})
 setGeneric("nrow")
 `nrow.onionmat` <- function(x){nrow(getM(x))}
 setGeneric("ncol")
@@ -178,14 +178,14 @@ setGeneric("colnames")
 `colnames.onionmat` <- function(x){colnames(getM(x))}
 
 setGeneric("dimnames")
-`dimnames.onionmat` <- function(x){dimnames(getM(x))}
+setMethod("dimnames","onionmat", function(x){dimnames(getM(x))})
 
 setGeneric("dimnames<-")
-`dimnames<-.onionmat` <- function(x,value){
+setReplaceMethod("dimnames","onionmat",function(x,value){
   m <- getM(x)
   dimnames(m) <- value
   return(newonionmat(getd(x),m))
-}
+} )
 
 setGeneric("rownames<-")
 setGeneric("colnames<-")
