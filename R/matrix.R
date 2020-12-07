@@ -267,9 +267,11 @@ setMethod("Conj","onionmat",function(z){newonionmat(Conj(getd(z)),getM(z)) })
   return(out)
 }
 
-`print.onionmat` <- function(x,...){
-  print(x$d)
-  return(x)
+setMethod("show", "onionmat", function(object){onion_show(object)})
+
+`onionmat_show` <- function(object,...){
+  print(object$d)
+  return(object)
 }
 
 setOldClass("onionmat")
