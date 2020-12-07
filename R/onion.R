@@ -85,10 +85,6 @@ if(FALSE){
   return(as.quaternion(out))
 }
 
-"t.onion" <- function(x){
-  x <- as.matrix(x)
-  NextMethod("t")
-}
 "print.octonion" <- function(x, h=getOption("horiz"), ...){
   x <- as.matrix(x)
   rownames(x) <- c("Re","i","j","k","l","il","jl","kl")
