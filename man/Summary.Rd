@@ -21,14 +21,15 @@ onion_allsum(x)
 \S4method{prod}{quaternion}(x)
 \S4method{prod}{octonion}(x)
 \S4method{sum}{octonion}(x)
-\S4method{str}{onion}(x)
-str_onion(x)
+\S4method{str}{onion}(object,...)
+str_onion(object, vec.len = 4, ...)
 onion_allsum(x)
 quaternion_allprod(x)
 }
 
 \arguments{
-  \item{x,\dots}{Objects of class \code{onion}}
+  \item{x,object,\dots}{Objects of class \code{onion}}
+  \item{vec.len}{number of elements to display}
 }
 \details{
   For a \code{onion} object
