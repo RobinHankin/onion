@@ -7,10 +7,12 @@
  elements are positive, zero or negative. 
 }
 \usage{
-condense(x)
+condense(x,as.vector=FALSE)
 }
 \arguments{
   \item{x}{An onionic vector}
+  \item{as.vector}{Boolean, indicating whether to return a vector or
+    matrix}
 }
 \value{
   Returns a string vector of the same length as \code{x} whose elements
@@ -21,5 +23,6 @@ condense(x)
 \author{Robin K. S. Hankin}
 \examples{
 condense(roct(3))
+condense(roct(3),as.vector=TRUE)
 }
 \keyword{array}
