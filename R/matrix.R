@@ -247,11 +247,11 @@ setGeneric("colnames<-")
 
 
 setMethod("Conj","onionmat",function(z){newonionmat(Conj(getd(z)),getM(z)) })
-
-`t.onionmat` <- function(x){ # NB1: this  ensures that emulator::ht() works; NB2: t(x) DOES NOT TAKE CONJUGATE
+setGeneric("t")   # transpose
+setMethod("t","onionmat",function(x){ # NB1: this  ensures that emulator::ht() works; NB2: t(x) DOES NOT TAKE CONJUGATE
   jj <- t(getM(x))
   newonionmat(getd(x)[jj],jj)
-}
+})
 
 `herm_onion_mat` <- function(real_diagonal, onions){
   n <- length(real_diagonal)
