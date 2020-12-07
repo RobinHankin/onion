@@ -3,8 +3,10 @@
 \alias{newonionmat}
 \alias{OMprodOM}
 \alias{OMneg}
+\alias{OMinv}
 \alias{OMpowerOM}
 \alias{OMprodS}
+\alias{SprodOM}
 \alias{OMpowerS}
 \alias{OMplusOM}
 \alias{OMequalOM}
@@ -74,6 +76,9 @@
 \alias{onionmat_re}
 \alias{onionmat_mod}
 \alias{Conj,onionmat-method}
+\alias{onionmat_arith_onionmat}
+\alias{onionmat_arith_onion}
+\alias{onionmat_arith_numeric}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -83,6 +88,7 @@
 newonionmat(d, M)
 onionmat(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
 OMneg(e1)
+OMinv(e1)
 OMprodOM(e1,e2)
 OMpowerOM(...)
 OMprodS(e1,e2)
