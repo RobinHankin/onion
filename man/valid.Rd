@@ -1,10 +1,10 @@
 \name{valid}
 \alias{valid}
 \alias{validity}
-\alias{
+\alias{valid_quaternion}
+\alias{valid_octonion}
 \title{Validity of onionic vectors}
 \description{Validity methods for quaternions and octonions}
-
 \usage{
 valid_quaternion(object)
 valid_octonion(object)
