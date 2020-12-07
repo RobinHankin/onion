@@ -104,8 +104,6 @@ l(x) <- value
 il(x) <- value
 jl(x) <- value
 kl(x) <- value
-x[...] <- value
-x[...]
 }
 \arguments{
   \item{x,z}{Object of class onion}
