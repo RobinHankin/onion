@@ -8,6 +8,7 @@
 \alias{sum,onion-method}
 \alias{prod,quaternion-method}
 \alias{sum,octonion-method}
+\alias{str,onion-method}
 \title{Various summary statistics for onions}
 \description{Various summary statistics for onions}
 \usage{
@@ -15,6 +16,7 @@ onion_allsum(x)
 \S4method{sum}{onion}(x)
 \S4method{prod}{quaternion}(x)
 \S4method{sum}{octonion}(x)
+\S4method{str}{onion}(x)
 }
 
 \arguments{
