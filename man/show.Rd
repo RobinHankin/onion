@@ -1,4 +1,4 @@
-\name{print.onion}
+\name{print}
 \alias{print.quaternion}
 \alias{print.octonion}
 \alias{print.onion}
@@ -7,19 +7,15 @@
 \alias{onion_show}
 \alias{onionmat_show}
 \title{Print method for onions}
-\description{
-  Prints an onion
-}
+\description{Show groupd methods for onions}
 \usage{
-\method{print}{quaternion}(x, h=getOption("horiz"), ...)
-\method{print}{octonion}(x, h=getOption("horiz"), ...)
-\method{print}{onionmat}(x, h=getOption("horiz"), ...)
+\S4method{show}{onion}(object)
+onion_show(x,h=getOption("show_onions_horizontally"))
 }
 \arguments{
-  \item{x}{Onionic vector}
+  \item{x,object}{Onions}
   \item{h}{Boolean, with default \code{FALSE} meaning to print
     horizontally and \code{TRUE} meaning to print by columns.}
-  \item{...}{Further arguments (currently ignored)}
 }
 \details{
   If \code{options("horiz")} is \code{TRUE}, then print by rows rather
