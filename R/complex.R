@@ -22,7 +22,7 @@ onion_imag <- function(z){
   return(as.onion(z))
 }
 
-`onion_re` <- function(z){as.matrix(z)[,1]}
+`onion_re` <- function(z){as.matrix(z)[1,]}
 
 setGeneric("Re<-",function(z,value){standardGeneric("Re<-")})
 setGeneric("Im<-",function(x,value){standardGeneric("Im<-")})
