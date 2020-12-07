@@ -1,4 +1,5 @@
-\name{rep.onion}
+\name{rep}
+\alias{rep}
 \alias{rep.onion}
 \alias{rep,onion-method}
 \title{Replicate elements of onionic vectors}
@@ -6,7 +7,7 @@
   Replicate elements of onionic vectors
 }
 \usage{
-\method{rep}{onion}(x, ...)
+\S4method{rep}{onion}(x, ...)
 }
 \arguments{
   \item{x}{Onionic vector}

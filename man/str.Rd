@@ -1,11 +1,12 @@
-\name{str.onion}
+\name{str}
+\alias{str}
 \alias{str.onion}
 \title{Compactly display an onion}
 \description{
 A very basic implementation of \code{str()} for onions
 }
 \usage{
-\method{str}{onion}(object, vec.len=4, ...)
+\S4method{str}{onion}(object, vec.len=4, ...)
 }
 \arguments{
   \item{object}{Onionic vector}

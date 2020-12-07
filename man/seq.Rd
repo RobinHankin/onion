@@ -8,8 +8,7 @@
   Rough equivalent of \code{seq()} for onions. 
 }
 \usage{
-\method{seq}{onion}(from = 1, to = 1, by = ((to - 
-    from)/(length.out - 1)), length.out = NULL, slerp = FALSE, ...)
+seq_onion(from=1,to=1,by=((to-from)/(length.out-1)),length.out=NULL,slerp=FALSE, ...)
 }
 \arguments{
   \item{from}{Onion for start of sequence}
