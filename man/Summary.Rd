@@ -18,10 +18,10 @@
 \usage{
 onion_allsum(x)
 \S4method{sum}{onion}(x)
+\S4method{sum}{octonion}(x)
 \S4method{prod}{quaternion}(x)
 \S4method{prod}{octonion}(x)
-\S4method{sum}{octonion}(x)
-\S4method{str}{onion}(object,...)
+\S4method{str}{onion}(object, ...)
 str_onion(object, vec.len = 4, ...)
 onion_allsum(x)
 quaternion_allprod(x)
