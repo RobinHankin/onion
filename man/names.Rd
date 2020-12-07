@@ -11,7 +11,7 @@
 }
 \usage{
 \S4method{names}{onion}(x)
-names(x) <- value
+\S4method{names<-}{onion}(x)
 }
 \arguments{
   \item{x}{Onionic vector}

@@ -12,6 +12,10 @@
 \alias{as.onion}
 \alias{quaternion_to_octonion}
 \alias{octonion_to_quaternion}
+\alias{as.matrix}
+\alias{as.matrix,onion-method}
+\alias{as.numeric,onion-method}
+\alias{octonion_to_quaternion}
 \alias{type}
 \title{
 Basic onion functions
@@ -32,6 +36,8 @@ as.onion(x,type,single=FALSE)
 quaternion_to_octonion(from)
 octonion_to_quaternion(from)
 type(x)
+\S4method{as.matrix}{onion}(x)
+\S4method{as.numeric}{onion}(x)
 }
 \arguments{
   \item{length.out}{In functions \code{quaternion()} and

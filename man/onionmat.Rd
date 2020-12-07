@@ -49,7 +49,11 @@
 \alias{rownames<-.onionmat}
 \alias{t.onionmat}
 \alias{\%*\%}
-\alias{\%*\%.default}
+\alias{\%*\%,onionmat,onionmat-method}
+\alias{\%*\%,numeric,onion-method}
+\alias{\%*\%,numeric,onionmat-method}
+\alias{\%*\%,onion,onionmat-method}
+\alias{\%*\%,onionmat,numeric-method}
 \alias{[.onionmat}
 \alias{[<-.onionmat}
 \alias{nrow}
@@ -67,6 +71,8 @@
 \alias{cprod,ANY,ANY-method}
 \alias{cprod,ANY,ANY-method}
 \alias{om_cprod}
+\alias{t.onionmat}
+\alias{t,onionmat-method}
 \alias{om_ht}
 \alias{om_prod}
 \alias{om_tcprod}
@@ -83,6 +89,9 @@
 \alias{onionmat_arith_onion}
 \alias{onion_arith_onionmat}
 \alias{onionmat_matrixprod_onionmat}
+\alias{dim,onionmat-method}
+\alias{dimnames,onionmat-method}
+\alias{dimnames<-,onionmat-method}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -105,6 +114,10 @@ rownames.onionmat(x)
 \S4method{cprod}{onionmat,missing}(x,y)
 \S4method{cprod}{onionmat,ANY}(x,y)
 \S4method{cprod}{ANY,ANY}(x,y)
+\S4method{dim}{onionmat}(x)
+\S4method{dimnames}{onionmat}(x)
+\S4method{dimnames<-}{onionmat}(x,value)
+\S4method{t}{onionmat}(x)
 nrow(x)
 ncol(x)
 herm_onion_mat(real_diagonal, onions)
@@ -127,6 +140,7 @@ onionmat_matrixprod_onionmat()
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
   \item{type}{In \code{romat()}, type of output}
+  \item{value}{Replacement value}
 }
 \details{
 

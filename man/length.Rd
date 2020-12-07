@@ -11,7 +11,7 @@
 }
 \usage{
 \S4method{length}{onion}(x)
-length(x) <- value
+\S4method{length<-}{onion}(x,value)
 }
 \arguments{
   \item{x}{An onionic vector}

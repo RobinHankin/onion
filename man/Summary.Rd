@@ -7,6 +7,7 @@
 \alias{Summary,onion-method}
 \alias{sum,onion-method}
 \alias{prod,quaternion-method}
+\alias{prod,octonion-method}
 \alias{sum,octonion-method}
 \alias{str_onion}
 \alias{str,onion-method}
@@ -16,6 +17,7 @@
 onion_allsum(x)
 \S4method{sum}{onion}(x)
 \S4method{prod}{quaternion}(x)
+\S4method{prod}{octonion}(x)
 \S4method{sum}{octonion}(x)
 \S4method{str}{onion}(x)
 str_onion(x)
