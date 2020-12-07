@@ -30,7 +30,7 @@ as.orthogonal(Q)
 \seealso{\code{\link{rotate}}}
 \examples{
 
-as.orthogonal(rquat(2))
+as.orthogonal(rquat(1))
 
 o <- function(w){diag(3)-2*outer(w,w)/sum(w^2)}  # Householder
 matrix2quaternion(o(1:3))   # Booorrrriiinnnggg

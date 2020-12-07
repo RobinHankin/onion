@@ -52,11 +52,13 @@
       if( (nrow(x)==3) && ncol(x)==3){ # SO3
         return(matrix2quaternion(x))
       } else {
-      stop("If matrix supplied, it must either have four rows or be 3x3")
+        stop("If matrix supplied, it must either have four rows or be 3x3")
       }
     }
   } else if(is.array(x)){
-    out <- apply(x,3,matrix2quaternion) # 4-row matrix
+    out <- apply(x,3,matrix2quaternion) # list of length-one quaternions
+    out <- do.call("c",out)
+    return(out)
   } else {
     if(single){
       if(is.vector(x)){
@@ -72,7 +74,6 @@
       out <- kronecker(t(x),c(1,rep(0,3)))
     }
   }
-  rownames(out) <- c("Re","i","j","k")
   return(new("quaternion",x=out))  # this is the only place new("quaternion",...) is called
 }
 
