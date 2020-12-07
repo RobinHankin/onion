@@ -1,4 +1,5 @@
-\name{seq.onion}
+\name{seq}
+\alias{seq}
 \alias{seq.onion}
 \alias{seq_onion}
 \alias{slerp}
