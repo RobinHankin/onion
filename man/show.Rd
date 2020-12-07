@@ -1,10 +1,13 @@
-\name{print}
+\name{show}
+\alias{show}
+\alias{print}
 \alias{print.quaternion}
 \alias{print.octonion}
 \alias{print.onion}
 \alias{print.onionmat}
 \alias{print,onion-method}
 \alias{onion_show}
+\alias{show,onion-method}
 \alias{onionmat_show}
 \title{Print method for onions}
 \description{Show groupd methods for onions}

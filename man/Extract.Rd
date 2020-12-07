@@ -107,7 +107,6 @@ kl(x) <- value
 }
 \arguments{
   \item{x,z}{Object of class onion}
-  \item{...}{Indexing arguments}
   \item{value}{replacement value}
 }
 \value{

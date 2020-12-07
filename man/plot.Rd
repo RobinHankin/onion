@@ -7,10 +7,10 @@
   Plotting method for onionic vectors
 }
 \usage{
-\S4method{plot}{onion}(x, ...)
+\S4method{plot}{onion}(x,y, ...)
 }
 \arguments{
-  \item{x}{Onionic vector}
+  \item{x,y}{Onions}
   \item{\dots}{Further arguments passed to \code{plot.default()}}
 }
 \details{
