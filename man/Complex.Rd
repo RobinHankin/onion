@@ -20,8 +20,9 @@
 \alias{onion_mod}
 \alias{onion_re}
 \alias{onion_abs}
+\alias{sign,onion-method}
 \alias{onion_conjugate}
-\title{Extract or Replace Parts of onions or glubs}
+\title{Complex functionality for onions}
 \description{
   Functionality in the Complex group.
 
@@ -32,8 +33,8 @@
   The \dfn{Mod} of  onionic vector \eqn{O} is the square root of its
   norm.
 
-  The \dfn{sign} of onionic \eqn{O} is the onion with the same
-  direction as \eqn{O} but with unit Norm: \code{sign(O)=O/Mod(O)}.
+  The \dfn{sign} of onion \eqn{O} is the onion with the same direction
+  as \eqn{O} but with unit Norm: \code{sign(O)=O/Mod(O)}.
    
  }
  \usage{
@@ -45,6 +46,7 @@ Im(x) <- value
 \S4method{Mod}{onion}(z)
 onion_abs(x)
 onion_conjugate(z)
+\S4method{sign}{onion}(x)
 }
 \arguments{
   \item{x,z}{Object of class onion or glub}
