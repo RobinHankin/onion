@@ -74,6 +74,10 @@
 \alias{il<-,onionmat-method}
 \alias{jl<-,onionmat-method}
 \alias{kl<-,onionmat-method}
+\alias{[,onionmat-method}
+\alias{[<-,onionmat-method}
+\alias{[}
+\alias{[<-}
 \title{Extract or Replace Parts of onions or glubs}
 \description{
    Methods for \code{"["} and  \code{"[<-"}, i.e., extraction or
@@ -100,9 +104,12 @@ l(x) <- value
 il(x) <- value
 jl(x) <- value
 kl(x) <- value
+x[...] <- value
+x[...]
 }
 \arguments{
   \item{x,z}{Object of class onion}
+  \item{...}{Indexing arguments}
   \item{value}{replacement value}
 }
 \value{

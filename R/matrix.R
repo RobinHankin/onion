@@ -56,7 +56,9 @@ romat <- function(type="quaternion", nrow=5,ncol=6,...){
   colnames(out) <- datasets::state.abb[seq_len(ncol)]
   return(out)
 }
- 
+
+if(FALSE){
+
 `[.onionmat` <- function(x,...){
   with(x,
        return(newonionmat(
@@ -71,6 +73,23 @@ romat <- function(type="quaternion", nrow=5,ncol=6,...){
   }
   )
 }
+}
+
+setMethod("[", "onionmat",
+          function(x, ...){
+            with(x,
+                 return(newonionmat(
+                     d[M[...]],
+                     M = M[...])))
+          } )
+
+setReplaceMethod("[",signature(x="onionmat"),
+                 function(x,..., value){
+                   with(x,{
+                     d[M[...]] <- value
+                     return(newonionmat(d,M))
+                   } )
+                 } )
 
 `OMneg` <- function(e1){ newonionmat(-getd(e1),getM(e1)) }
 `OMinv` <- function(e1){ newonionmat(getd(e1),1/getM(e1)) }
