@@ -1,21 +1,3 @@
-`process` <- function(A,B){
-  ## takes two onions, returns a list of two same-sized matrices with appropriate (col)names
-
-  sA <- seq_along(A)
-  sB <- seq_along(B)
-  names(sA) <- names(A)
-  names(sB) <- names(B)
-  ind <-  rbind(sA,sB)
-
-  A <- as.matrix(A)[,ind[1,,drop=TRUE]]
-  B <- as.matrix(B)[,ind[2,,drop=TRUE]]
-
-  colnames(A) <- colnames(ind)
-  colnames(B) <- colnames(ind)
-
-  list(A,B)
-}
-  
 setMethod("Arith",signature(e1 = "onion", e2="missing"),
           function(e1,e2){
             switch(.Generic,
