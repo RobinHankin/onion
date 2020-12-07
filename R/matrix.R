@@ -72,101 +72,13 @@ romat <- function(type="quaternion", nrow=5,ncol=6,...){
   )
 }
 
-`Ops.onionmat` <- function(e1,e2){
-    f <- function(...){stop("odd---neither argument has class octonion?")}
-    unary <- nargs() == 1
-    lclass <- nchar(.Method[1]) > 0
-    rclass <- !unary && (nchar(.Method[2]) > 0)
-    
-    if(unary){
-        if (.Generic == "+") {
-            return(e1)
-        } else if (.Generic == "-") {
-            return(OMneg(e1))
-        } else {
-            stop("Unary operator '", .Generic, "' is not implemented for onionmats")
-        }
-    }
-    if (!is.element(.Generic, c("+", "-", "*", "/", "^", "==", "!=")))
-        stop("operator '", .Generic, "' is not implemented for onions")
-
-    if (.Generic == "+") { 
-        if (lclass && rclass) {
-            return(OMplusOM(e1, e2))
-        } else if (lclass) {
-            return(OMplusS(e1, e2))
-        } else if (rclass) {
-            return(OMplusS(e2,e1))
-        } else {
-            f()
-        }
-
-    } else if (.Generic == "-") { 
-        if (lclass && rclass) {
-            return(OMplusOM(e1, OMneg(e2)))
-        } else if (lclass) {
-            return(OMplusS(e1, -e2))
-        } else if (rclass) {
-            return(OMplusS(-e2,e1))
-        } else {
-            f()
-        }
-
-    } else if (.Generic == "*") {  # NB pointwise 
-        if (lclass && rclass) {
-            return(OMprodOM(e1, e2))
-        } else if (lclass) {
-            return(OMprodS(e1, e2))
-        } else if (rclass) {
-            return(OMprodS(e2, e1))
-        } else {
-            f()
-        }
-    } else if (.Generic == "/") {
-        if (lclass && rclass) {
-            return(OMquotientOM(e1, e2))  # error
-        } else if (lclass) {
-            return(OMprodS(e1, 1/e2))
-        } else if (rclass) {
-            return(OMprodS(e2, 1/e1))
-        } else {
-            f()
-        }
-    } else if (.Generic == "^") {
-        if (lclass && rclass) {
-            return(OMpowerOM(e1, e2))  # error
-        } else if (lclass) {
-            return(OMpowerS(e1, e2)) # works
-        } else if (rclass) {
-            return(SpowerOM(e1, e2))  # error
-        } else {
-            f()
-        }
-
-    } else if (.Generic == "^") {
-        if (lclass && rclass) {
-            return(OMpowerOM(e1, e2)) # error
-        } else if (lclass) {
-            return(OMpowerS(e1, e2))
-        } else if (rclass) {
-            return(SpowerOM(e1,e2)) # error
-        } else {
-            f()
-        }
-    } else if (.Generic == "==") {
-        return(OMequalOM(e1,e2))
-    } else if (.Generic == "!=") {
-        return(!OMequalOM(e1,e2))
-    } else {
-        stop("should not reach here")
-    }
-}
-
 `OMneg` <- function(e1){ newonionmat(-getd(e1),getM(e1)) }
+`OMinv` <- function(e1){ newonionmat(getd(e1),1/getM(e1)) }
 `OMplusOM` <- function(e1,e2){ newonionmat(getd(e1)+getd(e2),getM(e1)+getM(e2)) }
 `OMplusS` <- function(e1,e2){ newonionmat(getd(e1)+e2,getM(e1)) }
 `OMpowerS` <- function(e1,e2){ newonionmat(getd(e1)^e2,getM(e1)) }
-`OMprodS` <- function(e1,e2){ newonionmat(getd(e1)*e2,getM(e1)) }
+`OMprodS` <- function(x,y){ newonionmat(getd(x)*y,getM(x)) }
+`SprodOM` <- function(e1,e2){OMprodS(e2,e1)}  # multiplication is noncommutative
 `OMprodOM` <- function(e1,e2){ newonionmat(getd(e1)*getd(e2),getM(e1)*getM(e2)) }
 `OMequalOM` <- function(e1,e2){
     jj <- getM(e1) == getM(e2) # traps nonconformant matrices
@@ -175,18 +87,63 @@ romat <- function(type="quaternion", nrow=5,ncol=6,...){
     return(out)
 }
 
-`SpowerOM` <- function(...){stop("not defined")}
+`SpowerOM` <- function(...){stop("not defined")} # 'S' = scalar; 'OM' = 'onionmat'
 `OMpowerOM` <- function(...){stop("not defined")}
 `OMquotientOM` <- function(...){stop("onionic matrices not a division algebra")}
 
-## Following lines modified from the gmp package:
-`%*%` <- function(x,y){ UseMethod("%*%") }
-`%*%.default` <- function(x,y) {
-    if(inherits(y, "onionmat")){
-        return(om_prod(x,y))
-    } else {
-        return(base::"%*%"(x,y))
-    }
+"onionmat_arith_onionmat" <- function(e1,e2){ # e1, e2 onionmats  POINTWISE
+  switch(.Generic,
+         "+" = OMplusOM(e1, e2),
+         "-" = OMplusOM(e1, OMneg(e2)),
+         "*" = OMprodOM(e1, e2),
+         "/" = OMprodOM(e1, OMinv(e2)),
+         "^" = OMpowerS(e1, e2),
+         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+"onionmat_arith_numeric" <- function(e1,e2){ # e1 onionmat, e2 numeric  POINTWISE
+  switch(.Generic,
+         "+" = OMplusS(e1, e2),
+         "-" = OMplusS(e1,-e2),
+         "*" = OMprodS(e1, e2),
+         "/" = OMprodS(e1, 1/e2),
+         "^" = OMpowerS(e1, e2),
+         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+"numeric_arith_onionmat" <- function(e1,e2){ # e1 numeric, e2 onionmat  POINTWISE
+  switch(.Generic,
+         "+" = OMplusS(e2, e1),  # addition is commutative
+         "-" = OMplusS(e2,-e1),
+         "*" = OMprodS(e2, e1),  # (scalar) multiplication is commutative
+         "/" = OMprodS(e2, 1/e1),
+         "^" = SpowerOM(e1, e2),
+         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+"onionmat_arith_onion" <- function(e1,e2){ # e1 onionmat, e2 onion  POINTWISE
+  switch(.Generic,
+         "+" = OMplusS(e1, e2),
+         "-" = OMplusS(e1,-e2),
+         "*" = OMprodS(e1, e2),
+         "/" = OMprodS(e1, onion_inverse(e2)),
+         "^" = SpowerOM(e1, e2),
+         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+"onion_arith_onionmat" <- function(e1,e2){ # e1 onionmat, e2 onion  POINTWISE
+  switch(.Generic,
+         "+" = OMplusS(e2, e1),
+         "-" = OMplusS(e1,-e2),
+         "*" = SprodOM(e1, e2),
+         "/" = OMprodS(e1, onion_inverse(e2)),
+         "^" = SpowerOM(e1, e2),
+         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         )
 }
 
 setGeneric("dim")
@@ -226,7 +183,7 @@ setGeneric("colnames<-")
     return(newonionmat(getd(x),m))
 }
 
-`om_prod` <- function(x,y){
+`onionmat_matrixprod_onionmat` <- function(x,y){
     jj <- getM(x) %*% getM(y)
     out <- newonionmat(rep(0*getd(x)[1],length(jj)),jj)
     for(i in seq_len(nrow(getM(x)))){
@@ -304,4 +261,17 @@ setMethod("cprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_cprod(x,y)}
 setMethod("cprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_cprod(Conj(x),y)})
 setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::cprod(Conj(x),y)})
 
+
+
+setMethod("Arith",signature(e1 = "onionmat", e2="onionmat"), onionmat_arith_onionmat)
+setMethod("Arith",signature(e1 = "onionmat", e2="numeric" ), onionmat_arith_numeric )
+setMethod("Arith",signature(e1 = "numeric" , e2="onionmat"),  numeric_arith_onionmat)
+setMethod("Arith",signature(e1 = "onionmat", e2="onion"   ), onionmat_arith_onion   )
+setMethod("Arith",signature(e1 = "onion"   , e2="onionmat"),    onion_arith_onionmat)
+
+setMethod("%*%", c("onionmat","onionmat"), onionmat_matrixprod_onionmat)
+setMethod("%*%", c("onionmat","numeric") , OMprodS)
+setMethod("%*%", c("numeric","onionmat") , OMprodS)
+setMethod("%*%", c("onion","onionmat")   , OMprodS)
+setMethod("%*%", c("numeric","onion")    , OMprodS)
 

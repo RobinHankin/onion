@@ -2,6 +2,10 @@ setClass("onion",
          representation = "VIRTUAL"
          )
 
+setClass("onionmat",
+         representation = "VIRTUAL"
+         )
+
 setClass("quaternion",
          slots    = c(x = "matrix"),
          contains = "onion"
@@ -65,8 +69,6 @@ setReplaceMethod("length","onion",function(x,value){
     return(as.onion(out))
   }
 })
-
-
 
 
 `biggest` <- function(...){
