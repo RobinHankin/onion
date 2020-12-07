@@ -7,13 +7,14 @@
 \alias{onion_cumsum}
 \title{Sum of onionic vectors}
 \description{
-Returns the onionic sum of all values present in its arguments.
+The sum or product of a vector
 }
 \usage{
 \method{sum}{onion}(..., na.rm = FALSE)
 onion_allsum(x)
 onion_allprod(x)
 onion_cumsum(x)
+onion_cumprod(x)
 }
 \arguments{
   \item{x,...}{Onionic vectors}
