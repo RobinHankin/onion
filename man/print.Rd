@@ -4,6 +4,7 @@
 \alias{print.onion}
 \alias{print.onionmat}
 \alias{print,onion-method}
+\alias{onion_show}
 \title{Print method for onions}
 \description{
   Prints an onion

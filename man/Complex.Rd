@@ -19,6 +19,8 @@
 \alias{onion_imag}
 \alias{onion_mod}
 \alias{onion_re}
+\alias{onion_abs}
+\alias{onion_conjugate}
 \title{Extract or Replace Parts of onions or glubs}
 \description{
   Functionality in the Complex group.

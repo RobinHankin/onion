@@ -11,6 +11,7 @@
 \title{Various summary statistics for onions}
 \description{Various summary statistics for onions}
 \usage{
+onion_allsum(x)
 \S4method{sum}{onion}(x)
 \S4method{prod}{quaternion}(x)
 \S4method{sum}{octonion}(x)

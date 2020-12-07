@@ -2,15 +2,21 @@
 \alias{sum.onion}
 \alias{sum.quaternion}
 \alias{sum.octonion}
+\alias{onion_allsum}
+\alias{onion_allprod}
+\alias{onion_cumsum}
 \title{Sum of onionic vectors}
 \description{
 Returns the onionic sum of all values present in its arguments.
 }
 \usage{
 \method{sum}{onion}(..., na.rm = FALSE)
+onion_allsum(x)
+onion_allprod(x)
+onion_cumsum(x)
 }
 \arguments{
-  \item{...}{Onionic vectors}
+  \item{x,...}{Onionic vectors}
   \item{na.rm}{Boolean with default \code{FALSE} meaning to sum with
     \code{NA} values in place and \code{TRUE} meaning to ignore them.}
     

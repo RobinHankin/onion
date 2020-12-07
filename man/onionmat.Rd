@@ -79,6 +79,10 @@
 \alias{onionmat_arith_onionmat}
 \alias{onionmat_arith_onion}
 \alias{onionmat_arith_numeric}
+\alias{numeric_arith_onionmat}
+\alias{onionmat_arith_onion}
+\alias{onion_arith_onionmat}
+\alias{onionmat_matrixprod_onionmat}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -110,6 +114,7 @@ onionmat_conjugate(z)
 onionmat_imag(z)
 onionmat_re(z)
 onionmat_mod(z)
+onionmat_matrixprod_onionmat()
 }
 \arguments{
   \item{d,M}{data and matrix index}
