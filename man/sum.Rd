@@ -4,7 +4,9 @@
 \alias{sum.octonion}
 \alias{onion_allsum}
 \alias{onion_allprod}
+\alias{quaternion_allprod}
 \alias{onion_cumsum}
+\alias{onion_cumprod}
 \title{Sum of onionic vectors}
 \description{
 The sum or product of a vector
@@ -15,6 +17,7 @@ onion_allsum(x)
 onion_allprod(x)
 onion_cumsum(x)
 onion_cumprod(x)
+quaternion_allprod(x)
 }
 \arguments{
   \item{x,...}{Onionic vectors}
