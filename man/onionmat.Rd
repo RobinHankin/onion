@@ -127,7 +127,7 @@ onionmat_conjugate(z)
 onionmat_imag(z)
 onionmat_re(z)
 onionmat_mod(z)
-onionmat_matrixprod_onionmat()
+onionmat_matrixprod_onionmat(x,y)
 }
 \arguments{
   \item{d,M}{data and matrix index}
