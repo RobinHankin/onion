@@ -74,6 +74,7 @@
       out <- kronecker(t(x),c(1,rep(0,3)))
     }
   }
+  rownames(out) <- c("Re","i","j","k")
   return(new("quaternion",x=out))  # this is the only place new("quaternion",...) is called
 }
 
