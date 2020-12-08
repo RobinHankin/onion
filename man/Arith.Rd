@@ -19,7 +19,7 @@
 \alias{octonion_prod_octonion}
 \alias{quaternion_prod_quaternion}
 \alias{onion_prod_numeric}
-\alias{onion_power_singlenumber}
+\alias{onion_power_singleinteger}
 \alias{onion_power_numeric}
 \title{Methods for Function Arith in package Oniondingnag}
 \description{
@@ -40,11 +40,11 @@ onion_prod_onion(e1,e2)
 octonion_prod_octonion(o1,o2)
 quaternion_prod_quaternion(q1,q2)
 onion_prod_numeric(a,b)
-onion_power_singlenumber(o,n)
-onion_power_numeric(a,b)
+onion_power_singleinteger(o,n)
+onion_power_numeric(o,p)
 }
 \arguments{
-  \item{z,e1,e2,a,b,o,o1,o2,n,q1,q2}{onions or numerics}
+  \item{z,e1,e2,a,b,o,o1,o2,n,q1,q2,p}{onions or numerics}
 }
 \details{
 

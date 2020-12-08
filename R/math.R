@@ -18,7 +18,6 @@ setMethod("Math","onion",
                    cumprod = onion_cumprod(x),
                    cumsum  = onion_cumsum(x),
                    log     = onion_log(x),
-                   log1p   = onion_log1p(x),
                    acos    = onion_acos(x),
                    acosh   = onion_acosh(x),
                    asin    = onion_asin(x),
@@ -26,7 +25,6 @@ setMethod("Math","onion",
                    atan    = onion_atan(x),
                    atanh   = onion_atanh(x),
                    exp     = onion_exp(x),
-                   expm1   = onion_expm1(x),
                    cos     = onion_cos(x),
                    cosh    = onion_cosh(x),
                    sin     = onion_sin(x),
@@ -49,10 +47,6 @@ setMethod("Math","onion",
 `onion_abs` <- function(x){sqrt(Norm(x))}
 
 `onion_sqrt` <- function(x){exp(log(x)/2)}
-
-`onion_sign`  <- function(x){stop("not yet implemented")}
-`onion_log1p` <- function(x){stop("not yet implemented")}
-`onion_expm1` <- function(x){stop("not yet implemented")}
 
 `onion_exp` <- function(x){
   t <- Re(x)
@@ -175,3 +169,4 @@ setMethod("Math","onion",
   return(-v1*atanh(x*v1))
 }
 
+`onion_sign` <- function(x){x/Mod(x)}
