@@ -161,4 +161,7 @@ onionmat_matrixprod_onionmat(x,y)
 
 newonionmat(rquat(28),matrix(0,4,7))
 
+
+M <- onionmat(rquat(10),2,5)
+
 }

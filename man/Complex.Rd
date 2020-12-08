@@ -57,7 +57,7 @@ onion_conjugate(z)
 }
 \author{Robin K. S. Hankin}
 \note{
-  If \code{x} is a numeric vector and \code{y} a onion, one might expect
+  If \code{x} is a numeric vector and \code{y} an onion, one might expect
   typing \code{x[1] <- y} to result in \code{x} being a onion.  This is
   impossible, according to John Chambers.
 }

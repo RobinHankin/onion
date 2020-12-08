@@ -6,15 +6,10 @@
 \alias{Compare,numeric,onion-method}
 \alias{onion_compare}
 \title{Methods for Function Compare in Package Oniondingnag}
-\description{
-  Methods for comparision (greater than, etc) of onions
-}
-\note{
-  Comparison does not make sense for onions.
-  
-}
+\description{Methods for comparision (greater than, etc) of onions}
+\note{Comparison does not make sense for onions.}
 \examples{
-2+2
+# roct() > 0 # meaningless and returns an error
   }
 \keyword{methods}
 \keyword{math}

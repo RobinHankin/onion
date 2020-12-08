@@ -15,10 +15,14 @@ condense(x,as.vector=FALSE)
     matrix}
 }
 \value{
-  Returns a string vector of the same length as \code{x} whose elements
-  are length 4 or 8 strings for quaternions or octonions respectively.  
+  If \code{as.vector} is \code{TRUE}, return a string vector of the same
+  length as \code{x} whose elements are length 4 or 8 strings for
+  quaternions or octonions respectively.  If \code{FALSE}, return a
+  matrix with these columns.
+
   The characters are \dQuote{\code{+}} for a positive, \dQuote{\code{-}}
   for a negative, and \dQuote{\code{0}} for a zero, element.
+
 }
 \author{Robin K. S. Hankin}
 \examples{

@@ -15,12 +15,16 @@ Objects \emph{can} be created by calls of the form \code{new("onion",
 \section{Slots}{
   Classes \code{quaternion} and \code{octonion} have a single slot
   \describe{
-    \item{\code{x}:}{Numeric matrix of four or eight rows for
-      quaternions or octonions respectively}
+    \item{x}{Numeric matrix of four or eight rows for
+      quaternions or octonions respectively.  Column names may be used.}
   }
 }
 \author{Robin K. S. Hankin}
 \examples{
-3+4
+
+M <- matrix(runif(24),8)
+colnames(M) <- letters[1:3]
+new("octonion",x=M)          # in practice, use octonion() or as.onion()
+
 }
 \keyword{classes}
