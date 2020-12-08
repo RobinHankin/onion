@@ -44,38 +44,27 @@ onion_power_singleinteger(o,n)
 onion_power_numeric(o,p)
 }
 \arguments{
-  \item{z,e1,e2,a,b,o,o1,o2,n,q1,q2,p}{onions or numerics}
+  \item{z,e1,e2,a,b,o,o1,o2,n,q1,q2,p}{onions or numeric vectors}
 }
 \details{
 
-  The function \code{Ops.onion()} passes unary and binary arithmetic
-  operators (\dQuote{\code{+}}, \dQuote{\code{-}}, \dQuote{\code{*}}, and
-  \dQuote{\code{/}}) to the appropriate specialist function.
+  The package implements the \code{Arith} group of \code{S4} generics so
+  that idiom like \code{A + B*C} works as expected with onions.
 
-  The most interesting operator is \dQuote{\code{*}}, which is passed to
-  \code{AprodA()}.  This function is sensitive to the value of option
-  \code{use.R}.  If this is \code{TRUE}, then arguments are passed, via
-  \code{Amassage()}, to either \code{R_HprodH()} (for quaternions), or
-  \code{R_OprodO()} (for octonions).  If option \code{use.R} is
-  anything other than \code{TRUE} (including being unset, which is the
-  default), the massaged arguments are passed to
-  \code{HprodH()} or \code{OprodO()}.  This is what the user usually
-  wants: it is much faster than using the \code{R_} functions.
+  Functions like \code{onion_inverse()} and \code{onion_plus_onion()}
+  are low-level helper functions.  The only really interesting operation
+  is multiplication (\code{octonion_prod_octonion()} and
+  \code{quaternion_prod_quaternion()} which dispatch to C.
 
-  The relative performance of, say, \code{OprodO()} vs
-  \code{R_OprodO()}, will be system dependent but on my little Linux
-  system (Fedora; 256MB) \code{OprodO()} runs more than three hundred
-  times faster than \code{R_OprodO()}.  Your mileage may vary; see
-  examples section for using \code{options()} to set argument \code{ur}.
+  Names are implemented and the rules are inherited (via
+  \code{harmonize_oo()} and \code{harmonize_on()}) from \code{rbind()}.
 
-
-
-  }
+}
 \author{Robin K. S. Hankin}
 \note{
-
-  The binary arithmetic functions coerce \code{numeric} <op>
-  \code{onion}, and \code{onion} <op> \code{numeric} to onions.
+  Previous versions of the package included the option to use native R
+  rather than the faster compiled C code used here.  But this was very
+  slow.
 
 }
 \examples{
