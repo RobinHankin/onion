@@ -13,6 +13,7 @@ Description:
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 License: GPL-2
 Depends: methods, R (>= 3.5.0)
+Suggests: testthat
 Imports: emulator
 URL: https://github.com/RobinHankin/onion.git
 BugReports: https://github.com/RobinHankin/onion/issues
