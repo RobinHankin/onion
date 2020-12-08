@@ -48,8 +48,13 @@ setMethod("Math","onion",
 
 `onion_abs` <- function(x){sqrt(Norm(x))}
 
+`onion_sqrt` <- function(x){exp(log(x)/2)}
 
-"onion_exp" <- function(x){
+`onion_sign`  <- function(x){stop("not yet implemented")}
+`onion_log1p` <- function(x){stop("not yet implemented")}
+`onion_expm1` <- function(x){stop("not yet implemented")}
+
+`onion_exp` <- function(x){
   t <- Re(x)
   V <- Im(x)
   mV <- Mod(V)
@@ -170,4 +175,3 @@ setMethod("Math","onion",
   return(-v1*atanh(x*v1))
 }
 
-"onion_sqrt" <- function(x){exp(log(x)/2)}
