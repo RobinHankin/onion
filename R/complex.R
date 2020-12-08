@@ -37,8 +37,6 @@ setMethod("Re<-","onion",
 setReplaceMethod("Im",signature(x="onion"),
                  function(x,value){
                    if(is.onion(value) && all(Re(value)==0)){
-                     value <- as.matrix(value)[-1,1]
-                   } else if(is.onion(value)){
                      value <- as.matrix(value)[-1,]
                    }
                    x <- as.matrix(x)
