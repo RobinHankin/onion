@@ -57,8 +57,8 @@ setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  
   ind <- rbind(sA,sB)
   a <- as.matrix(a)[,ind[1,,drop=TRUE],drop=FALSE]
   b <- as.matrix(b)[,ind[2,,drop=TRUE],drop=FALSE]
-  names(a) <- colnames(ind)
-  names(b) <- colnames(ind)
+  colnames(a) <- colnames(ind)
+  colnames(b) <- colnames(ind)
   return(list(a,b))
 }
 
@@ -70,7 +70,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  
   ind <-  rbind(sA,sB)
   a <- as.matrix(a)[,ind[1,,drop=TRUE],drop=FALSE]
   b <- b[ind[2,,drop=TRUE],drop=TRUE]  # differs here from harmonize_oo()
-  names(a) <- colnames(ind)
+  colnames(a) <- colnames(ind)
   names(b) <- colnames(ind)
   return(list(a,b))
 }
@@ -133,7 +133,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  
   as.onion(sweep(jj[[1]],2,jj[[2]],"*"))
 }
 
-`onion_power_singlenumber` <- function(o,n){
+`onion_power_singleinteger` <- function(o,n){
   stopifnot(length(n)==1)
   stopifnot(n == round(n))
   stopifnot(is.onion(o))
@@ -152,12 +152,5 @@ setMethod("Arith",signature(e1 = "numeric", e2="onion"  ), numeric_arith_onion  
   }
 }
 
-`onion_power_numeric` <- function(a,b){
-  if(length(b)==1){return(onion_power_singlenumber(a,b))}
-  jj <- harmonize_on(a,b)
-  out <- jj[[1]]
-  for(i in seq_along(out)){
-    out[i] <- onion_power_singlenumber(jj[[1]][i],jj[[2]][i])
-  }
-  return(out)
-}
+`onion_power_numeric` <- function(o,p){  exp(log(o)*p)}
+
