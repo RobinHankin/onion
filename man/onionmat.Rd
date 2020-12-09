@@ -145,8 +145,8 @@ onionmat_matrixprod_onion(x,y)
   integer matrix used for tracking attributes such as dimnames, and
   also for the extraction method.
 
-  Functions such as \code{onionmatpoweronionmat()} are low-level helper functions,
-  not really designed for the end-user.
+  Functions such as \code{onionmat_plus_onionmat()} are low-level helper
+  functions, not really designed for the end-user.
 
 }
 \author{Robin K. S. Hankin}
@@ -154,7 +154,12 @@ onionmat_matrixprod_onion(x,y)
 
 newonionmat(rquat(28),matrix(0,4,7))
 
-
 M <- onionmat(rquat(10),2,5)
+cprod(M) 
+
+Re(M)
+Re(M) <- 0.3
+
+romat() \%*\% rquat(6)
 
 }
