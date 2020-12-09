@@ -88,10 +88,27 @@ onion_tanh(x)
   \item{base}{In function \code{log()}, the base of the logarithm}
 }
 \details{
-Standard math stuff.
+Standard math stuff.  I am not convinced that the trig functions
+(\code{sin()} etc) have any value. 
+
 }
 \author{Robin K. S. Hankin}  
 \examples{
-2+45
+x <- roct()
+exp(x+x) - exp(x)*exp(x) # zero to numerical precision
+
+jj <- exp(log(x)/2)      # use sqrt() here
+jj*jj-x                  #  also small
+
+
+y <- roct()
+exp(x+y) - exp(x)*exp(y) # some rules do not operate for onions
+
+
+
+max(Mod(c(sin(asin(x))-x,asin(sin(x))-x)))   # zero to numerical precision
+
+
+
 }
 \keyword{math}

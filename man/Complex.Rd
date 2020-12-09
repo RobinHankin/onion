@@ -42,6 +42,10 @@
 
   The \dfn{sign} of onion \eqn{O} is the onion with the same direction
   as \eqn{O} but with unit Norm: \code{sign(O)=O/Mod(O)}.
+
+  Function \code{Im()} sets the real component of its argument to zero,
+  and \code{Conj()} flips the sign of its argument's non-real
+  components.
    
  }
  \usage{
@@ -60,16 +64,33 @@ onion_conjugate(z)
   \item{value}{replacement value}
 }
 \value{
-  Always returns an object of the same class as \code{x}.
+  All functions documented here return a numeric vector or matrix of the
+  same dimensions as their argument, apart from functions \code{Im()}
+  and \code{Conj()}, which return an object of the same class as its
+  argument.
 }
 \author{Robin K. S. Hankin}
 \note{
   If \code{x} is a numeric vector and \code{y} an onion, one might expect
   typing \code{x[1] <- y} to result in \code{x} being a onion.  This is
   impossible, according to John Chambers.
-}
+
+Extract and set methods for components such as \code{i,j,k} is
+documented at \code{Extract.Rd}
+  }
+\seealso{\code{\link{Extract}}}
+
 \examples{
-2+2
+
+a <- rquat()
+Re(a)
+Re(a) <- j(a)
+
+Im(a)
+
+b <- romat()
+
+
 
 }
 \keyword{math}

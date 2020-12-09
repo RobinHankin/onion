@@ -14,7 +14,6 @@
 \alias{onionmat_power_single}
 \alias{onionmat_prod_onionmat}
 \alias{single_power_onionmat}
-\alias{Conj.onionmat}
 \alias{Ops.onionmat}
 \alias{getM}
 \alias{getd}

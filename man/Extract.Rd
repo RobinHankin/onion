@@ -110,7 +110,8 @@ kl(x) <- value
   \item{value}{replacement value}
 }
 \value{
-  Always returns an object of the same class as \code{x}.
+  Extraction methods return a numeric object.
+ Replacement methods return an object of the same class as \code{x}.  
 }
 \author{Robin K. S. Hankin}
 \note{

@@ -1,6 +1,6 @@
-\name{condense.onion}
-\alias{condense.onion}
+\name{condense}
 \alias{condense}
+\alias{condense.onion}
 \title{Condense an onionic vector into a short form}
 \description{
  Condense an onionic vector into a string vector showing whether the
