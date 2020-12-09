@@ -15,5 +15,5 @@ License: GPL-2
 Depends: methods, R (>= 3.5.0)
 Suggests: testthat
 Imports: emulator
-URL: https://github.com/RobinHankin/onion.git
+URL: https://github.com/RobinHankin/onion
 BugReports: https://github.com/RobinHankin/onion/issues
