@@ -1,6 +1,7 @@
 \name{roct}
 \alias{rquat}
 \alias{roct}
+\alias{romat}
 \title{Random onionic vector}
 \description{
   Random quaternion or octonion vectors and matrices
@@ -8,10 +9,13 @@
 \usage{
 rquat(n=5)
 roct(n=5)
-romat()
+romat(type="quaternion", nrow=5,ncol=6,...)
 }
 \arguments{
   \item{n}{Length of random vector returned}
+  \item{type}{string specifying type of elements}
+  \item{nrow,ncol,...}{Further arguments specifying properties of the
+    returned matrix}
 }
 \details{
   Function \code{rquat()} returns a quaternionic vector and function

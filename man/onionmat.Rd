@@ -144,7 +144,6 @@ onionmat_matrixprod_onion(x,y)
     arguments}
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
-  \item{type}{In \code{romat()}, type of output}
 }
 \details{
 
