@@ -5,26 +5,35 @@
 \alias{octonion-class}
 \alias{onionmat-class}
 \title{Class \dQuote{onion}}
-\description{
-  The formal S4 class for onions.}
+\description{The formal S4 class for onion and onionmat objects}
 \section{Objects from the Class}{
-Objects \emph{can} be created by calls of the form \code{new("onion",
-  ...)} but this is not encouraged.  Use functions \code{octonion()} or
-\code{quaternion} and, especially, \code{as.onion()} instead.
-}
-\section{Slots}{
-  Classes \code{quaternion} and \code{octonion} have a single slot
-  \describe{
-    \item{x}{Numeric matrix of four or eight rows for
-      quaternions or octonions respectively.  Column names may be used.}
-  }
+
+  Class \dfn{onion} is a S4 class extending classes \dfn{quaternion} and
+  \dfn{octonion}.  In package documentation, \dQuote{\dfn{onion}} means
+  an R object that behaves as a vector of quaternions or octonions,
+  stored as a four- or eight- row numeric matrix.
+
+  Class \dfn{onionmat} is the S4 class for matrices whose elements are
+  quaternions or octonions.  An onionmat is stored as two-element list,
+  the first being an onion and the second an integer matrix which holds
+  structural matrix attributes such as dimensions and dimnames.  Most
+  standard arithmetic R idiom for matrices should work for onionmats.
+
 }
 \author{Robin K. S. Hankin}
 \examples{
 
-M <- matrix(runif(24),8)
-colnames(M) <- letters[1:3]
-new("octonion",x=M)          # in practice, use octonion() or as.onion()
+as.octonion(1:8,single=TRUE)
+as.quaternion(matrix(runif(20),nrow=4))
+
+H <- onionmat(rquat(21),3,7)
+dimnames(H) <- list(foo=letters[1:3],bar=state.abb[1:7])
+
+i(H) <- 0.1
+
+I <- onionmat(rquat(14),7,2)
+dimnames(I) <- list(foo=state.abb[1:7],baz=LETTERS[1:2])
+H \%*\% I
 
 }
 \keyword{classes}
