@@ -68,10 +68,10 @@ newonionmat <- function(d,M){
 }
 
 `as.onionmat` <- function(x){
-  if(is.onionmat(x)){
+  if(is(x,"onionmat")){
     return(x)
   } else if(is.onion(x)){
-    return(newonionmat(d=d,M=matrix(seq_along(x))))
+    return(newonionmat(d=x,M=matrix(seq_along(x))))
   } else {
     stop("not recognised")
   }
@@ -166,6 +166,11 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
   onionmat_matrixprod_onionmat(x,as.onionmat(y+0*x[1,1]))
 }
 
+`numeric_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(as.onionmat(x+0*y[1,1]),y)}
+`onion_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(as.onionmat(x),y)}
+
+
+
 `om_cprod` <- function(x,y=x){  # t(Conj(x)) %*% y
     x <- Conj(x)
     jj <- crossprod(getM(x), getM(y))
@@ -239,9 +244,9 @@ setMethod("Arith",signature(e1 = "numeric" , e2="onionmat"),  single_arith_onion
 setMethod("Arith",signature(e1 = "onion"   , e2="onionmat"),  single_arith_onionmat)
 
 setMethod("%*%", c("onionmat","onionmat"), onionmat_matrixprod_onionmat)
-setMethod("%*%", c("onionmat","onion")   , onionmat_matrixprod_single)
+setMethod("%*%", c("onionmat","onion")   , onionmat_matrixprod_onion)
 setMethod("%*%", c("onionmat","numeric") , onionmat_matrixprod_numeric)
 
-setMethod("%*%", c("numeric","onionmat") , onionmat_matrixprod_single)
-setMethod("%*%", c("onion","onionmat")   , onionmat_matrixprod_single)
+setMethod("%*%", c("numeric","onionmat") , numeric_matrixprod_onionmat)
+setMethod("%*%", c("onion","onionmat")   , onion_matrixprod_onionmat)
 
