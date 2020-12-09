@@ -10,7 +10,6 @@
 \alias{single_prod_onionmat}
 \alias{onionmat_power_single}
 \alias{onionmat_plus_onionmat}
-\alias{onionmat_equal_onionmat}
 \alias{onionmat_plus_single}
 \alias{onionmat_power_single}
 \alias{onionmat_prod_onionmat}
