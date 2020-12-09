@@ -52,6 +52,9 @@
 \alias{romat}
 \alias{as.octonionmat}
 \alias{as.quaternionmat}
+\alias{ht}
+\alias{ht,onionmat-method}
+\alias{ht,onion-method}
 \alias{cprod}
 \alias{cprod,onionmat,onionmat-method}
 \alias{cprod,ANY,onionmat-method}
@@ -59,7 +62,15 @@
 \alias{cprod,onionmat,missing-method}
 \alias{cprod,ANY,ANY-method}
 \alias{cprod,ANY,ANY-method}
+\alias{tcprod}
+\alias{tcprod,onionmat,onionmat-method}
+\alias{tcprod,ANY,onionmat-method}
+\alias{tcprod,onionmat,ANY-method}
+\alias{tcprod,onionmat,missing-method}
+\alias{tcprod,ANY,ANY-method}
+\alias{tcprod,ANY,ANY-method}
 \alias{om_cprod}
+\alias{om_tcprod}
 \alias{t.onionmat}
 \alias{t,onionmat-method}
 \alias{om_ht}
@@ -106,7 +117,13 @@ onionmat_plus_onionmat(e1,e2)
 \S4method{cprod}{onionmat,missing}(x,y)
 \S4method{cprod}{onionmat,ANY}(x,y)
 \S4method{cprod}{ANY,ANY}(x,y)
+\S4method{tcprod}{onionmat,onionmat}(x,y)
+\S4method{tcprod}{onionmat,missing}(x,y)
+\S4method{tcprod}{onionmat,ANY}(x,y)
+\S4method{tcprod}{ANY,ANY}(x,y)
 \S4method{t}{onionmat}(x)
+\S4method{ht}{onionmat}(x)
+\S4method{ht}{onion}(x)
 nrow(x)
 ncol(x)
 herm_onion_mat(real_diagonal, onions)

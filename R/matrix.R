@@ -169,8 +169,6 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
 `numeric_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(as.onionmat(x+0*y[1,1]),y)}
 `onion_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(as.onionmat(x),y)}
 
-
-
 `om_cprod` <- function(x,y=x){  # t(Conj(x)) %*% y
     x <- Conj(x)
     jj <- crossprod(getM(x), getM(y))
@@ -236,6 +234,17 @@ setMethod("cprod",signature=c(x="onionmat",y="missing"),function(x,y){om_cprod(x
 setMethod("cprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_cprod(x,y)})
 setMethod("cprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_cprod(Conj(x),y)})
 setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::cprod(Conj(x),y)})
+
+setGeneric("tcprod",function(x,y){standardGeneric("tcprod")})
+setMethod("tcprod",signature=c(x="onionmat",y="onionmat"),function(x,y){om_tcprod(x,y)})
+setMethod("tcprod",signature=c(x="onionmat",y="missing"),function(x,y){om_tcprod(x,x)})
+setMethod("tcprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_tcprod(x,y)})
+setMethod("tcprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_tcprod(Conj(x),y)})
+setMethod("tcprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::tcprod(Conj(x),y)})
+
+setGeneric("ht",function(x){standardGeneric("ht")})
+setMethod("ht",signature=c(x="onionmat"),function(x){om_ht(x)})
+setMethod("ht",signature=c(x="onion"),function(x){om_ht(x)})
 
 setMethod("Arith",signature(e1 = "onionmat", e2="onionmat"), onionmat_arith_onionmat)
 setMethod("Arith",signature(e1 = "onionmat", e2="numeric" ), onionmat_arith_single )
