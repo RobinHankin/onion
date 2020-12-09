@@ -119,7 +119,12 @@ kl(x) <- value
   impossible, according to John Chambers.
 }
 \examples{
-2+2
 
+a <- roct(9)
+il(a)
+Re(a) <- 1:9
+
+j(a) <- l(a)
+a
 }
 \keyword{math}

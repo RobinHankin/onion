@@ -15,6 +15,13 @@
 \alias{Im<-,onion-method}
 \alias{Conj,onion-method}
 \alias{Norm,onion-method}
+\alias{Mod,onionmat-method}
+\alias{Conj,onionmat-method}
+\alias{Re,onionmat-method}
+\alias{Im,onionmat-method}
+\alias{Re<-,onionmat-method}
+\alias{Conj,onionmat-method}
+\alias{Norm,onionmat-method}
 \alias{onion_complex}
 \alias{onion_imag}
 \alias{onion_mod}
@@ -57,7 +64,7 @@ onion_conjugate(z)
 }
 \author{Robin K. S. Hankin}
 \note{
-  If \code{x} is a numeric vector and \code{y} a onion, one might expect
+  If \code{x} is a numeric vector and \code{y} an onion, one might expect
   typing \code{x[1] <- y} to result in \code{x} being a onion.  This is
   impossible, according to John Chambers.
 }

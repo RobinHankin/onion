@@ -86,42 +86,12 @@ octonion_to_quaternion(from)
   such objects (I have seen n-ion, anion and others.  But \dQuote{onion}
   is pronouncable and a bona fide English word).
 
-  Creating further onions is intended to be straightforward; the
-  following steps show how to add the sedenions but any number of
-  onions may be added the same way.
-  \itemize{
-    \item Add functions \code{sedenion_prod_single()} and
-    \code{sedenion_prod()} to \code{src/onion.c}.
-    \item Update the following functions:
-    \itemize{
-      \item \code{type()}
-      \item \code{harmonize()}
-      \item \code{as.onion()}
-      \item \code{AprodA()}
-    }  This should be reasonably straightforward.
-    \item create the following functions:
-    \itemize{
-      \item \code{rsed()} (by analogy with \code{roct()} and \code{rquat()})
-      \item \code{SprodS()} (by analogy with \code{OprodO()} and
-      \code{HprodH()})
-      \item \code{R_SprodS()} (by analogy with \code{R_OprodO()} and
-      \code{R_HprodH()})
-      \item \code{sedenion()} and \code{is.sedenion()} (by analogy
-      with \code{octonion()} and \code{is.octonion()})
-      \item \code{as.sedenion()} by analogy with \code{as.octonion()}.
-      \item a whole bunch of functions (with appropriate names) to get
-      and set individual onion components, by
-      analogy with \code{i.quaternion()} and \code{i<-.quaternion()}.
-      Sedenions have at least two different naming conventions.
-      }
-    }
-Note that function \code{Ops.onion()} need not be changed, as it copes
-with generic onions.
+  Creating further onions---such as the sedenions---is intended to be
+  straightforward.
 
-There is a nice example of the onion package in use in the
-\code{permutations} package, under \code{cayley.Rd}.  This also shows
-the quaternion group Q8, but from a different perspective.
- 
+  There is a nice example of the onion package in use in the
+  \code{permutations} package, under \code{cayley.Rd}.  This also shows
+  the quaternion group Q8, but from a different perspective.
 }
 \author{Robin K. S. Hankin}
 \examples{

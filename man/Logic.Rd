@@ -20,6 +20,6 @@
 
 }
 \examples{
-3+4
+# roct() & roct()   # reports an error
 }
 \keyword{math}

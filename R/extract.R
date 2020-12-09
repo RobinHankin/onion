@@ -19,6 +19,22 @@ setReplaceMethod("[",signature(x="onion"),
                    return(as.onion(out))
                  } )
 
+
+setMethod("[", "onionmat",function(x,i,j,drop){newonionmat(getd(x)[getM(x)[i,j,drop=TRUE]],getM(x)[i,j,drop=drop])})
+
+setReplaceMethod("[",signature(x="onionmat"),
+                 function(x,i,j,value){
+                   d <- getd(x)
+                   M <- getM(x)
+                   if(is.vector(value)){
+                     value <- kronecker(t(value),c(1,rep(0,nrow(as.matrix(d))-1)))
+                   }
+                   d[c(M[i,j])] <- value
+                   newonionmat(d,M)
+                 } )
+
+
+
 setGeneric("i",function(z){standardGeneric("i")})
 setGeneric("j",function(z){standardGeneric("j")})
 setGeneric("k",function(z){standardGeneric("k")})
