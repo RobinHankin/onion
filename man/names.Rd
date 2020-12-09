@@ -37,5 +37,9 @@
 \examples{
 a <- roct(5)
 names(a) <- letters[1:5]
+
+b <- romat()
+dimnames(b) <- list(month = month.abb[1:5], location=names(islands)[1:6])
+
 }
 \keyword{array}

@@ -38,12 +38,12 @@ dotprod(x,y)
   \item{x,y}{onions}
 }
 \details{
+
   This page documents an attempt at a consistent notation for onionic
-  products.  The product used by \code{Ops.octonion()}  and
-  \code{Ops.quaternion()} (viz
-  \dQuote{\code{*}}) is sometimes known as the \dQuote{Grassman
-    product}.  There is another product known as the Euclidean product
-  defined by \eqn{E(p,q)=p'q} where \eqn{x'} is the conjugate of \eqn{x}.
+  products.  The default product for onions (viz \dQuote{\code{*}}) is
+  sometimes known as the \dQuote{Grassman product}.  There is another
+  product known as the Euclidean product defined by \eqn{E(p,q)=p'q}
+  where \eqn{x'} is the conjugate of \eqn{x}.
 
   Each of these products separates into an \dQuote{even} and an
   \dQuote{odd} part, here denoted by functions \code{g_even()} and
@@ -86,7 +86,10 @@ Function \code{prod()} is documented at \code{Summary.Rd}.
 
 }
 \author{Robin K. S. Hankin}
-
+\note{Frankly if you find yourself using these operators you might be
+  better off using the \pkg{clifford} package, which has an extensive
+  and consistent suite of product operators.
+}
 \examples{
 Oj \%<.>\% Oall
 }

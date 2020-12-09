@@ -58,7 +58,7 @@ Oall
 seq_onion(from=O1,to=Oil,len=6)
 
 stopifnot(Hj*Hk ==  Hi)
-stopifnot(Okl*Oil == -Oj )  # See tests/aaa.R for the full set
+stopifnot(Okl*Oil == -Oj )  # See tests/test_aaa.R for the full set
 
 }
 \keyword{datasets}

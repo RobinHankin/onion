@@ -31,14 +31,13 @@ quaternion_allprod(x)
   \item{x,object,\dots}{Objects of class \code{onion}}
   \item{vec.len}{number of elements to display}
 }
-\details{
-  For a \code{onion} object
-}
+\details{For a \code{onion} object, return the sum or product accordingly}
+\value{Return an onion}
 \author{Robin K. S. Hankin}
-\note{
-no notes here
-}
+\note{Function \code{str()} uses functionality from \code{condense()}.}
 \examples{
-3+5
+
+sum(roct())
+str(roct())
 }
 \keyword{math}
