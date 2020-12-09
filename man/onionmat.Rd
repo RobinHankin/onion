@@ -47,7 +47,6 @@
 \alias{ncol}
 \alias{colnames<-}
 \alias{rownames<-}
-\alias{romat}
 \alias{as.octonionmat}
 \alias{as.quaternionmat}
 \alias{ht}
@@ -125,7 +124,6 @@ onionmat_plus_onionmat(e1,e2)
 nrow(x)
 ncol(x)
 herm_onion_mat(real_diagonal, onions)
-romat(type="quaternion", nrow=5,ncol=6,...)
 onionmat_complex(z)
 onionmat_conjugate(z)
 onionmat_imag(z)
@@ -139,8 +137,8 @@ onionmat_matrixprod_onion(x,y)
 \arguments{
   \item{d,M}{data and matrix index}
   \item{x,y,z,e1,e2}{Objects of class \code{onionmat}}
-  \item{data,nrow,ncol,byrow,dimnames}{In functions
-    \code{onionmat()} and \code{romat()}, as for \code{matrix()}}
+  \item{data,nrow,ncol,byrow,dimnames}{In function
+    \code{onionmat()}, as for \code{matrix()}}
   \item{...}{In functions like \code{onionmatpoweronionmat()}, which are designed to
     return informative errors; and \code{print()}, ignored further
     arguments}

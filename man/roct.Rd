@@ -3,11 +3,12 @@
 \alias{roct}
 \title{Random onionic vector}
 \description{
-  Random quaternion or octonion vectors
+  Random quaternion or octonion vectors and matrices
 }
 \usage{
 rquat(n=5)
 roct(n=5)
+romat()
 }
 \arguments{
   \item{n}{Length of random vector returned}
@@ -20,6 +21,7 @@ roct(n=5)
 \note{
   These functions give a quick  \dQuote{get you going} random onion
   to play with.
+
 }
 \author{Robin K. S. Hankin}
 \references{
@@ -31,4 +33,6 @@ roct(n=5)
 rquat(3)
 roct(3)
 plot(roct(30))
+
+romat()
 }
