@@ -66,7 +66,17 @@ newonionmat <- function(d,M){
     stop("not recognised")
   }
 }
-  
+
+`as.onionmat` <- function(x){
+  if(is.onionmat(x)){
+    return(x)
+  } else if(is.onion(x)){
+    return(newonionmat(d=d,M=matrix(seq_along(x))))
+  } else {
+    stop("not recognised")
+  }
+}
+    
 romat <- function(type="quaternion", nrow=5,ncol=6,...){
   d <- switch(type, 
               octonion = roct(nrow*ncol,...),
@@ -135,8 +145,6 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
          )
 }
 
-
-
 `onionmat_matrixprod_onionmat` <- function(x,y){
     jj <- getM(x) %*% getM(y)
     out <- newonionmat(rep(0*getd(x)[1],length(jj)),jj)
@@ -148,6 +156,14 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
     rownames(out) <- rownames(jj)
     colnames(out) <- colnames(jj)
     return(out)
+}
+
+`onionmat_matrixprod_onion` <- function(x,y){
+  onionmat_matrixprod_onionmat(x,as.onionmat(y))
+}
+
+`onionmat_matrixprod_numeric` <- function(x,y){
+  onionmat_matrixprod_onionmat(x,as.onionmat(y+0*x[1,1]))
 }
 
 `om_cprod` <- function(x,y=x){  # t(Conj(x)) %*% y
@@ -223,7 +239,9 @@ setMethod("Arith",signature(e1 = "numeric" , e2="onionmat"),  single_arith_onion
 setMethod("Arith",signature(e1 = "onion"   , e2="onionmat"),  single_arith_onionmat)
 
 setMethod("%*%", c("onionmat","onionmat"), onionmat_matrixprod_onionmat)
-setMethod("%*%", c("onionmat","numeric") , onionmat_prod_single)
-setMethod("%*%", c("numeric","onionmat") , onionmat_prod_single)
-setMethod("%*%", c("onion","onionmat")   , onionmat_prod_single)
-setMethod("%*%", c("numeric","onion")    , onionmat_prod_single)
+setMethod("%*%", c("onionmat","onion")   , onionmat_matrixprod_single)
+setMethod("%*%", c("onionmat","numeric") , onionmat_matrixprod_numeric)
+
+setMethod("%*%", c("numeric","onionmat") , onionmat_matrixprod_single)
+setMethod("%*%", c("onion","onionmat")   , onionmat_matrixprod_single)
+
