@@ -33,8 +33,6 @@ setReplaceMethod("[",signature(x="onionmat"),
                    newonionmat(d,M)
                  } )
 
-
-
 setGeneric("i",function(z){standardGeneric("i")})
 setGeneric("j",function(z){standardGeneric("j")})
 setGeneric("k",function(z){standardGeneric("k")})
