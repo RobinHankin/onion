@@ -34,6 +34,13 @@ setMethod("Re<-","onion",
             return(as.onion(z))
           } )
 
+setMethod("Re<-","onionmat",
+          function(z,value){
+            d <- getd(z)
+            Re(d) <- value
+            newonionmat(d,getM(z))
+          } )
+
 setReplaceMethod("Im",signature(x="onion"),
                  function(x,value){
                    if(is.onion(value) && all(Re(value)==0)){
@@ -46,5 +53,45 @@ setReplaceMethod("Im",signature(x="onion"),
 
 setGeneric("Norm",function(z){standardGeneric("Norm")})
 setMethod("Norm","onion",function(z){colSums(as.matrix(z)^2)})
+setMethod("Norm","onionmat",function(z){
+  out <- Norm(getd(z))
+  attributes(out) <- attributes(getM(z))
+  return(out)
+} )
 
 `onion_mod` <- function(z){sqrt(Norm(z))}
+setMethod("Mod","onionmat",function(z){
+  out <- Mod(getd(z))
+  attributes(out) <- attributes(getM(z))
+  return(out)
+} )
+
+`onionmat_conjugate` <- function(o){newonionmat(Conj(getd(o)),getM(o))}
+`onionmat_imag` <- function(o){newonionmat(Im(getd(o)),getM(o))}
+`onionmat_mod` <- function(o){
+  out <- Mod(getd(o))
+  attributes(out) <- attributes(getM(o))
+  return(out)
+}
+
+`onionmat_re` <- function(o){
+  out <- Re(getd(o))
+  attributes(out) <- attributes(getM(o))
+  return(out)
+}
+  
+
+"onionmat_complex" <- function(z){
+  switch(.Generic,
+         Arg  = stop("not defined for onions"),
+         Conj = onionmat_conjugate(z),
+         Im   = onionmat_imag(z),
+         Mod  = onionmat_mod(z),
+         Re   = onionmat_re(z),
+         stop(paste("Complex operator \"", .Generic, "\" not defined for onions"))
+         )
+}
+
+
+
+

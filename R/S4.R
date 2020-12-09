@@ -3,7 +3,7 @@ setClass("onion",
          )
 
 setClass("onionmat",
-         representation = "VIRTUAL"
+         slots = c(d  = "onion", M = "matrix")
          )
 
 setClass("quaternion",
@@ -41,7 +41,7 @@ setClass("octonion",
     return(TRUE)
   }
 }
-    
+
 setValidity("quaternion", valid_quaternion)
 setValidity("octonion", valid_octonion)
 

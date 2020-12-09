@@ -1,34 +1,21 @@
 \name{onionmat}
 \alias{onionmat}
 \alias{newonionmat}
-\alias{OMprodOM}
-\alias{OMneg}
-\alias{OMinv}
-\alias{OMpowerOM}
-\alias{OMprodS}
-\alias{SprodOM}
-\alias{OMpowerS}
-\alias{OMplusOM}
-\alias{OMequalOM}
-\alias{OMplusS}
-\alias{OMpowerOM}
-\alias{OMpowerS}
-\alias{OMprodOM}
-\alias{OMquotientOM}
-\alias{SpowerOM}
-\alias{dim.onionmat}
+\alias{onionmat_prod_onionmat}
+\alias{onionmat_neg}
+\alias{onionmat_inv}
+\alias{onionmat_power_onionmat}
+\alias{onionmat_prod_single}
+\alias{single_prod_onionmat}
+\alias{onionmat_power_single}
+\alias{onionmat_plus_onionmat}
+\alias{onionmat_equal_onionmat}
+\alias{onionmat_plus_single}
+\alias{onionmat_power_single}
+\alias{onionmat_prod_onionmat}
+\alias{single_power_onionmat}
 \alias{Conj.onionmat}
 \alias{Ops.onionmat}
-\alias{rownames}
-\alias{colnames}
-\alias{colnames-methods}
-\alias{colnames,ANY-method}
-\alias{colnames.onionmat}
-\alias{colnames<--methods}
-\alias{colnames<-,ANY-method}
-\alias{colnames<-.onionmat}
-\alias{dimnames.onionmat}
-\alias{dimnames<-.onionmat}
 \alias{getM}
 \alias{getd}
 \alias{herm_onion_mat}
@@ -81,17 +68,18 @@
 \alias{onionmat_imag}
 \alias{onionmat_re}
 \alias{onionmat_mod}
-\alias{Conj,onionmat-method}
+\alias{single_arith_onionmat}
 \alias{onionmat_arith_onionmat}
 \alias{onionmat_arith_onion}
-\alias{onionmat_arith_numeric}
+\alias{onionmat_arith_single}
+\alias{onionmat_inverse}
+\alias{onionmat_negative}
 \alias{numeric_arith_onionmat}
 \alias{onionmat_arith_onion}
 \alias{onion_arith_onionmat}
+\alias{onion_arith_single}
+\alias{single_arith_onionmat}
 \alias{onionmat_matrixprod_onionmat}
-\alias{dim,onionmat-method}
-\alias{dimnames,onionmat-method}
-\alias{dimnames<-,onionmat-method}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -100,22 +88,17 @@
 \usage{
 newonionmat(d, M)
 onionmat(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
-OMneg(e1)
-OMinv(e1)
-OMprodOM(e1,e2)
-OMpowerOM(...)
-OMprodS(x,y)
-OMpowerS(e1,e2)
-OMplusOM(e1,e2)
-colnames.onionmat(x)
-rownames.onionmat(x)
-\S4method{Conj}{onionmat}(z)
+onionmat_negative(e1)
+onionmat_inverse(e1)
+onionmat_prod_onionmat(e1,e2)
+onionmat_power_onionmat(...)
+onionmat_prod_single(x,y)
+onionmat_power_single(e1,e2)
+onionmat_plus_onionmat(e1,e2)
 \S4method{cprod}{onionmat,onionmat}(x,y)
 \S4method{cprod}{onionmat,missing}(x,y)
 \S4method{cprod}{onionmat,ANY}(x,y)
 \S4method{cprod}{ANY,ANY}(x,y)
-\S4method{dim}{onionmat}(x)
-\S4method{dimnames}{onionmat}(x)
 \S4method{t}{onionmat}(x)
 nrow(x)
 ncol(x)
@@ -133,7 +116,7 @@ onionmat_matrixprod_onionmat(x,y)
   \item{x,y,z,e1,e2}{Objects of class \code{onionmat}}
   \item{data,nrow,ncol,byrow,dimnames}{In functions
     \code{onionmat()} and \code{romat()}, as for \code{matrix()}}
-  \item{...}{In functions like \code{OMpowerOM()}, which are designed to
+  \item{...}{In functions like \code{onionmatpoweronionmat()}, which are designed to
     return informative errors; and \code{print()}, ignored further
     arguments}
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
@@ -152,7 +135,7 @@ onionmat_matrixprod_onionmat(x,y)
   integer matrix used for tracking attributes such as dimnames, and
   also for the extraction method.
 
-  Functions such as \code{OMpowerOM()} are low-level helper functions,
+  Functions such as \code{onionmatpoweronionmat()} are low-level helper functions,
   not really designed for the end-user.
 
 }

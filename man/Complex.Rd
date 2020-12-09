@@ -15,6 +15,13 @@
 \alias{Im<-,onion-method}
 \alias{Conj,onion-method}
 \alias{Norm,onion-method}
+\alias{Mod,onionmat-method}
+\alias{Conj,onionmat-method}
+\alias{Re,onionmat-method}
+\alias{Im,onionmat-method}
+\alias{Re<-,onionmat-method}
+\alias{Conj,onionmat-method}
+\alias{Norm,onionmat-method}
 \alias{onion_complex}
 \alias{onion_imag}
 \alias{onion_mod}
