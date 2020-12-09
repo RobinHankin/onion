@@ -1,5 +1,6 @@
 \name{onionmat}
 \alias{onionmat}
+\alias{as.onionmat}
 \alias{newonionmat}
 \alias{onionmat_prod_onionmat}
 \alias{onionmat_neg}
@@ -37,6 +38,7 @@
 \alias{t.onionmat}
 \alias{\%*\%}
 \alias{\%*\%,onionmat,onionmat-method}
+\alias{\%*\%,onionmat,onion-method}
 \alias{\%*\%,numeric,onion-method}
 \alias{\%*\%,numeric,onionmat-method}
 \alias{\%*\%,onion,onionmat-method}
@@ -80,6 +82,10 @@
 \alias{onion_arith_single}
 \alias{single_arith_onionmat}
 \alias{onionmat_matrixprod_onionmat}
+\alias{onionmat_matrixprod_onion}
+\alias{onionmat_matrixprod_numeric}
+\alias{numeric_matrixprod_onionmat}
+\alias{onion_matrixprod_onionmat}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -88,6 +94,7 @@
 \usage{
 newonionmat(d, M)
 onionmat(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
+as.onionmat(x)
 onionmat_negative(e1)
 onionmat_inverse(e1)
 onionmat_prod_onionmat(e1,e2)
@@ -110,6 +117,9 @@ onionmat_imag(z)
 onionmat_re(z)
 onionmat_mod(z)
 onionmat_matrixprod_onionmat(x,y)
+onion_matrixprod_onionmat(x,y)
+onionmat_matrixprod_numeric(x,y)
+onionmat_matrixprod_onion(x,y)
 }
 \arguments{
   \item{d,M}{data and matrix index}
