@@ -1,5 +1,6 @@
-\name{Arith-methods}
+\name{Arith}
 \docType{methods}
+\alias{Arith}
 \alias{Arith-methods}
 \alias{Arith,onion,missing-method}
 \alias{Arith,onion,ANY-method}
@@ -21,7 +22,7 @@
 \alias{onion_prod_numeric}
 \alias{onion_power_singleinteger}
 \alias{onion_power_numeric}
-\title{Methods for Function Arith in package Oniondingnag}
+\title{Methods for Function Arith in package Onion}
 \description{
 Methods for Arithmetic functions for onions: \code{+},
 \code{-}, \code{*}, \code{/}, \code{^}
@@ -64,11 +65,31 @@ onion_power_numeric(o,p)
 \note{
   Previous versions of the package included the option to use native R
   rather than the faster compiled C code used here.  But this was very
-  slow.
+  slow and is now discontinued.
 
 }
 \examples{
-3+3
+a <- rquat()
+b <- rquat()
+a
+Re(a)
+j(a) <- 0.2
+a*b
+b*a  # quaternions are noncommutative
+
+
+x <- as.octonion(matrix(rnorm(40),nrow=8))
+y <- roct()
+z <- roct()
+
+
+x*(y*z) - (x*y)*z  # octonions are nonassociative [use associator()]
+
+
+
+
+
+
 }
 \keyword{methods}
 \keyword{math}
