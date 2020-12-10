@@ -1,0 +1,161 @@
+---
+title: "Onionic matrices"
+author: "Robin K. S. Hankin"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{involutions}
+  %\usepackage[utf8]{inputenc}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("onion") 
+```
+
+## Onionic matrices 
+
+The onion package allows one to define and manipulate matrices whose
+elements are quaternions or octonions.  Function `romat()` creates a
+simple `onionmat` object:
+
+```{r}
+set.seed(0)
+options(digits=2)
+romat()
+```
+
+This illustrates many features of the package.  An `onionmat` object
+has two slots.  The first slot, `x`, is an onion [a vector of
+quaternions or octonions] and the second, `M`, a matrix, which is used
+to store attributes such as dimensions and dimnames.  The elements of
+`M` and `d` are in bijective correspondence; thus element `[b,AR]` is
+number 17 and this is seen to be approximately $-0.81 + 0.24i -1.43j
++0.37k$.  Most R idiom will work with such objects, here is a brief
+sample.
+
+```{r}
+A <- newonionmat(rquat(21),matrix(0,7,3))
+A
+```
+
+See above how object `A` has no rownames or colnames and the defaults are used.  We may extract components:
+
+```{r}
+A[1,]
+```
+
+above, the resulting object is an onion but we may retain the onionmat character using `drop`:
+
+```{r}
+A[1,,drop=FALSE]
+```
+
+
+The extraction methods operate as expected:
+
+```{r}
+Re(A)
+k(A)
+```
+
+
+(above, the matrices returned are numeric).  Also replacement methods work as expected:
+
+```{r}
+j(A) <- -1
+A
+```
+
+Some of the summary methods work:
+
+```{r}
+sum(A)
+```
+
+## Matrix multiplication
+
+Matrix multiplication is implemented.
+
+
+```{r}
+A <- newonionmat(rquat(21),matrix(0,3,7))
+umbral <- state.abb[1:7]
+rownames(A) <- letters[1:3]
+colnames(A) <- umbral
+
+B <- newonionmat(rquat(28),matrix(0,7,4))
+rownames(B) <- umbral
+colnames(B) <- c("H","He","Li","Be")
+
+A %*% B
+```
+
+
+However, it is often preferable (but no faster in this case) to use
+functions such as `cprod()` and `tcprod()`:
+
+
+```{r}
+C <- newonionmat(rquat(14),matrix(0,7,2))
+rownames(C) <- umbral
+colnames(C) <- month.abb[1:2]
+cprod(B,C)
+```
+
+and indeed the single-argument versions work as expected:
+
+```{r}
+tcprod(A) - A %*% ht(A)
+```
+
+
+## Octonions
+
+Consider the following $3\times 3$ octonionic matrices:
+
+
+```{r}
+x <- cprod(onionmat(roct(12),4,3))
+x
+```
+
+We see that `x` is Hermitian symmetric:
+
+```{r}
+max(Mod(Im(x+t(x))))
+```
+
+[that is, the imaginary components of symmetrically placed elements
+are mutually conjugate].  We may verify that $3\times 3$ matrices form
+a Jordan algebra under the composition rule $A\circ B=(AB+BA)/2$
+[juxtaposition indicating regular matrix multiplication]; the identity is 
+
+\[(xy)(xx) = x(y(xx)).\]
+
+First we define the Jordan product:
+
+```{r}
+`%o%` <- function(x,y){(x%*%y + y%*%x)/2}
+```
+
+then create a couple of random Hermitian octonionic matrices:
+```{r}
+x <- cprod(onionmat(roct(12),4,3))
+y <- cprod(onionmat(roct(12),4,3))
+```
+
+then the Jordan identity in numerical form for these two matrices would be:
+
+```{r}
+LHS <- (x %o% y) %o% (x %o% x)
+RHS <- x %o% (y %o% (x %o% x))
+max(Mod(LHS-RHS))  # zero to numerical precision
+```
+
+showing that the Jordan identity is satisfied, up to a small numerical
+tolerance.
