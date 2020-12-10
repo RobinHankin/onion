@@ -37,7 +37,7 @@ setMethod("Arith",signature(e1 = "onion", e2="missing"),
 "numeric_arith_onion" <- function(e1,e2){ # e1 numeric, e2 onion
   switch(.Generic,
          "+" = onion_plus_numeric(e2,  e1),
-         "-" = onion_plus_numeric(e2, -e1),
+         "-" = onion_plus_numeric(-e2, e1),
          "*" = onion_prod_numeric(e2,  e1),
          "/" = onion_prod_numeric(onion_inverse(e2),e1),  # onions commute with numeric multiplication
          "^" = stop("x^onion not defined"),
