@@ -9,9 +9,8 @@
 \description{Get or set the length of onions}
 \usage{\S4method{length}{onion}(x)}
 \arguments{\item{x}{An onion}}
-\details{
-  Operates on the columns of the matrix as expected.
-}
+\value{integer}
+\details{Operates on the columns of the matrix as expected.}
 \author{Robin K. S. Hankin}
 \examples{
 a <- roct(5)

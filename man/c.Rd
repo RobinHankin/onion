@@ -12,13 +12,12 @@ Combines its arguments to form a single onion.
 c_onionpair(x,y)
 \S4method{c}{onion}(x,...)
 }
-\arguments{
-  \item{x,y,\dots}{onions}
-}
+\arguments{\item{x,y,\dots}{onions}}
 \details{
   Returns an onion of the same type as its arguments.  Names are
   inherited from the behaviour of \code{cbind()}, not \code{c()}.
 }
+\value{An onion}
 \author{Robin K. S. Hankin}
 \note{
   

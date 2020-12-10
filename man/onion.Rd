@@ -77,8 +77,8 @@ octonion_to_quaternion(from)
   The output of \code{type()} is accepted as the \code{type} argument of
   function \code{as.onion()}; thus \code{as.onion(out,type=type(x))} works as
   expected.
-
 }
+\value{Generally return onions}
 \note{
   An \dfn{onion} is any algebra (over the reals) created by an iterated
   Cayley-Dickson process.  Examples include quaternions, octonions, and

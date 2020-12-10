@@ -15,8 +15,9 @@
 }
 \details{
   The function is \code{plot(Re(x), Mod(Im(x)), ...)}, and thus
-    behaves similarly to \code{plot()} when called with a complex vector.
+  behaves similarly to \code{plot()} when called with a complex vector.
 }
+\value{Called for its side-effect of plotting a diagram}
 \author{Robin K. S. Hankin}
 \examples{
 plot(roct(30))

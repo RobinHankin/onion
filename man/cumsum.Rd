@@ -11,6 +11,7 @@ onion_cumsum(x)
 onion_cumprod(x)
 }
 \arguments{\item{x}{onion}}
+\value{An onion}
 \author{Robin K. S. Hankin}
 \note{
 The octonions are nonassociative but \code{cumprod()} operates
