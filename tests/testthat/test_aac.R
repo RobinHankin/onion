@@ -18,6 +18,12 @@ checkerA <- function(a){  # following are pointwise operations
   testequal(a*a*a  , a^3) # octonions are *power* associative
   testequal(a*a*a*a, a^4)
 
+  expect_error(a & a)
+  expect_error(a & H1)
+  expect_error(H1 & a)
+  expect_error(a & 1)
+  expect_error(1 & a)
+
 }
 
 checkerB <- function(a,x){ # a: onionmat; x: numeric

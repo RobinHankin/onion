@@ -39,6 +39,13 @@ checkerA <- function(a){
   expect_error(1%%a)
   expect_error(a%%a)
 
+  expect_error(a & a)
+  expect_error(a & H1)
+  expect_error(H1 & a)
+  expect_error(a & 1)
+  expect_error(1 & a)
+
+
 }
 
 checkerB <- function(a,x){
