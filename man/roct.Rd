@@ -9,13 +9,13 @@
 \usage{
 rquat(n=5)
 roct(n=5)
-romat(type="quaternion", nrow=5,ncol=6,...)
+romat(nrow=5, ncol=6, type="quaternion", ...)
 }
 \arguments{
   \item{n}{Length of random vector returned}
-  \item{type}{string specifying type of elements}
   \item{nrow,ncol,...}{Further arguments specifying properties of the
     returned matrix}
+  \item{type}{string specifying type of elements}
 }
 \details{
   Function \code{rquat()} returns a quaternionic vector and function
