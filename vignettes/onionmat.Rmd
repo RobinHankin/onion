@@ -149,7 +149,15 @@ x <- cprod(onionmat(roct(12),4,3))
 y <- cprod(onionmat(roct(12),4,3))
 ```
 
-then the Jordan identity in numerical form for these two matrices would be:
+We first verify numerically that the Jordan product of two Hermitian
+symmetric matrices is Hermitian:
+
+```{r}
+jj <- x %o% y
+max(Mod(Im(jj+t(jj))))
+```
+
+then verify the Jordan identity:
 
 ```{r}
 LHS <- (x %o% y) %o% (x %o% x)
