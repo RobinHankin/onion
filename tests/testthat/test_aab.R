@@ -1,4 +1,4 @@
-test_that("Test suite aac.R",{
+test_that("Test suite aab.R, arithmetic ops on onionmats",{
 
 
 testequal <- function(x,y){testzero(x-y)}
