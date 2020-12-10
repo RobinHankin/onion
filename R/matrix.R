@@ -93,6 +93,9 @@ setGeneric("ncol")
 setMethod("nrow","onionmat",function(x){nrow(getM(x))})
 setMethod("ncol","onionmat",function(x){ncol(getM(x))})
 
+## sum
+`onionmat_allsum` <- function(x){sum(getd(x))}
+
 
 ## elementwise operations:
 `onionmat_negative` <- function(e1){ newonionmat(-getd(e1),getM(e1)) }

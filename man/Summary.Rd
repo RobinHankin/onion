@@ -6,24 +6,29 @@
 \alias{range}
 \alias{Summary,onion-method}
 \alias{sum,onion-method}
+\alias{sum,quaternion-method}
+\alias{sum,octonion-method}
+\alias{sum,onionmat-method}
 \alias{prod,quaternion-method}
 \alias{prod,octonion-method}
-\alias{sum,octonion-method}
 \alias{str_onion}
 \alias{str,onion-method}
 \alias{onion_allsum}
+\alias{onionmat_allsum}
 \alias{quaternion_allprod}
 \title{Various summary statistics for onions}
 \description{Various summary statistics for onions}
 \usage{
 onion_allsum(x)
 \S4method{sum}{onion}(x)
-\S4method{sum}{octonion}(x)
 \S4method{prod}{quaternion}(x)
+\S4method{sum}{octonion}(x)
+\S4method{sum}{onionmat}(x)
 \S4method{prod}{octonion}(x)
 \S4method{str}{onion}(object, ...)
 str_onion(object, vec.len = 4, ...)
 onion_allsum(x)
+onionmat_allsum(x)
 quaternion_allprod(x)
 }
 
