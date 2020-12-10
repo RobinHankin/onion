@@ -57,9 +57,9 @@
 \alias{tan,onion-method}
 \alias{tanh,onion-method}
 \alias{sqrt}
-\title{Various logarithmic and circular functions for brobs}
+\title{Various logarithmic and circular functions for onions}
 \description{
-Various elementary functions for brobs
+Various elementary functions for onions
 }
 \usage{
 onion_log(x,base=exp(1))
@@ -84,7 +84,7 @@ onion_tan(x)
 onion_tanh(x)
 }
 \arguments{
-  \item{x}{Object of class \code{brob} (or sometimes \code{glub})}
+  \item{x}{Object of class onion}
   \item{base}{In function \code{log()}, the base of the logarithm}
 }
 \details{

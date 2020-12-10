@@ -5,7 +5,7 @@
 \alias{Logic,ANY,onion-method}
 \alias{Logic,onion,ANY-method}
 \alias{Logic,onion,missing-method}
-\title{Logical operations on brobs}
+\title{Logical operations on onions}
 \description{Logical operations on onions are not supported}
 \usage{onion_logic(e1,e2)}
 \arguments{\item{e1,e2}{onions}}
