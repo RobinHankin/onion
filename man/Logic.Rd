@@ -9,8 +9,8 @@
 \description{Logical operations on onions are not supported}
 \usage{onion_logic(e1,e2)}
 \arguments{\item{e1,e2}{onions}}
-\author{Robin K. S. Hankin
-}
+\author{Robin K. S. Hankin}
+\value{none}
 \note{
 
   The S4 group generic \dQuote{Logic} appeared in R-2.4.0-patched.

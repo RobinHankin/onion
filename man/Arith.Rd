@@ -61,6 +61,7 @@ onion_power_numeric(o,p)
   \code{harmonize_oo()} and \code{harmonize_on()}) from \code{rbind()}.
 
 }
+\value{generally return an onion}
 \author{Robin K. S. Hankin}
 \note{
   Previous versions of the package included the option to use native R

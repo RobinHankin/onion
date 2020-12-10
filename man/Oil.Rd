@@ -41,9 +41,8 @@ O0
 Oim
 Oall
 }
-\format{
-Each one is an onionic vector of length one.
-}
+\format{Each one is an onionic vector of length one.}
+\value{A length-one onion, either a quaternion or an octonion}
 \details{
 Try \code{Hi} (=\code{quaternion(i=1)}) to get the pattern for the first
 four.  The next ones are the zero quaternion, the pure imaginary

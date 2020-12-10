@@ -17,6 +17,7 @@
 \title{Methods for compare S4 group}
 \description{Methods for comparison (equal to, greater than, etc) of
   onions.  Only equality makes sense.}
+\value{Return a boolean}
 \examples{
 # roct() > 0 # meaningless and returns an error
 
