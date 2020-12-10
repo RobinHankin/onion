@@ -1,4 +1,4 @@
-test_that("Test suite aae.R, onion extract and replace methods, eg i() and i<-()",{
+test_that("Test suite aae.R, onion and onionmat extract and replace methods, eg i() and i<-()",{
   
   checker_re <- function(a,x){Re(a) <- x ; expect_true(all(Re(a)==x))}
   checker_i  <- function(a,x){ i(a) <- x ; expect_true(all( i(a)==x))}
@@ -9,10 +9,13 @@ test_that("Test suite aae.R, onion extract and replace methods, eg i() and i<-()
   checker_jl <- function(a,x){jl(a) <- x ; expect_true(all(jl(a)==x))}
   checker_kl <- function(a,x){kl(a) <- x ; expect_true(all(kl(a)==x))}
 
-  checker_extract <- function(a,x){a[1] <- x ; expect_true(a[1] == x)}
+  checker_extract_onion <- function(a,x){a[1] <- x ; expect_true(a[1] == x)}
+  checker_extract_onionmat <- function(a,x){a[1,1] <- x ; expect_true(a[1,1] == x)}
 
   for(i in 1:2){
     n <- 3 # length of onion
+    o1 <- 3
+    o2 <- 4 # o1,o2: size of onionmats
 
     H <- rquat(n)
     x <- rnorm(1)
@@ -20,14 +23,28 @@ test_that("Test suite aae.R, onion extract and replace methods, eg i() and i<-()
     checker_i (H,x)
     checker_j (H,x)
     checker_k (H,x)
-    checker_extract(H,x)
+    checker_extract_onion(H,x)
+
+    H <- rquat(n)
+    x <- rnorm(1)
+    checker_re(H,x)
+    checker_i (H,x)
+    checker_j (H,x)
+    checker_k (H,x)
+    checker_extract_onion(H,x)
+
+    om_q <- romat(o1,o2,"quaternion")
+    checker_re(om_q,x)
+    checker_i (om_q,x)
+    checker_j (om_q,x)
+    checker_k (om_q,x)
+    checker_extract_onionmat(om_q,x)
 
     x <- rnorm(n)
     checker_re(H,x)
     checker_i (H,x)
     checker_j (H,x)
     checker_k (H,x)
-
 
 
     O <- roct(n)
@@ -39,7 +56,14 @@ test_that("Test suite aae.R, onion extract and replace methods, eg i() and i<-()
     checker_il(O,x)
     checker_jl(O,x)
     checker_kl(O,x)
-    checker_extract(O,x)
+    checker_extract_onion(O,x)
+
+    om_o <- romat(o1,o2,"octonion")
+    checker_re(om_o,x)
+    checker_i (om_o,x)
+    checker_j (om_o,x)
+    checker_k (om_o,x)
+    checker_extract_onionmat(om_o,x)
 
     x <- rnorm(n)
     checker_re(O,x)
@@ -49,8 +73,6 @@ test_that("Test suite aae.R, onion extract and replace methods, eg i() and i<-()
     checker_il(O,x)
     checker_jl(O,x)
     checker_kl(O,x)
-
-
 
 
   }
