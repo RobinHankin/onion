@@ -37,8 +37,8 @@ matrix2quaternion(o(1:3))   # Booorrrriiinnnggg
 matrix2quaternion(o(1:3) \%*\% o(3:1))
 
 Q <- rquat(7)
-as.quaternion(as.orthogonal(Q))-Q  # NB not small!
-abs(as.quaternion(as.orthogonal(Q))) - abs(Q)   # zero to numerical precision
+Q <- Q/abs(Q)
+as.quaternion(as.orthogonal(Q))   # +/- Q
 
 
 A <- replicate(7,o(rnorm(3)) \%*\% o(rnorm(3)))
