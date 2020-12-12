@@ -59,13 +59,14 @@
 \alias{cprod,onionmat,missing-method}
 \alias{cprod,ANY,ANY-method}
 \alias{cprod,ANY,ANY-method}
+\alias{cprod,ANY,missing-method}
 \alias{tcprod}
 \alias{tcprod,onionmat,onionmat-method}
 \alias{tcprod,ANY,onionmat-method}
 \alias{tcprod,onionmat,ANY-method}
 \alias{tcprod,onionmat,missing-method}
 \alias{tcprod,ANY,ANY-method}
-\alias{tcprod,ANY,ANY-method}
+\alias{tcprod,ANY,missing-method}
 \alias{om_cprod}
 \alias{om_tcprod}
 \alias{t.onionmat}
