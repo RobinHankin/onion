@@ -33,7 +33,7 @@ test_that("Test suite aae.R, onion and onionmat extract and replace methods, eg 
     checker_k (H,x)
     checker_extract_onion(H,x)
 
-    om_q <- romat(o1,o2,"quaternion")
+    om_q <- romat("quaternion",o1,o2)
     checker_re(om_q,x)
     checker_i (om_q,x)
     checker_j (om_q,x)
@@ -58,7 +58,7 @@ test_that("Test suite aae.R, onion and onionmat extract and replace methods, eg 
     checker_kl(O,x)
     checker_extract_onion(O,x)
 
-    om_o <- romat(o1,o2,"octonion")
+    om_o <- romat("octonion",o1,o2)
     checker_re(om_o,x)
     checker_i (om_o,x)
     checker_j (om_o,x)

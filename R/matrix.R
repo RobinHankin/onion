@@ -57,7 +57,7 @@ newonionmat <- function(d,M){
   }
 }
     
-romat <- function(nrow=5, ncol=6, type="quaternion", ...){
+romat <- function(type="quaternion",nrow=5, ncol=6, ...){
   d <- switch(type, 
               octonion = roct(nrow*ncol,...),
               rquat(nrow*ncol,...)  # quaternion

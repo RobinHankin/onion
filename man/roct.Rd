@@ -9,7 +9,7 @@
 \usage{
 rquat(n=5)
 roct(n=5)
-romat(nrow=5, ncol=6, type="quaternion", ...)
+romat(type="quaternion", nrow=5, ncol=6, ...)
 }
 \arguments{
   \item{n}{Length of random vector returned}

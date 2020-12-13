@@ -44,19 +44,19 @@ checkerD <- function(a,b){
 
 
 for(i in 1:10){
-  checkerA(romat(3,4))
-  checkerA(romat(3,5))
-  checkerA(romat(3,4,"octonion"))
-  checkerA(romat(3,5,"octonion"))
+  checkerA(romat("quaternion",3,4))
+  checkerA(romat("quaternion",3,5))
+  checkerA(romat("octonion",3,4))
+  checkerA(romat("octonion",3,5))
 
-  checkerB(romat(3,4),rnorm(1))
-  checkerB(romat(3,4,"octonion"),rnorm(1))
-  checkerB(romat(3,4),rquat(1))
-  checkerB(romat(3,4,"octonion"),roct(1))
+  checkerB(romat("quaternion",3,4),rnorm(1))
+  checkerB(romat("quaternion",3,4),rnorm(1))
+  checkerB(romat("quaternion",3,4),rquat(1))
+  checkerB(romat("octonion",3,4),roct(1))
 
-  checkerC(romat(3,4),runif(1),runif(1))
-  checkerC(romat(3,4),runif(1),rquat(1))
-  checkerC(romat(3,4),rquat(1),rquat(1))
+  checkerC(romat("quaternion",3,4),runif(1),runif(1))
+  checkerC(romat("quaternion",3,4),runif(1),rquat(1))
+  checkerC(romat("quaternion",3,4),rquat(1),rquat(1))
 }  
 
 } )
