@@ -95,6 +95,7 @@
 \alias{onionmat_matrixprod_numeric}
 \alias{numeric_matrixprod_onionmat}
 \alias{onion_matrixprod_onionmat}
+\alias{is.onionmat}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -104,6 +105,7 @@
 newonionmat(d, M)
 onionmat(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
 as.onionmat(x)
+is.onionmat(x)
 onionmat_negative(e1)
 onionmat_inverse(e1)
 onionmat_prod_onionmat(e1,e2)

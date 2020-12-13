@@ -48,6 +48,7 @@ setValidity("octonion", valid_octonion)
 "is.quaternion" <- function(x){is(x,"quaternion")}
 "is.octonion" <- function(x){is(x,"octonion")}
 "is.onion" <- function(x){is(x,"onion")}
+"is.onionmat" <- function(x){is(x,"onionmat")}
 
 setAs("onion", "matrix", function(from){ from@x} )
 setMethod("as.matrix",signature(x="onion"),function(x){as(x,"matrix")})
