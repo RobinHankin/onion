@@ -5,9 +5,11 @@
   if(!is.onion(e2)){e2 <- as.onion(e2,e1)}
     
   jj <- harmonize_oo(e1,e2)
+  out <- apply(jj[[1]]==jj[[2]],2,all)
+
   switch(.Generic,
-         "==" = return(apply(jj[[1]]==jj[[2]],2,all)),
-         "!=" = return(apply(jj[[1]]!=jj[[2]],2,all)),
+         "==" =  out,
+         "!=" = !out,
          stop(paste("comparision operator \"", .Generic, "\" not defined for onions"))
          )
 }
