@@ -6,13 +6,13 @@ setMethod("str",signature(object="onion"),function(object,...){str_onion(object,
   if(!is.null(colnames(object))){
     string <- paste("Named",string,sep=" ")
   }
-  cat(paste(string," [1:",ncol(object),"]\n",sep=""))
-  l <- min(nrow(object),vec.len)
+  n <- ncol(object)
+  cat(paste(string," [1:",n,"]\n",sep=""))
+  l <- min(n,vec.len)
   if(l>0){
-    cat(paste(condense(object[,seq_len(l)],as.vector=TRUE),collapse=", ",sep=""))
+      cat(paste(condense(object[,seq_len(l)],as.vector=TRUE),collapse=", ",sep=""))
   }
-  
-  if(length(object) > l){
+  if(n > l){
     if(l>0){
       cat(", ")
     }
