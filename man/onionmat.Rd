@@ -49,6 +49,7 @@
 \alias{rownames<-}
 \alias{as.octonionmat}
 \alias{as.quaternionmat}
+\alias{as.octonionmat}
 \alias{ht}
 \alias{ht,onionmat-method}
 \alias{ht,onion-method}
@@ -106,6 +107,8 @@ newonionmat(d, M)
 onionmat(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
 as.onionmat(x)
 is.onionmat(x)
+as.quaternionmat(x)
+as.octonionmat(x)
 onionmat_negative(e1)
 onionmat_inverse(e1)
 onionmat_prod_onionmat(e1,e2)

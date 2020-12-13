@@ -57,8 +57,8 @@ newonionmat <- function(d,M){
   }
 }
 
-`as.quaternionmat` <- function(x){
-  if(is.matrix(x) & is.quaternion(getd(x))){
+`as.octonionmat` <- function(x){
+  if(is.matrix(x) & is.octonion(getd(x))){
     return(x)
   } else if(is.matrix(x) & is.numeric(x)){ 
     return(newonionmat(d=as.octonion(c(x),single=FALSE),M=x))
