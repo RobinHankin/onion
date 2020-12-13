@@ -21,6 +21,8 @@ checker1 <- function(a){
 }
 
 
+expect_silent(p3d(bunny[1:10,]))
+
 for(i in 1:2){
   checker1(rquat(3))
   checker1(roct(3))
@@ -40,7 +42,6 @@ for(i in 1:2){
   expect_true(biggest(runif(2),rquat()       )==class(rquat()))
   expect_true(biggest(runif(2)               )=="scalar"      )
 
-  
 }  
 
 } )
