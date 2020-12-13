@@ -22,7 +22,7 @@ setMethod("Math","onion",
                    sqrt    = onion_sqrt(x),
                    cumprod = onion_cumprod(x),
                    cumsum  = onion_cumsum(x),
-                   log     = onion_log(x),
+                   log     = onion_log(x,base=exp(1)),
                    acos    = onion_acos(x),
                    acosh   = onion_acosh(x),
                    asin    = onion_asin(x),
@@ -65,9 +65,6 @@ setMethod("Math","onion",
 }
 
 "onion_log" <- function(x,base=exp(1)){
-  if(!missing(base)){
-    return(Recall(x)/Recall(log(base)))
-  }
   t <- Re(x)
   V <- Im(x)
   mV <- Mod(V)
@@ -76,7 +73,7 @@ setMethod("Math","onion",
   i <- mV==0  | is.na(mV)
   Re(out[i]) <- log(Norm(x[i]))/2
   Im(out[i]) <- 0
-  return(out)
+  return(out/log(base))
 }
 
 "onion_sin" <- function(x){
