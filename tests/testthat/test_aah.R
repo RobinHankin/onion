@@ -1,4 +1,4 @@
-test_that("Test suite aah.R, functionality in onion.R",{
+test_that("Test suite aah.R, functionality in onion.R and S4.R",{
 
 
 testequal <- function(x,y){testzero(x-y)}
@@ -24,6 +24,23 @@ checker1 <- function(a){
 for(i in 1:2){
   checker1(rquat(3))
   checker1(roct(3))
+
+  expect_true(is.double(as.double(rquat(3))))
+  expect_true(is.double(as.double(roct(3))))
+
+  a <- roct(3)
+  length(a) <- 2
+  expect_true(length(a) == 2)
+
+  a <- roct(3)
+  length(a) <- 5
+  expect_true(length(a) == 5)
+
+  expect_true(biggest(runif(2),rquat(),roct())==class( roct()))
+  expect_true(biggest(runif(2),rquat()       )==class(rquat()))
+  expect_true(biggest(runif(2)               )=="scalar"      )
+
+  
 }  
 
 } )
