@@ -47,26 +47,6 @@ newonionmat <- function(d,M){
     newonionmat(d,M)
 }
 
-`as.quaternionmat` <- function(x){
-  if(is.matrix(x) & is.quaternion(getd(x))){
-    return(x)
-  } else if(is.matrix(x)){
-    return(newonionmat(d=as.quaternion(c(x),single=FALSE),M=x))
-  } else {
-    stop("not recognised")
-  }
-}
-
-`as.octonionmat` <- function(x){
-  if(is.matrix(x) & is.octonion(getd(x))){
-    return(x)
-  } else if(is.matrix(x) & is.numeric(x)){ 
-    return(newonionmat(d=as.octonion(c(x),single=FALSE),M=x))
-  } else {
-    stop("not recognised")
-  }
-}
-
 `as.onionmat` <- function(x){
   if(is(x,"onionmat")){
     return(x)
