@@ -7,8 +7,13 @@
   return(out)
 }
 
-`onion_cumsum` <- function(x){as.onion(t(apply(as.matrix(x),1,cumsum)))}
-
+`onion_cumsum` <- function(x){
+    if(length(x)==1){
+        return(x)
+    } else {
+        return(as.onion(t(apply(as.matrix(x),1,cumsum))))
+    }
+}
 setMethod("Math","onion",
           function(x){
             switch(.Generic,
