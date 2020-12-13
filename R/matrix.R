@@ -40,7 +40,7 @@ newonionmat <- function(d,M){
     dimnames(M) <- dimnames
     d <- 0*c(M)+data[1]
     if(byrow){
-        d[c(matrix(seq_len(nrow*ncol),nrow,ncol,byrow=TRUE))] <- data
+        d[c(matrix(seq_len(nrow*ncol),ncol,nrow,byrow=TRUE))] <- data
     } else {
         d[] <- data
     }
