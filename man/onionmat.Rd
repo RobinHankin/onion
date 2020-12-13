@@ -5,6 +5,7 @@
 \alias{onionmat_prod_onionmat}
 \alias{onionmat_neg}
 \alias{onionmat_inv}
+\alias{onionmat_unary}
 \alias{onionmat_power_onionmat}
 \alias{onionmat_prod_single}
 \alias{single_prod_onionmat}
@@ -109,6 +110,7 @@ as.onionmat(x)
 is.onionmat(x)
 onionmat_negative(e1)
 onionmat_inverse(e1)
+onionmat_unary(e1,e2)
 onionmat_prod_onionmat(e1,e2)
 onionmat_power_onionmat(...)
 onionmat_prod_single(x,y)

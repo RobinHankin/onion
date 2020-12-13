@@ -8,26 +8,40 @@ n <- 4  # number of times to check
 
 
 checker <- function(a){
-  stopifnot(length(a) == 12)
+  stopifnot(is.onionmat(a))
+  stopifnot(nrow(a) == 3)
+  stopifnot(ncol(a) == 4)
+  
 
-  expect_true(is.onionmat(onionmat(a,3,4)))
+  expect_true(is.onionmat(a))
   expect_true(is.onionmat(as.onionmat(a)))
   expect_true(is.onionmat(as.onionmat(as.onionmat(a))))
-  
-  expect_true(all(t(onionmat(a,3,4)) == onionmat(a,4,3,byrow=TRUE)))
-  expect_error(as.onionmat("fish"))
+  expect_true(is.onionmat(as.onionmat(getd(a))))
+  expect_true(all(t(a) == onionmat(getd(a),4,3,byrow=TRUE)))
 
-  jj <- onionmat(a,3,4)
-  testequal(sum(jj),sum(jj[1,]+jj[2,]+jj[3,]))
-  testequal(sum(jj),sum(jj[,1]+jj[,2]+jj[,3]+jj[,4]))
-  
+  testequal(sum(a),sum(a[1,]+a[2,]+a[3,]))
+  testequal(sum(a),sum(a[,1]+a[,2]+a[,3]+a[,4]))
+
+  expect_error(a^a)
+  expect_error(2^a)
+  testequal(a,1/(1/a))
+  testequal(a/a,1)
+  testequal(1-a,-a+1)
+
+  expect_error(a %% a)
+  expect_error(1 %% a)
+  expect_error(a %% 1)
+
 }
+
+  expect_error(as.onionmat("fish"))
 
 
 
 for(i in seq_len(n)){
-  checker(rquat(12))
-  checker(roct(12))
+  checker(onionmat(rquat(12),3,4))
+  checker(onionmat(roct(12),3,4))
+
 }
 
 })

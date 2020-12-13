@@ -89,6 +89,14 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
 `single_power_onionmat` <- function(...){stop("not defined")} 
 `onionmat_power_onionmat` <- function(...){stop("not defined")}
 
+`onionmat_unary` <- function(e1,e2){
+  switch(.Generic,
+         "+" = e1,
+         "-" = onionmat_negative(e1),
+         stop(paste("Unary operator", .Generic, " not allowed on onionmats"))
+                   )
+} 
+  
 `onionmat_equal_onionmat` <- function(e1,e2){
     jj <- getM(e1) == getM(e2) # traps nonconformant matrices
     out <- getd(e1) == getd(e2)
@@ -101,7 +109,7 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
          "-" = onionmat_plus_onionmat(e1, onionmat_negative(e2)),
          "*" = onionmat_prod_onionmat(e1, e2),
          "/" = onionmat_prod_onionmat(e1, onionmat_inverse(e2)),
-         "^" = onionmat_power_single(e1, e2),
+         "^" = onionmat_power_onionmat(e1, e2),
          stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
          )
 }
@@ -236,6 +244,8 @@ setMethod("Arith",signature(e1 = "onionmat", e2="numeric" ), onionmat_arith_sing
 setMethod("Arith",signature(e1 = "onionmat", e2="onion"   ), onionmat_arith_single )
 setMethod("Arith",signature(e1 = "numeric" , e2="onionmat"),  single_arith_onionmat)
 setMethod("Arith",signature(e1 = "onion"   , e2="onionmat"),  single_arith_onionmat)
+setMethod("Arith",signature(e1 = "onionmat", e2="missing"),  onionmat_unary)
+          
 
 setMethod("%*%", c("onionmat","onionmat"), onionmat_matrixprod_onionmat)
 setMethod("%*%", c("onionmat","onion")   , onionmat_matrixprod_onion)
