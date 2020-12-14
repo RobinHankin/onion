@@ -147,5 +147,40 @@ test_that("Test suite aaa.R",{
   ## And some subtractions:
   expect_true(Oil - Oil == O0)
   expect_true(Oall - Oim == O1)
-  
+
+  expect_true(is.onion(as.onion(Oil)))
+  expect_true(is.onion(as.onion(Hi)))
+
+  expect_true(is.quaternion(as.onion(Hi ,type="quaternion")))
+  expect_true(is.quaternion(as.onion(Oil,type="quaternion")))
+
+  expect_false(is.quaternion(as.onion(Hi ,type="octonion")))
+  expect_false(is.quaternion(as.onion(Oil,type="octonion")))
+
+  expect_error(as.onion(matrix(1:16,4,4),type="fish"))
+  expect_error(as.quaternion(1i,single=TRUE))
+  expect_equal(as.quaternion(1i,single=FALSE),Hi)
+
+  expect_error(as.octonion(1i,single=TRUE))
+  expect_equal(as.octonion(1i,single=FALSE),Oi)
+
+  expect_true(is.quaternion(as.quaternion(as.orthogonal(rquat(1)))))
+  expect_warning(as.quaternion(1:5,single=TRUE))
+  expect_warning(as.octonion(1:5,single=TRUE))
+
+  expect_error(as.quaternion(matrix(1:25,5,5)))
+  expect_error(as.octonion(matrix(1:25,5,5)))
+  expect_error(as.quaternion(function(x){x},single=TRUE))
+  expect_error(as.octonion(function(x){x},single=TRUE))
+
+  expect_true(is.quaternion(quaternion(i=1:5,j=3)))
+  expect_true(is.octonion(octonion(i=1:5,il=3)))
+
+  expect_true(is.quaternion(quaternion(20)))
+  expect_true(is.octonion(octonion(22)))
+
+  expect_true(is.quaternion(quaternion()))
+  expect_true(is.octonion(octonion()))
+
+  expect_true(is.octonion(as.octonion(rquat())))
 })

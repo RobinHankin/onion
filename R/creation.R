@@ -120,7 +120,7 @@
 
 "as.octonion" <- function(x, single=FALSE){
   if(is.octonion(x)){return(x)}
-  if(is.quaternion(x)){return(as.octonion(rbind(x,x*0)))}
+  if(is.quaternion(x)){return(as.octonion(rbind(as.matrix(x),as.matrix(x)*0)))}
 
   if(is.complex(x)){
     if(single){
