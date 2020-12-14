@@ -79,6 +79,12 @@ test_that("Test suite aae.R, onion and onionmat extract and replace methods, eg 
     checker_i (om_o,x)
     checker_j (om_o,x)
     checker_k (om_o,x)
+
+    checker_l (om_o,x)
+    checker_il(om_o,x)
+    checker_jl(om_o,x)
+    checker_kl(om_o,x)
+
     checker_extract_onionmat(om_o,x)
 
     x <- rnorm(n)
