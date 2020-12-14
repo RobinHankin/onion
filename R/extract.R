@@ -20,7 +20,14 @@ setReplaceMethod("[",signature(x="onion"),
                  } )
 
 
-setMethod("[", "onionmat",function(x,i,j,drop){newonionmat(getd(x)[getM(x)[i,j,drop=TRUE]],getM(x)[i,j,drop=drop])})
+setMethod("[", "onionmat",
+          function(x,i,j,drop){
+            if(missing(j)){
+              return(newonionmat(getd(x)[getM(x)[i,drop=TRUE]],getM(x)[i,drop=TRUE]))
+            } else {  # j not missing
+              return(newonionmat(getd(x)[getM(x)[i,j,drop=TRUE]],getM(x)[i,j,drop=TRUE]))
+            }
+          } )
 
 setReplaceMethod("[",signature(x="onionmat"),
                  function(x,i,j,value){
@@ -29,7 +36,10 @@ setReplaceMethod("[",signature(x="onionmat"),
                    if(is.vector(value)){
                      value <- kronecker(t(value),c(1,rep(0,nrow(as.matrix(d))-1)))
                    }
-                   d[c(M[i,j])] <- value
+                   if(missing(j)){ d[c(M[i])] <- value
+                   } else {
+                     d[c(M[i,j])] <- value
+                   }
                    newonionmat(d,M)
                  } )
 
