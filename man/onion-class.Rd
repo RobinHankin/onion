@@ -4,6 +4,7 @@
 \alias{quaternion-class}
 \alias{octonion-class}
 \alias{onionmat-class}
+\alias{index-class}
 \title{Class \dQuote{onion}}
 \description{The formal S4 class for onion and onionmat objects}
 \section{Objects from the Class}{
@@ -18,6 +19,11 @@
   the first being an onion and the second an integer matrix which holds
   structural matrix attributes such as dimensions and dimnames.  Most
   standard arithmetic R idiom for matrices should work for onionmats.
+
+  Class \dfn{index} is taken from the excellent \pkg{Matrix} package and
+  is a \code{setClassUnion()} of classes \code{numeric}, \code{logical},
+  and \code{character}, which mean that it is an arity-one matrix index.
+
 
 }
 \author{Robin K. S. Hankin}

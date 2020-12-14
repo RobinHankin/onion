@@ -38,6 +38,8 @@
 \alias{[.onion}
 \alias{[<-.onion}
 \alias{[,onion-method}
+\alias{[,onion,index,ANY-method}
+\alias{[,onion,index,missing-method}
 \alias{[<-,onion-method}
 \alias{[,onion,ANY,ANY-method}
 \alias{[<-,onion,ANY,ANY-method}
@@ -74,7 +76,13 @@
 \alias{il<-,onionmat-method}
 \alias{jl<-,onionmat-method}
 \alias{kl<-,onionmat-method}
-\alias{[,onionmat-method}
+\alias{[,onionmat,ANY,ANY-method}
+\alias{[,onionmat,index,index-method}
+\alias{[,onionmat,index,missing-method}
+\alias{[,onionmat,matrix,missing-method}
+\alias{[,onionmat,missing,index-method}
+\alias{[,onionmat,missing,missing-method}
+\alias{[,onionmat,ANY,ANY-method}
 \alias{[<-,onionmat-method}
 \alias{[}
 \alias{[<-}

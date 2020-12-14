@@ -1,10 +1,7 @@
-setMethod("[", "onion",
-          function(x, i, j, drop){
-            if(!missing(j)){
-              warning("second argument to extractor function ignored")
-            }
-            return(as.onion(as.matrix(x)[,i, drop=FALSE]))
-          } )
+setClassUnion("index", members =  c("numeric", "logical", "character")) # taken from the Matrix package.
+
+setMethod("[", signature("onion",i="index",j="missing",drop="ANY"),function(x,i,j,drop){as.onion(as.matrix(x)[,i,drop=FALSE])})
+setMethod("[", signature("onion",i="index",j="ANY"    ,drop="ANY"),function(x,i,j,drop){stop('signature("onion",i="index",j="ANY",drop="ANY") infelicitous')})
 
 setReplaceMethod("[",signature(x="onion"),
                  function(x,i,j,value){
@@ -19,15 +16,22 @@ setReplaceMethod("[",signature(x="onion"),
                    return(as.onion(out))
                  } )
 
+## following copies the excellent logic of the Matrix package, whose
+## inspiration I gratefully acknowledge.
 
-setMethod("[", "onionmat",
-          function(x,i,j,drop){
-            if(missing(j)){
-              return(newonionmat(getd(x)[getM(x)[i,drop=TRUE]],getM(x)[i,drop=TRUE]))
-            } else {  # j not missing
-              return(newonionmat(getd(x)[getM(x)[i,j,drop=TRUE]],getM(x)[i,j,drop=TRUE]))
-            }
-          } )
+setMethod("[", signature(x="onionmat",i="index"  ,j="index"  ,drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[i,j,drop=drop])],getM(x)[i,j,drop=drop])})
+setMethod("[", signature(x="onionmat",i="index"  ,j="missing",drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[i, ,drop=drop])],getM(x)[i, ,drop=drop])})
+setMethod("[", signature(x="onionmat",i="missing",j="index"  ,drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[ ,j,drop=drop])],getM(x)[ ,j,drop=drop])})
+setMethod("[", signature(x="onionmat",i="missing",j="missing",drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[ , ,drop=drop])],getM(x)[ , ,drop=drop])})
+setMethod("[", signature(x="onionmat",i="matrix" ,j="missing",drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[i,  drop=drop])],getM(x)[i,  drop=drop])})
+setMethod("[", signature(x="onionmat",i="ANY"    ,j="ANY"    ,drop="ANY"),function(x,i,j,drop){stop("signature not recognised")} )
+
+
+
+
+
+
+
 
 setReplaceMethod("[",signature(x="onionmat"),
                  function(x,i,j,value){
