@@ -1,42 +1,4 @@
-"onionmat_complex" <- function(z){
-  switch(.Generic,
-         Arg  = stop("not defined for onions"),
-         Conj = onionmat_conjugate(z),
-         Im   = onionmat_imag(z),
-         Mod  = onionmat_mod(z),
-         Re   = onionmat_re(z),
-         stop(paste("Complex operator \"", .Generic, "\" not defined for onions"))
-         )
-}
-setMethod("Complex","onionmat", onionmat_complex)
 
-onionmat_conjugate <- function(z){
-  Im(z) <- -Im(z)
-  return(z)
-}
-
-onionmat_imag <- function(z){
-  Re(z) <- 0
-  return(z)
-}
-
-`onionmat_re` <- function(z){
-  out <- getM(z)
-  out[] <- Re(getd(z))
-  return(out)
-}
-
-`onionmat_mod` <- function(z){
-  out <- getM(z)
-  out[] <- Mod(getd(z))
-  return(out)
-}
-
-`onionmat_imag` <- function(z){
-  d <- getd(z)
-  Re(d) <- 0
-  newonionmat(d,getM(z))
-  }
 
 setMethod("i","onionmat", function(z){
   out <- getM(z)

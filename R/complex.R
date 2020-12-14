@@ -60,6 +60,7 @@ setMethod("Norm","onionmat",function(z){
 } )
 
 `onion_mod` <- function(z){sqrt(Norm(z))}
+
 setMethod("Mod","onionmat",function(z){
   out <- Mod(getd(z))
   attributes(out) <- attributes(getM(z))
@@ -68,17 +69,22 @@ setMethod("Mod","onionmat",function(z){
 
 `onionmat_conjugate` <- function(o){newonionmat(Conj(getd(o)),getM(o))}
 `onionmat_imag` <- function(o){newonionmat(Im(getd(o)),getM(o))}
-`onionmat_mod` <- function(o){
-  out <- Mod(getd(o))
-  attributes(out) <- attributes(getM(o))
+
+`onionmat_mod` <- function(z){
+  out <- getM(z)
+  out[] <- Mod(getd(z))
   return(out)
 }
 
-`onionmat_re` <- function(o){
-  out <- Re(getd(o))
-  attributes(out) <- attributes(getM(o))
+
+
+`onionmat_re` <- function(z){
+  out <- getM(z)
+  out[] <- Re(getd(z))
   return(out)
 }
+
+
   
 
 "onionmat_complex" <- function(z){
@@ -92,6 +98,4 @@ setMethod("Mod","onionmat",function(z){
          )
 }
 
-
-
-
+setMethod("Complex","onionmat", onionmat_complex)
