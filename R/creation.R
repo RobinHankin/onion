@@ -93,15 +93,7 @@
       }
     }
   
-  out <- as.quaternion(rbind(Re,i,j,k))
-  if(!is.null(length.out)){
-    if(ncol(out)==1){
-      out <- as.quaternion(kronecker(out,t(rep(1,length.out))))
-    } else {
-      length(out) <- length.out
-    }
-  }
-  return(out)
+  return(as.quaternion(rbind(Re,i,j,k)))
 }
 
 `octonion` <- function(length.out=NULL, Re=0, i=0, j=0, k=0, l=0, il=0, jl=0, kl=0){
@@ -123,15 +115,7 @@
       }
     }
   
-  out <- as.octonion(rbind(Re,i,j,k,l,il,jl,kl))
-  if(!is.null(length.out)){
-    if(ncol(out)==1){
-      out <- as.octonion(kronecker(out,t(rep(1,length.out))))
-    } else {
-      length(out) <- length.out
-    }
-  }
-  return(out)
+  return(as.octonion(rbind(Re,i,j,k,l,il,jl,kl)))
 }
 
 "as.octonion" <- function(x, single=FALSE){
