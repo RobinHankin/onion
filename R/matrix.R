@@ -157,8 +157,8 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
   onionmat_matrixprod_onionmat(x,as.onionmat(y+0*x[1,1]))
 }
 
-`numeric_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(as.onionmat(x+0*y[1,1]),y)}
-`onion_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(as.onionmat(x),y)}
+`numeric_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(t(as.onionmat(x+0*y[1,1])),y)}
+`onion_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(t(as.onionmat(x)),y)}
 
 `om_cprod` <- function(x,y=x){  # t(Conj(x)) %*% y
     x <- Conj(x)
