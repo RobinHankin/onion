@@ -37,7 +37,16 @@ checker1 <- function(a){
 
   testequal(cprod(a),ht(cprod(a)))
   testequal(tcprod(a),ht(tcprod(a)))
-  
+
+  testequal(a[1,],c(a[1,1],a[1,2],a[1,3],a[1,4]))
+  testequal(a[,1],c(a[1,1],a[2,1],a[3,1]))
+  testequal(a,a[])
+  expect_error((a[1,,drop=TRUE])[1,1])
+
+  I <- cbind(1:3,2:4)
+  testequal(a[I],c(a[1,2],a[2,3],a[3,4]))
+
+  expect_error(a[I,3])
 
 }
 
