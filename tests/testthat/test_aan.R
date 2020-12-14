@@ -50,6 +50,36 @@ checker1 <- function(a){
 
 }
 
+checker1replace <- function(a){
+  stopifnot(is.onionmat(a))
+  stopifnot(all(dim(a) == c(3,4)))
+  jj <- a
+  jj[1,] <- jj[2,]
+  testequal(jj[1,],jj[2,])
+
+  jj <- a
+  jj[,1] <- jj[,2]
+  testequal(jj[,1],jj[,2])
+
+  jj <- a
+  jj[1,] <- Re(jj[2,])
+  testequal(jj[1,],Re(jj[2,]))
+
+  jj <- a
+  jj[,1] <- Re(jj[,2])
+  testequal(jj[,1],Re(jj[,2]))
+
+  I <- cbind(1:3,2:4)
+  jj <- a
+  jj[I] <- jj[1,1]
+  testequal(jj[I],jj[1,1])
+
+  jj <- a
+  jj[I] <- Re(jj[1,1])
+  testequal(jj[I],Re(jj[1,1]))
+}
+
+
 
 checker1x <- function(a,x){
   stopifnot(is.onionmat(a))
@@ -96,6 +126,9 @@ checker2 <- function(a,b){
 for(i in seq_len(n)){
   checker1(onionmat(rquat(12),3,4))
   checker1(onionmat(roct(12),3,4))
+
+  checker1replace(onionmat(rquat(12),3,4))
+  checker1replace(onionmat(roct(12),3,4))
 
   checker1x(onionmat(rquat(28),4,7),rquat(1))
   checker1x(onionmat(roct(28),4,7),roct(1))

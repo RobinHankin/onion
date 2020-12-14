@@ -20,7 +20,7 @@ setReplaceMethod("[",signature(x="onion",i="index",j="missing",value="onion"),
 
 setReplaceMethod("[",signature(x="onion",i="index",j="missing",value="ANY"),
                  function(x,i,j,value){
-                   stop("replacement value must be numeric or onion")
+                   stop("replacement value for signature onion must be numeric or onion")
                  } )
 
 setReplaceMethod("[",signature(x="onion",i="missing",j="missing",value="numeric"),
@@ -84,7 +84,7 @@ setReplaceMethod("[",signature(x="onionmat",i="index",j="missing",value="numeric
                    d <- getd(x)
                    M <- getM(x)
                    value <- kronecker(t(value),c(1,rep(0,nrow(as.matrix(d))-1)))
-                   d[c(M[i,])] <- value   # the meat
+                   d[c(M[i,])] <- as.onion(value)   # the meat
                    newonionmat(d,M)
                  } )
 
@@ -101,7 +101,7 @@ setReplaceMethod("[",signature(x="onionmat",i="missing",j="index",value="numeric
                    d <- getd(x)
                    M <- getM(x)
                    value <- kronecker(t(value),c(1,rep(0,nrow(as.matrix(d))-1)))
-                   d[c(M[,j])] <- value  # the meat
+                   d[c(M[,j])] <- as.onion(value)  # the meat
                    newonionmat(d,M)
                  } )
 
@@ -118,7 +118,7 @@ setReplaceMethod("[",signature(x="onionmat",i="ANY",j="missing",value="numeric")
                    d <- getd(x)
                    M <- getM(x)
                    value <- kronecker(t(value),c(1,rep(0,nrow(as.matrix(d))-1)))
-                   d[c(M[i])] <- value  # the meat
+                   d[c(M[i])] <- as.onion(value)  # the meat
                    newonionmat(d,M)
                  } )
 

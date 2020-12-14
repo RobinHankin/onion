@@ -12,6 +12,23 @@ test_that("Test suite aae.R, onion and onionmat extract and replace methods, eg 
   checker_extract_onion <- function(a,x){a[1] <- x ; expect_true(a[1] == x)}
   checker_extract_onionmat <- function(a,x){a[1,1] <- x ; expect_true(a[1,1] == x)}
 
+  checkerB <- function(a,x){
+    stopifnot(is.onion(a))
+    expect_true(a[1:2][2] == a[2])
+    a[1] <- x
+    expect_true(a[1] == x)
+    expect_error(a[1] <- "fish")
+    expect_error(a[1,2] <- x)
+
+    jj <- a
+    jj[] <- 3
+    expect_true(all(jj==3))
+    y <- runif(1)
+    a[1] <- y
+    expect_true(a[1] == y)
+    expect_error(a[1,2] <- y)
+  }
+  
   for(i in 1:2){
     n <- 3 # length of onion
     o1 <- 3
@@ -46,7 +63,6 @@ test_that("Test suite aae.R, onion and onionmat extract and replace methods, eg 
     checker_j (H,x)
     checker_k (H,x)
 
-
     O <- roct(n)
     x <- rnorm(1)
     checker_re(O,x)
@@ -75,7 +91,14 @@ test_that("Test suite aae.R, onion and onionmat extract and replace methods, eg 
     checker_kl(O,x)
 
 
+
+    checkerB(rquat(10),rquat(1))
+    checkerB(roct(10),roct(1))
+
   }
+
+
+
   
 
 })
