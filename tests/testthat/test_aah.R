@@ -20,8 +20,16 @@ checker1 <- function(a){
     
 }
 
-
-expect_silent(p3d(bunny[1:10,]))
+b <- bunny[1:10,]
+expect_silent(p3d(b))
+expect_silent(p3d(b[,1],b[,2],b[,3]))
+expect_silent(p3d(b,h=NULL))
+expect_silent(p3d(b,zlim=c(0,1)))
+o <- function(w){diag(3)-2*outer(w,w)/sum(w^2)}  # Householder
+O <- o(1:3) %*% o(3:1)
+expect_silent(rotate(bunny,as.quaternion(O)))
+expect_silent(plot(rquat()))
+expect_silent(plot(roct()))
 
 for(i in 1:2){
   checker1(rquat(3))

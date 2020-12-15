@@ -48,6 +48,11 @@ checker3  <- function(a){
 } # checker3() closes
 
 
+jj <- romat()
+testequal(jj,Conj(Conj(jj)))
+expect_true(all(Mod(jj) >= 0))
+
+
 for(i in seq_len(n)){
     checker1(rquat(1))
     checker1(roct(1))

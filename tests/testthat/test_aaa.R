@@ -188,4 +188,13 @@ test_that("Test suite aaa.R",{
   expect_output(print(octonion()))
   expect_error(onion_show(matrix(0,3,0)))
 
+  expect_true(associator(Oi,Oj,Oil)  == -2*Ojl)
+  expect_true(Mod(commutator(Hi,Hk)+Hj+Hj)==0)
+  expect_true(threeform(Oi,Ol,Oil)==1)
+  expect_true(dotprod(Oi,Oil)==0)
+  expect_true(all(dotprod(c(Oi,Oj),Oil)==0))
+  expect_true(all(dotprod(Oil,c(Oi,Oj))==0))
+  expect_true(c(Oil)==Oil)
+
+
 })
