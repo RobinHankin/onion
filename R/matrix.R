@@ -161,6 +161,8 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
 `onion_matrixprod_onionmat` <- function(x,y){onionmat_matrixprod_onionmat(t(as.onionmat(x)),y)}  # x: onion; y: onionmat
 
 `om_cprod` <- function(x,y=x){  # t(Conj(x)) %*% y
+    x <- as.onionmat(x)
+    y <- as.onionmat(y)
     x <- Conj(x)
     jj <- crossprod(getM(x), getM(y))
     out <- newonionmat(rep(0*getd(x)[1],length(jj)),jj)
@@ -175,6 +177,8 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
 }
 
 `om_tcprod` <- function(x,y=x){  # x %*% t(Conj(y))
+    x <- as.onionmat(x)
+    y <- as.onionmat(y)
     y <- Conj(y)
     jj <- tcrossprod(getM(x), getM(y))
     out <- newonionmat(rep(0*getd(x)[1],length(jj)),jj)
@@ -190,8 +194,14 @@ setMethod("ncol","onionmat",function(x){ncol(getM(x))})
 
 `om_ht` <- function(x){ t(Conj(x)) }
 
-setMethod("Conj","onionmat",function(z){newonionmat(Conj(getd(z)),getM(z)) })
 setGeneric("t")   # transpose
+
+setMethod("t","onion",function(x){ 
+  jj <- seq_along(x)
+  names(jj) <- names(x)
+  newonionmat(x,t(jj)) # the meat
+})
+
 setMethod("t","onionmat",function(x){ # NB1: this  ensures that emulator::ht() works; NB2: t(x) DOES NOT TAKE CONJUGATE
   jj <- t(getM(x))
   newonionmat(getd(x)[c(jj)],jj)
@@ -223,17 +233,28 @@ setGeneric("cprod",function(x,y){standardGeneric("cprod")})
 setMethod("cprod",signature=c(x="onionmat",y="onionmat"),function(x,y){om_cprod(x,y)})
 setMethod("cprod",signature=c(x="onionmat",y="missing"),function(x,y){om_cprod(x,x)}) # NB x
 setMethod("cprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_cprod(x,y)})
-setMethod("cprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_cprod(Conj(x),y)})
-setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::cprod(Conj(x),y)})
-setMethod("cprod",signature=c(x="ANY",y="missing"),function(x,y){emulator::cprod(Conj(x),x)}) # NB x
+setMethod("cprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_cprod(x,y)})
+setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::cprod(x,y)})
+setMethod("cprod",signature=c(x="ANY",y="missing"),function(x,y){emulator::cprod(x,x)}) # NB x
+setMethod("cprod",signature=c(x="onion",y="onion"),function(x,y){om_cprod(x,y)})
+setMethod("cprod",signature=c(x="onion",y="onion"),function(x,y){om_cprod(x,y)})
+setMethod("cprod",signature=c(x="onionmat",y="onion"),function(x,y){om_cprod(x,y)})
+setMethod("cprod",signature=c(x="onion",y="onionmat"),function(x,y){om_cprod(x,y)})
+setMethod("cprod",signature=c(x="onion",y="missing"),function(x,y){om_cprod(x,x)})
+
 
 setGeneric("tcprod",function(x,y){standardGeneric("tcprod")})
 setMethod("tcprod",signature=c(x="onionmat",y="onionmat"),function(x,y){om_tcprod(x,y)})
 setMethod("tcprod",signature=c(x="onionmat",y="missing"),function(x,y){om_tcprod(x,x)})  # NB x
 setMethod("tcprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_tcprod(x,y)})
-setMethod("tcprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_tcprod(Conj(x),y)})
-setMethod("tcprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::tcprod(Conj(x),y)})
-setMethod("tcprod",signature=c(x="ANY",y="missing"),function(x,y){emulator::tcprod(Conj(x),x)}) # NB x
+setMethod("tcprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_tcprod(x,y)})
+setMethod("tcprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::tcprod(x,y)})
+setMethod("tcprod",signature=c(x="ANY",y="missing"),function(x,y){emulator::tcprod(x,x)}) # NB x
+setMethod("tcprod",signature=c(x="onion",y="onion"),function(x,y){om_tcprod(x,y)})
+setMethod("tcprod",signature=c(x="onionmat",y="onion"),function(x,y){om_tcprod(x,y)})
+setMethod("tcprod",signature=c(x="onion",y="onionmat"),function(x,y){om_tcprod(x,y)})
+setMethod("tcprod",signature=c(x="onion",y="missing"),function(x,y){om_tcprod(x,x)})
+
 
 setGeneric("ht",function(x){standardGeneric("ht")})
 setMethod("ht",signature=c(x="onionmat"),function(x){om_ht(x)})

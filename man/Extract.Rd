@@ -83,7 +83,20 @@
 \alias{[,onionmat,missing,index-method}
 \alias{[,onionmat,missing,missing-method}
 \alias{[,onionmat,ANY,ANY-method}
-\alias{[<-,onionmat-method}
+\alias{[<-,onion,index,ANY,ANY-method}
+\alias{[<-,onion,index,missing,ANY-method}
+\alias{[<-,onion,index,missing,numeric-method}
+\alias{[<-,onion,index,missing,onion-method}
+\alias{[<-,onion,missing,missing,numeric-method}
+\alias{[<-,onion,missing,missing,onion-method}
+\alias{[<-,onionmat,ANY,missing,numeric-method}
+\alias{[<-,onionmat,ANY,missing,onion-method}
+\alias{[<-,onionmat,index,index,numeric-method}
+\alias{[<-,onionmat,index,index,onion-method}
+\alias{[<-,onionmat,index,missing,numeric-method}
+\alias{[<-,onionmat,index,missing,onion-method}
+\alias{[<-,onionmat,missing,index,numeric-method}
+\alias{[<-,onionmat,missing,index,onion-method}
 \alias{[}
 \alias{[<-}
 \title{Extract or Replace Parts of onions or glubs}
@@ -118,7 +131,7 @@ kl(x) <- value
   \item{value}{replacement value}
 }
 \value{
-  Extraction methods return a numeric object.
+  Extraction and methods return an onion or onionmat.
  Replacement methods return an object of the same class as \code{x}.  
 }
 \author{Robin K. S. Hankin}
