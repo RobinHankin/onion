@@ -37,8 +37,15 @@ checker3  <- function(a){
     if(is.quaternion(a)){testequal(a[1]*a[2]*a[3],prod(a))}
     if(is.octonion(a)){expect_error(prod(a))}
     expect_error(digamma(a))
+    expect_error(digamma(as.onionmat(a)))
+    expect_error(Arg(a))
+    expect_error(Arg(as.onionmat(a)))
+    expect_error(Complex(a))
+    expect_error(Complex(as.onionmat(a)))
+    testequal(Norm(a),Mod(a)^2)
+    testequal(Norm(as.onionmat(a)),Mod(as.onionmat(a))^2)
 
-}
+} # checker3() closes
 
 
 for(i in seq_len(n)){

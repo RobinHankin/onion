@@ -48,7 +48,10 @@ checker1 <- function(a){
 
   expect_error(a[I,3])
 
-}
+  jj <- cprod(a)
+  testzero(Im(jj+t(jj)))
+
+} # checker1() closes
 
 checker1replace <- function(a){
   stopifnot(is.onionmat(a))
@@ -120,9 +123,12 @@ checker2 <- function(a,b){
   testequal((a %*% b)[1,1] , sum(a[1,]*b[,1]))
 }
 
-
-
   expect_error(as.onionmat("fish"))
+
+  jj <- cprod(herm_onion_mat(1:3,roct(3)))
+  testzero(Im(jj + t(jj)))
+      
+
 for(i in seq_len(n)){
   checker1(onionmat(rquat(12),3,4))
   checker1(onionmat(roct(12),3,4))

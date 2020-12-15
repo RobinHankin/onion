@@ -9,7 +9,7 @@ n <- 4  # number of times to check
 
 checker1 <- function(a){
 
-
+expect_true(TRUE)
   
 
 
@@ -20,6 +20,7 @@ for(i in seq_len(n)){
   checker1(onionmat(rquat(28),4,7))
   checker1(onionmat(roct(28),4,7))
 
+  
 }
 
 } )
