@@ -183,4 +183,9 @@ test_that("Test suite aaa.R",{
   expect_true(is.octonion(octonion()))
 
   expect_true(is.octonion(as.octonion(rquat())))
+
+  expect_output(print(quaternion()))
+  expect_output(print(octonion()))
+  expect_error(onion_show(matrix(0,3,0)))
+
 })
