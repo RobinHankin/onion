@@ -63,7 +63,7 @@ setMethod("Norm","onionmat",function(z){
 
 setMethod("Mod","onionmat",function(z){
     out <- getM(z)
-    out[] <- Norm(getd(z))
+    out[] <- Mod(getd(z))
 } )
 
 `onionmat_conjugate` <- function(o){newonionmat(Conj(getd(o)),getM(o))}
@@ -74,8 +74,6 @@ setMethod("Mod","onionmat",function(z){
   out[] <- Mod(getd(z))
   return(out)
 }
-
-
 
 `onionmat_re` <- function(z){
   out <- getM(z)
