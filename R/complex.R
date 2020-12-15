@@ -54,17 +54,16 @@ setReplaceMethod("Im",signature(x="onion"),
 setGeneric("Norm",function(z){standardGeneric("Norm")})
 setMethod("Norm","onion",function(z){colSums(as.matrix(z)^2)})
 setMethod("Norm","onionmat",function(z){
-  out <- Norm(getd(z))
-  attributes(out) <- attributes(getM(z))
-  return(out)
+    out <- getM(z)
+    out[] <- Norm(getd(z))
+    return(out)
 } )
 
 `onion_mod` <- function(z){sqrt(Norm(z))}
 
 setMethod("Mod","onionmat",function(z){
-  out <- Mod(getd(z))
-  attributes(out) <- attributes(getM(z))
-  return(out)
+    out <- getM(z)
+    out[] <- Norm(getd(z))
 } )
 
 `onionmat_conjugate` <- function(o){newonionmat(Conj(getd(o)),getM(o))}
