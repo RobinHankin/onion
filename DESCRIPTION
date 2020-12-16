@@ -14,6 +14,7 @@ Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 License: GPL-2
 Depends: methods, R (>= 3.5.0)
 Suggests: testthat
+VignetteBuilder: knitr
 Imports: emulator
 URL: https://github.com/RobinHankin/onion
 BugReports: https://github.com/RobinHankin/onion/issues
