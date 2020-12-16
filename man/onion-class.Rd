@@ -6,12 +6,12 @@
 \alias{onionmat-class}
 \alias{index-class}
 \title{Class \dQuote{onion}}
-\description{The formal S4 class for onion and onionmat objects}
+\description{The formal \proglang{S4} class for onion and onionmat objects}
 \section{Objects from the Class}{
 
   Class \dfn{onion} is a virtual \proglang{S4} class extending classes
   \dfn{quaternion} and \dfn{octonion}.  In package documentation,
-  \dQuote{\dfn{onion}} means an R object that behaves as a vector of
+  \dQuote{\dfn{onion}} means an \R object that behaves as a vector of
   quaternions or octonions, stored as a four- or eight- row numeric
   matrix.
 
@@ -19,7 +19,7 @@
   elements are quaternions or octonions.  An onionmat is stored as a
   two-element list, the first being an onion and the second an integer
   matrix which holds structural matrix attributes such as dimensions and
-  dimnames.  Most standard arithmetic R idiom for matrices should work
+  dimnames.  Most standard arithmetic \R idiom for matrices should work
   for onionmats.
 
   Class \dfn{index} is taken from the excellent \pkg{Matrix} package and

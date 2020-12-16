@@ -151,8 +151,8 @@ onionmat_matrixprod_onion(x,y)
 }
 \details{
 
-  The functionality is intended to match base R's matrix functionality
-  in the sense that standard R idiom just goes through for onionic
+  The functionality is intended to match base \R's matrix functionality
+  in the sense that standard \R idiom just goes through for onionic
   matrices.  Determinants are not well-defined for quaternionic or
   octonionic matrices, and matrix inverses are not implemented.
 

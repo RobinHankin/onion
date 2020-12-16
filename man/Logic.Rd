@@ -12,9 +12,6 @@
 \author{Robin K. S. Hankin}
 \value{none}
 \note{
-
-  The S4 group generic \dQuote{Logic} appeared in R-2.4.0-patched.
-
   Carrying out logical operations in this group will report an error.
     Negation, \dQuote{\code{!}}, is not part of this group.
 

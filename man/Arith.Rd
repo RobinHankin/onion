@@ -54,8 +54,8 @@ onion_power_numeric(o,p)
 
   Functions like \code{onion_inverse()} and \code{onion_plus_onion()}
   are low-level helper functions.  The only really interesting operation
-  is multiplication (\code{octonion_prod_octonion()} and
-  \code{quaternion_prod_quaternion()} which dispatch to C.
+  is multiplication; functions \code{octonion_prod_octonion()} and
+  \code{quaternion_prod_quaternion()} dispatch to \proglang{C}.
 
   Names are implemented and the rules are inherited (via
   \code{harmonize_oo()} and \code{harmonize_on()}) from \code{rbind()}.
@@ -64,9 +64,9 @@ onion_power_numeric(o,p)
 \value{generally return an onion}
 \author{Robin K. S. Hankin}
 \note{
-  Previous versions of the package included the option to use native R
-  rather than the faster compiled C code used here.  But this was very
-  slow and is now discontinued.
+  Previous versions of the package included the option to use native \R
+  rather than the faster compiled \proglang{C} code used here.  But this
+  was very slow and is now discontinued.
 
 }
 \examples{
