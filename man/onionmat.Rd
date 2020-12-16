@@ -145,9 +145,7 @@ onionmat_matrixprod_onion(x,y)
   \item{x,y,z,e1,e2}{Objects of class \code{onionmat}}
   \item{data,nrow,ncol,byrow,dimnames}{In function
     \code{onionmat()}, as for \code{matrix()}}
-  \item{...}{In functions like \code{onionmatpoweronionmat()}, which are designed to
-    return informative errors; and \code{print()}, ignored further
-    arguments}
+  \item{...}{Further arguments (currently ignored}
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
 }

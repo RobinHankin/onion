@@ -9,20 +9,14 @@
 p3d(x, y, z, xlim = NULL, ylim = NULL, zlim = NULL, d0 = 0.2, h = 1, ...)
 }
 \arguments{
-  \item{x}{vector of \eqn{x} coordinates to be plotted.  If a matrix,
-    interpret the rows as 3D Cartesian coordinates}
-  \item{y}{Vector of \eqn{y} coordinates to be plotted}
-  \item{z}{Vector of \eqn{z} coordinates to be plotted}
-  \item{xlim}{Limits of plot in \eqn{x} direction, with default of \code{NULL}
-    meaning to use \code{range(x)}.}
-  \item{ylim}{Limits of plot in \eqn{y} direction, with default of \code{NULL}
-    meaning to use \code{range(y)}.}
-  \item{zlim}{Limits of plot in \eqn{z} direction, with default of \code{NULL}
-    meaning to use \code{range(z)}.}
-  \item{d0}{Efolding distance for graying out (depths are standardized
-    to be between 0 and 1).}
+  \item{x,y,z}{vector of \eqn{x,y,z} coordinates to be plotted.  If
+    \code{x} is a matrix, interpret the rows as 3D Cartesian coordinates}
+  \item{xlim,ylim,zlim}{Limits of plot in the \eqn{x,y,z} directions,
+    with default \code{NULL} meaning to use \code{range()}}
+  \item{d0}{E-folding distance for graying out (depths are standardized
+    to be between 0 and 1)}
   \item{h}{The hue for the points, with default value of 1 corresponding
-    to red.   If \code{NULL}, produce  black  points greying to white.}
+    to red.   If \code{NULL}, produce black points greying to white}
   \item{\dots}{Further arguments passed to \code{persp()} and
     \code{points()}}
 }

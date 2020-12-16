@@ -18,12 +18,13 @@ romat(type="quaternion", nrow=5, ncol=6, ...)
   \item{type}{string specifying type of elements}
 }
 \details{
-  Function \code{rquat()} returns a quaternionic vector and function
-  \code{roct()} returns an octonionic vector.
+  Function \code{rquat()} returns a quaternionic vector, 
+  \code{roct()} returns an octonionic vector, and \code{romat()} a
+  quaternionic matrix.
 }
 
 \note{
-  These functions give a quick  \dQuote{get you going} random onion
+  These functions give a quick \dQuote{get you going} random onion
   to play with.
 
 }

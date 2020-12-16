@@ -33,11 +33,11 @@
 \description{
   Functionality in the Complex group.
 
-  The \dfn{norm} of onionic vector \eqn{O} is the product of \eqn{O} with
-  its conjugate: \eqn{|O|=OO^*} but a more efficient numerical method is
-  used (see \code{dotprod()}).
+  The \dfn{norm} \code{Norm(O)} of onion \eqn{O} is the product of
+  \eqn{O} with its conjugate: \eqn{|O|=OO^*} but a more efficient
+  numerical method is used (see \code{dotprod()}).
 
-  The \dfn{Mod} of  onionic vector \eqn{O} is the square root of its
+  The \dfn{Mod} \code{Mod(O)} of onion \eqn{O} is the square root of its
   norm.
 
   The \dfn{sign} of onion \eqn{O} is the onion with the same direction
@@ -75,7 +75,7 @@ onion_conjugate(z)
   typing \code{x[1] <- y} to result in \code{x} being a onion.  This is
   impossible, according to John Chambers.
 
-Extract and set methods for components such as \code{i,j,k} is
+Extract and set methods for components such as \code{i,j,k} are
 documented at \code{Extract.Rd}
   }
 \seealso{\code{\link{Extract}}}

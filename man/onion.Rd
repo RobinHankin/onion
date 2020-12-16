@@ -40,25 +40,17 @@ octonion_to_quaternion(from)
 }
 \arguments{
   \item{length.out}{In functions \code{quaternion()} and
-    \code{octonion()}, the length of the onionic vector returned.}
-  \item{Re}{The real part of the onionic vector returned.}
-  \item{i}{Component \eqn{i} of the onionic vector returned.}
-  \item{j}{Component \eqn{j} of the onionic vector returned.}
-  \item{k}{In function \code{octonion()}, component \eqn{k} of the
-    octonionic vector returned.}
-  \item{l}{In function \code{octonion()}, component \eqn{l} of the
-    octonionic vector returned.}
-  \item{il}{In function \code{octonion()}, component \eqn{il} of the
-    octonionic vector returned.}
-  \item{jl}{In function \code{octonion()}, component \eqn{jl} of the
-    octonionic vector returned.}
-  \item{kl}{In function \code{octonion()}, component \eqn{kl} of the
-    octonionic vector returned.}
+    \code{octonion()}, the length of the onionic vector returned}
+  \item{Re}{The real part of the onionic vector returned}
+  \item{i,j,k}{In functions \code{quaternion()} and \code{octonion()},
+    component \eqn{i,j,k} respectively of the returned onion}
+  \item{l,il,jl,kl}{In function \code{octonion()}, component
+    \eqn{l,il,jl,kl} respectively of the returned octonion} 
   \item{x,from}{Onion to be tested or printed}
   \item{single}{In functions \code{as.octonion()} and
-    \code{as.quaternion()}, a Boolean variable with
+    \code{as.quaternion()}, Boolean  with
     default \code{FALSE} meaning to interpret \code{x} as a vector of
-    reals to be coerced into an onionic vector with zero imaginary
+    reals to be coerced into an onion  with zero imaginary
     part; and \code{TRUE} meaning to interpret \code{x} as a length 4
     (or length 8) vector and return the corresponding single onion.}
   \item{type}{In function \code{as.onion()} a string either

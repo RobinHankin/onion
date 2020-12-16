@@ -3,7 +3,7 @@
 \alias{condense.onion}
 \title{Condense an onionic vector into a short form}
 \description{
- Condense an onionic vector into a string vector showing whether the
+ Condense an onion into a string vector showing whether the
  elements are positive, zero or negative. 
 }
 \usage{

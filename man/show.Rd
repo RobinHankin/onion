@@ -10,7 +10,7 @@
 \alias{show,onion-method}
 \alias{onionmat_show}
 \title{Print method for onions}
-\description{Show groupd methods for onions}
+\description{Show methods for onions}
 \usage{
 \S4method{show}{onion}(object)
 onion_show(x,h=getOption("show_onions_horizontally"))
@@ -29,6 +29,8 @@ onion_show(x,h=getOption("show_onions_horizontally"))
   }
   
 \author{Robin K. S. Hankin}
+\note{Print method for \code{onionmat} objects is also sensitive to
+  this option.}
 \examples{
 roct(4)
 }
