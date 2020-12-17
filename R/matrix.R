@@ -73,6 +73,21 @@ setGeneric("ncol")
 setMethod("nrow","onionmat",function(x){nrow(getM(x))})
 setMethod("ncol","onionmat",function(x){ncol(getM(x))})
 
+setGeneric("diag")
+setMethod("diag","onionmat",function(x){x[diag(getM(x))]})
+
+setGeneric("diag<-")
+setReplaceMethod("diag",signature(x="onionmat",value="ANY"),
+                 function(x,value){
+                   d <- getd(x)
+                   M <- getM(x)
+                   d[c(diag(M))] <- value
+                   newonionmat(d,M)
+                 } )
+
+
+
+
 ## sum
 `onionmat_allsum` <- function(x){sum(getd(x))}
 
