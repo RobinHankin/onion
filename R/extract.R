@@ -92,20 +92,32 @@ setReplaceMethod("[",signature(x="onionmat",i="index",j="index",value="numeric")
                  } )
 
 setReplaceMethod("[",signature(x="onionmat",i="index",j="missing",value="onion"),
-                 function(x,i,j,value){
+                 function(x,i,j,...,value){
                    d <- getd(x)
                    M <- getM(x)
-                   d[c(getM(x)[i,])] <- value  # the meat
-                   newonionmat(d,M)
+                   if(nargs()==3){# a[i] <- value
+                     d[c(M[i])] <- value  # the meat
+                   } else if (nargs() == 4){
+                     d[c(M[i,])] <- value  # the meat
+                   } else {
+                     stop("replacement method value=onion signature not recognised")
+                   }
+                   return(newonionmat(d,M))
                  } )
 
 setReplaceMethod("[",signature(x="onionmat",i="index",j="missing",value="numeric"),
-                 function(x,i,j,value){
+                 function(x,i,j,...,value){
                    d <- getd(x)
                    M <- getM(x)
                    value <- kronecker(t(value),c(1,rep(0,nrow(as.matrix(d))-1)))
-                   d[c(M[i,])] <- as.onion(value)   # the meat
-                   newonionmat(d,M)
+                   if(nargs() == 3){ # a[i] <- value
+                     d[c(M[i])] <- as.onion(value)   # the meat
+                   } else if(nargs() == 4){
+                     d[c(M[i,])] <- as.onion(value)   # the meat
+                   } else {
+                     stop("replacement method value=numeric not recognised")
+                   }
+                   return(newonionmat(d,M))
                  } )
 
 setReplaceMethod("[",signature(x="onionmat",i="missing",j="index",value="onion"),
