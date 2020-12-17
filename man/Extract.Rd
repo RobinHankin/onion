@@ -97,6 +97,15 @@
 \alias{[<-,onionmat,index,missing,onion-method}
 \alias{[<-,onionmat,missing,index,numeric-method}
 \alias{[<-,onionmat,missing,index,onion-method}
+\alias{[,onion,index,ANY,ANY-method}
+\alias{[,onion,index,missing,ANY-method}
+\alias{[,onionmat,ANY,ANY,ANY-method}
+\alias{[,onionmat,index,index,ANY-method}
+\alias{[,onionmat,index,missing,ANY-method}
+\alias{[,onionmat,index,missing,missing-method}
+\alias{[,onionmat,matrix,missing,ANY-method}
+\alias{[,onionmat,missing,index,ANY-method}
+\alias{[,onionmat,missing,missing,ANY-method}
 \alias{[}
 \alias{[<-}
 \title{Extract or Replace Parts of onions or glubs}

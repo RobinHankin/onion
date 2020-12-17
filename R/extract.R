@@ -47,7 +47,27 @@ setReplaceMethod("[",signature(x="onion",i="index",j="ANY",value="ANY"),
 ## inspiration I gratefully acknowledge.
 
 setMethod("[", signature(x="onionmat",i="index"  ,j="index"  ,drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[i,j,drop=drop])],getM(x)[i,j,drop=drop])})
-setMethod("[", signature(x="onionmat",i="index"  ,j="missing",drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[i, ,drop=drop])],getM(x)[i, ,drop=drop])})
+
+setMethod("[", signature(x="onionmat",i="index"  ,j="missing",drop="missing"),function(x,i,j,...,drop){
+  if(nargs() == 2){ # a[i]
+    return(newonionmat(getd(x)[c(getM(x)[i])],getM(x)[i]))
+  } else if(nargs() == 3){  # a[i,]
+    return(newonionmat(getd(x)[c(getM(x)[i, ,drop=drop])],getM(x)[i, ,drop=drop]))
+  } else {
+    stop("unrecognised signature, check drop argument")
+  }        
+} )
+    
+setMethod("[", signature(x="onionmat",i="index"  ,j="missing",drop="ANY"),function(x,i,j,...,drop){
+  if(nargs() == 3){ # a[i,drop=T] or a[i,drop=F]  (must return dropped value irregardless)
+    return(newonionmat(getd(x)[c(getM(x)[i])],getM(x)[i]))
+  } else if(nargs() == 4){  # a[i,,drop=T]
+    return(newonionmat(getd(x)[c(getM(x)[i, ,drop=drop])],getM(x)[i, ,drop=drop]))
+  } else {
+    stop("signature not recognised")
+  }        
+} )
+    
 setMethod("[", signature(x="onionmat",i="missing",j="index"  ,drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[ ,j,drop=drop])],getM(x)[ ,j,drop=drop])})
 setMethod("[", signature(x="onionmat",i="missing",j="missing",drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[ , ,drop=drop])],getM(x)[ , ,drop=drop])})
 setMethod("[", signature(x="onionmat",i="matrix" ,j="missing",drop="ANY"),function(x,i,j,drop){newonionmat(getd(x)[c(getM(x)[i,  drop=drop])],getM(x)[i,  drop=drop])})
