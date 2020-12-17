@@ -232,7 +232,7 @@ setMethod("t","onionmat",function(x){ # NB1: this  ensures that emulator::ht() w
   out <- newonionmat(d=rep(onions[1]*0,n*n),M=mind)
   out[upper.tri(mind)] <- onions
   out <- out + t(Conj(out))
-  out[cbind(seq_len(n),seq_len(n))] <- real_diagonal # diag() does not work
+  diag(out) <- real_diagonal
   return(out)
 }
 
