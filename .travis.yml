@@ -4,6 +4,7 @@ before_install:
     - tlmgr install collection-latexrecommended
     - tlmgr install collection-fontsrecommended
     - tlmgr install bbm
+    - tlmgr install wasysym
 
 language: R
 cache: packages
