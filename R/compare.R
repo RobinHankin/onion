@@ -10,7 +10,7 @@
   switch(.Generic,
          "==" =  out,
          "!=" = !out,
-         stop(paste("comparision operator \"", .Generic, "\" not defined for onions"))
+         stop(paste("comparison operator \"", .Generic, "\" not defined for onions"))
          )
 }
 
