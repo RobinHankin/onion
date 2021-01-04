@@ -2,6 +2,7 @@
 \alias{rquat}
 \alias{roct}
 \alias{romat}
+\alias{ronionmat}
 \title{Random onionic vector}
 \description{
   Random quaternion or octonion vectors and matrices
