@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 
 <!-- badges: start -->
-[![Build Status](https://travis-ci.org/RobinHankin/onion.svg?branch=master)](https://travis-ci.org/RobinHankin/onion)
+[![Build Status](https://travis-ci.com/RobinHankin/onion.svg?branch=master)](https://travis-ci.com/RobinHankin/onion)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/onion)](https://cran.r-project.org/package=onion)
 [![Rdoc](http://www.rdocumentation.org/badges/version/onion)](http://www.rdocumentation.org/packages/onion)
 <!-- badges: end -->
@@ -68,10 +68,7 @@ expected (although one has to be careful about ordering terms).
 The *octonions* $\mathbb{O}$ are essentially a pair of quaternions,
 with a general octonion written
 
-$$
-a           + b\mathbf{i} + c\mathbf{j}+ d\mathbf{k} +
-e\mathbf{l} + f\mathbf{il} + g\mathbf{jl}+ h\mathbf{kl}
-$$
+$$a+b\mathbf{i}+c\mathbf{j}+d\mathbf{k}+e\mathbf{l}+f\mathbf{il}+g\mathbf{jl}+h\mathbf{kl}$$
 
 (other notations are sometimes used); Baez gives a multiplication
 table for the unit octonions and together with distributivity we have
@@ -88,10 +85,10 @@ You can install the released version of onion from
 library("onion")
 ```
 
-# The ```onion``` package in use
+# The `onion` package in use
 
-The basic quaternions are denoted ```H1```, ```Hi```, ```Hj``` and
-```Hk``` and these should behave as expected in R idiom:
+The basic quaternions are denoted `H1`, `Hi`, `Hj` and
+`Hk` and these should behave as expected in R idiom:
 
 ```{r}
 a <- 1:9 + Hi -2*Hj
@@ -100,7 +97,7 @@ a*Hk
 Hk*a
 ```
 
-Function ```rquat()``` generates random quaternions:
+Function `rquat()` generates random quaternions:
 
 ```{r, echo=FALSE}
 set.seed(0)
@@ -137,4 +134,4 @@ x*(y*z) - (x*y)*z
 
 For more detail, see the package vignette
 
-```vignette("onionpaper")```
+`vignette("onionpaper")`
