@@ -104,6 +104,19 @@ setReplaceMethod("diag",signature(x="onionmat",value="ANY"),
 `single_power_onionmat` <- function(...){stop("not defined")} 
 `onionmat_power_onionmat` <- function(...){stop("not defined")}
 
+`matrix_plus_onion` <- function(e1,e2){ # e1 [numeric] matrix, e2 onion
+    print("here at matrix_plus_onion()")
+    jj <- e1
+    jj[] <- seq_along(jj)
+    newonionmat(c(e1)+e2,jj) # the meat
+}
+
+`matrix_prod_onion` <- function(e1,e2){ # e1 [numeric] matrix, e2 onion
+    jj <- e1
+    jj[] <- seq_along(jj)
+    newonionmat(c(e1)*e2,jj) # the meat
+}
+
 `onionmat_unary` <- function(e1,e2){
   switch(.Generic,
          "+" = e1,
@@ -149,6 +162,30 @@ setReplaceMethod("diag",signature(x="onionmat",value="ANY"),
          "^" = single_power_onionmat(e1, e2),
          stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
          )
+}
+
+`matrix_arith_onion` <- function(e1,e2){ # e1 [numeric] matrix, e2 onion
+    if(is.complex(e1)){stop("matrix must be numeric")}
+    switch(.Generic,
+           "+" = matrix_plus_onion(e1,  e2),
+           "-" = matrix_plus_onion(e1, -e2),
+           "*" = matrix_prod_onion(e1,  e2),
+           "/" = matrix_prod_onion(e1,1/e2),
+           "^" = onionmat_power_onionmat(e1,e2),
+           stop(paste("binary operator \"", .Generic, "\" not defined for matrix . onion"))
+           )
+}
+
+`onion_arith_matrix` <- function(e1,e2){ # e1 onion, e2 [numeric] matrix
+    if(is.complex(e2)){stop("matrix must be numeric")}
+    switch(.Generic,
+           "+" = matrix_plus_onion(e2,  e1),      # e1+e2
+           "-" = matrix_plus_onion(-e2, e1),      # e1-e2
+           "*" = matrix_prod_onion(e2,  e1),      # e1*e2
+           "/" = matrix_prod_onion(solve(e2),e1), # e1/e2
+           "^" = onionmat_power_onionmat(e1,e2),
+           stop(paste("binary operator \"", .Generic, "\" not defined for matrix . onion"))
+           )
 }
 
 `onionmat_matrixprod_onionmat` <- function(x,y){
@@ -282,6 +319,9 @@ setMethod("Arith",signature(e1 = "numeric" , e2="onionmat"),  single_arith_onion
 setMethod("Arith",signature(e1 = "onion"   , e2="onionmat"),  single_arith_onionmat)
 setMethod("Arith",signature(e1 = "onionmat", e2="missing"),  onionmat_unary)
           
+setMethod("Arith",signature(e1 = "matrix", e2="onion"), matrix_arith_onion)
+setMethod("Arith",signature(e1 = "onion", e2="matrix"), onion_arith_matrix)
+
 
 setMethod("%*%", c("onionmat","onionmat"), onionmat_matrixprod_onionmat)
 setMethod("%*%", c("onionmat","onion")   , onionmat_matrixprod_onion)

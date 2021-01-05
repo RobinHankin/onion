@@ -111,6 +111,10 @@
 \alias{numeric_matrixprod_onionmat}
 \alias{onion_matrixprod_onionmat}
 \alias{is.onionmat}
+\alias{matrix_arith_onion}
+\alias{onion_arith_matrix}
+\alias{matrix_plus_onion}
+\alias{matrix_prod_onion}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
@@ -129,8 +133,10 @@ onionmat_power_onionmat(...)
 onionmat_prod_single(x,y)
 onionmat_power_single(e1,e2)
 onionmat_plus_onionmat(e1,e2)
-
-
+matrix_arith_onion(e1,e2)
+onion_arith_matrix(e1,e2)
+matrix_plus_onion(e1,e2)
+matrix_prod_onion(e1,e2)
 \S4method{cprod}{onionmat,onionmat}(x,y)
 \S4method{cprod}{onionmat,missing}(x,y)
 \S4method{cprod}{onionmat,ANY}(x,y)
