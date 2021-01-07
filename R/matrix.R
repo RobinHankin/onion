@@ -105,7 +105,6 @@ setReplaceMethod("diag",signature(x="onionmat",value="ANY"),
 `onionmat_power_onionmat` <- function(...){stop("not defined")}
 
 `matrix_plus_onion` <- function(e1,e2){ # e1 [numeric] matrix, e2 onion
-    print("here at matrix_plus_onion()")
     jj <- e1
     jj[] <- seq_along(jj)
     newonionmat(c(e1)+e2,jj) # the meat
