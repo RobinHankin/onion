@@ -39,7 +39,7 @@ number 17 and this is seen to be approximately $-0.81 + 0.24i -1.43j
 sample.
 
 ```{r}
-A <- newonionmat(rquat(21),matrix(0,7,3))
+A <- onionmat(rquat(21),7,3)
 A
 ```
 
@@ -83,12 +83,12 @@ Matrix multiplication is implemented.
 
 
 ```{r}
-A <- newonionmat(rquat(21),matrix(0,3,7))
+A <- onionmat(rquat(21),3,7)
 umbral <- state.abb[1:7]
 rownames(A) <- letters[1:3]
 colnames(A) <- umbral
 
-B <- newonionmat(rquat(28),matrix(0,7,4))
+B <- onionmat(rquat(28),7,4)
 rownames(B) <- umbral
 colnames(B) <- c("H","He","Li","Be")
 
@@ -101,7 +101,7 @@ functions such as `cprod()` and `tcprod()`:
 
 
 ```{r}
-C <- newonionmat(rquat(14),matrix(0,7,2))
+C <- onionmat(rquat(14),7,2)
 rownames(C) <- umbral
 colnames(C) <- month.abb[1:2]
 cprod(B,C)

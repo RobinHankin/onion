@@ -175,7 +175,7 @@ onionmat_matrixprod_onion(x,y)
   \item{x,y,z,e1,e2}{Objects of class \code{onionmat}}
   \item{data,nrow,ncol,byrow,dimnames}{In function
     \code{onionmat()}, as for \code{matrix()}}
-  \item{...}{Further arguments (currently ignored}
+  \item{...}{Further arguments (currently ignored)}
   \item{real_diagonal, onions}{In function \code{herm_onion_mat()}, on-
     and  off- diagonal elements of an Hermitian matrix}
 }
@@ -188,17 +188,25 @@ onionmat_matrixprod_onion(x,y)
 
   An object of class \code{onionmat} is a two-element list, the first of
   which is typically an onionic vector of elements, and the second an
-  integer matrix used for tracking attributes such as dimnames, and
-  also for the extraction method.
+  integer matrix used for tracking attributes such as dimensions,
+  dimnames.  This device makes the extraction and replacement methods
+  easy.
+
+  Use \code{onionmat()} as a replacement for \code{matrix()}.  Function
+  \code{newonionmat()} also creates onionmat objects, but takes two
+  arguments: an onion and a matrix; the matrix argument can be used to
+  specify attributes.
 
   Functions such as \code{onionmat_plus_onionmat()} are low-level helper
   functions, not really designed for the end-user.
+
+  Vignette \code{onionmat} shows some use-cases.
 
 }
 \author{Robin K. S. Hankin}
 \examples{
 
-newonionmat(rquat(28),matrix(0,4,7))
+onionmat(rquat(28),4,7)
 
 M <- onionmat(rquat(10),2,5)
 cprod(M) 
