@@ -1,5 +1,5 @@
 `getd` <- function(o){o@d}
-`getM` <- function(o){o@M}
+`getM` <- function(o){o@M}  # this is the last occurrence of '@' in this file
 
 setValidity("onionmat",function(object){
   d <- getd(object)
@@ -85,12 +85,8 @@ setReplaceMethod("diag",signature(x="onionmat",value="ANY"),
                    newonionmat(d,M)
                  } )
 
-
-
-
 ## sum
 `onionmat_allsum` <- function(x){sum(getd(x))}
-
 
 ## elementwise operations:
 `onionmat_negative` <- function(e1){ newonionmat(-getd(e1),getM(e1)) }
@@ -130,6 +126,7 @@ setReplaceMethod("diag",signature(x="onionmat",value="ANY"),
     attributes(out) <- attributes(jj)
     return(out)
 }
+
 "onionmat_arith_onionmat" <- function(e1,e2){ # e1, e2 onionmats  ELEMENTWISE
   switch(.Generic,
          "+" = onionmat_plus_onionmat(e1, e2),
