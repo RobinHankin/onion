@@ -1,4 +1,4 @@
-test_that("Test suite aaa.R",{
+test_that("Test suite aap.R",{
   expect_true(Hi*Hj ==  Hk)
   expect_true(Hj*Hi == -Hk)
   expect_true(Hj*Hk ==  Hi)
