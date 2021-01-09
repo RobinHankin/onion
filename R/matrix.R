@@ -85,6 +85,13 @@ setReplaceMethod("diag",signature(x="onionmat",value="ANY"),
                    newonionmat(d,M)
                  } )
 
+setMethod("diag",signature(x="onion"),
+          function(x){
+              out <- onionmat(x[1]*0,length(x),length(x))
+              out[cbind(seq_along(x),seq_along(x))] <- x
+              return(out)
+          } )
+
 ## sum
 `onionmat_allsum` <- function(x){sum(getd(x))}
 

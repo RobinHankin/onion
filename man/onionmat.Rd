@@ -34,8 +34,11 @@
 \alias{rownames<--methods}
 \alias{rownames<-,ANY-method}
 \alias{rownames<-.onionmat}
+\alias{diag.onion}
+\alias{diag}
 \alias{diag.onionmat}
 \alias{diag,onionmat-method}
+\alias{diag,onion-method}
 \alias{diag<-.onionmat}
 \alias{diag<-,onionmat-method}
 \alias{t,onionmat-method}
