@@ -84,6 +84,10 @@
 \alias{tcprod,onion,onion-method}
 \alias{tcprod,onion,onionmat-method}
 \alias{tcprod,onionmat,onion-method}
+\alias{+,onion,missing-method}
+\alias{-,onion,missing-method}
+\alias{+,onionmat,missing-method}
+\alias{-,onionmat,missing-method}
 \alias{om_cprod}
 \alias{om_tcprod}
 \alias{om_ht}
@@ -127,7 +131,6 @@ as.onionmat(x)
 is.onionmat(x)
 onionmat_negative(e1)
 onionmat_inverse(e1)
-onionmat_unary(e1,e2)
 onionmat_prod_onionmat(e1,e2)
 onionmat_power_onionmat(...)
 onionmat_prod_single(x,y)

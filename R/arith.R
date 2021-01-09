@@ -1,12 +1,5 @@
-setMethod("Arith",signature(e1 = "onion", e2="missing"),
-          function(e1,e2){
-            switch(.Generic,
-                   "+" = e1,
-                   "-" = onion_negative(e1),
-                   stop(paste("Unary operator", .Generic,
-                              "not allowed on onions"))
-                   )
-          } )
+setMethod("+", signature(e1 = "onion", e2 = "missing"), function(e1,e2){e1})
+setMethod("-", signature(e1 = "onion", e2 = "missing"), function(e1,e2){onion_negative(e1)})
 
 ## unary operators:
 `onion_negative` <- function(z){as.onion(-as.matrix(z))}

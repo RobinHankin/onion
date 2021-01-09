@@ -112,14 +112,6 @@ setReplaceMethod("diag",signature(x="onionmat",value="ANY"),
     newonionmat(c(e1)*e2,jj) # the meat
 }
 
-`onionmat_unary` <- function(e1,e2){
-  switch(.Generic,
-         "+" = e1,
-         "-" = onionmat_negative(e1),
-         stop(paste("Unary operator", .Generic, " not allowed on onionmats"))
-                   )
-} 
-  
 `onionmat_equal_onionmat` <- function(e1,e2){
     jj <- getM(e1) == getM(e2) # traps nonconformant matrices
     out <- getd(e1) == getd(e2)
@@ -308,13 +300,15 @@ setGeneric("ht",function(x){standardGeneric("ht")})
 setMethod("ht",signature=c(x="onionmat"),function(x){om_ht(x)})
 setMethod("ht",signature=c(x="onion"),function(x){om_ht(x)})
 
+setMethod("+", signature(e1 = "onionmat", e2 = "missing"), function(e1,e2){e1})
+setMethod("-", signature(e1 = "onionmat", e2 = "missing"), function(e1,e2){onionmat_negative(e1)})
+
 setMethod("Arith",signature(e1 = "onionmat", e2="onionmat"), onionmat_arith_onionmat)
 setMethod("Arith",signature(e1 = "onionmat", e2="numeric" ), onionmat_arith_single )
 setMethod("Arith",signature(e1 = "onionmat", e2="onion"   ), onionmat_arith_single )
 setMethod("Arith",signature(e1 = "numeric" , e2="onionmat"),  single_arith_onionmat)
 setMethod("Arith",signature(e1 = "onion"   , e2="onionmat"),  single_arith_onionmat)
-setMethod("Arith",signature(e1 = "onionmat", e2="missing"),  onionmat_unary)
-          
+
 setMethod("Arith",signature(e1 = "matrix", e2="onion"), matrix_arith_onion)
 setMethod("Arith",signature(e1 = "onion", e2="matrix"), onion_arith_matrix)
 
