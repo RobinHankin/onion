@@ -90,5 +90,5 @@ setMethod("cbind2", signature(x="matrix",y="onion"),function(x,y, ...){bind_onio
 setMethod("rbind2", signature(x="onionmat",y="matrix"),function(x,y, ...){bind_onionmat_onionmat(x,y+x[1]*0,rbind)})
 setMethod("cbind2", signature(x="onionmat",y="matrix"),function(x,y, ...){bind_onionmat_onionmat(x,y+x[1]*0,cbind)})
 
-setMethod("rbind2", signature(x="matrix",y="onionmat"),function(x,y, ...){bind_onionmat_onionmat(x+y[1]*0,x,rbind)})
-setMethod("cbind2", signature(x="matrix",y="onionmat"),function(x,y, ...){bind_onionmat_onionmat(x+y[1]*0,x,cbind)})
+setMethod("rbind2", signature(x="matrix",y="onionmat"),function(x,y, ...){bind_onionmat_onionmat(x+y[1]*0,y,rbind)})
+setMethod("cbind2", signature(x="matrix",y="onionmat"),function(x,y, ...){bind_onionmat_onionmat(x+y[1]*0,y,cbind)})
