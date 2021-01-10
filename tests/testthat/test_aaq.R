@@ -86,5 +86,7 @@ test_that("Test suite aaq.R, numeric matrix <op> onion",{
     expect_true(Mod((diag(2)/D[1,1])[1,1] - 1/D[1,1]) < 1e-10)
 
     expect_true(all(Him/matrix(1,2,2) == Him))
-    
+    expect_true(all(Mod(Him^matrix(1,2,2) - Him) < 1e-10)) 
+    expect_error(Him%%matrix(1,2,2))
+   
 })
