@@ -8,42 +8,33 @@ setClass("onionmat",
 
 setClass("quaternion",
          slots    = c(x = "matrix"),
-         contains = "onion"
+         contains = "onion",
+         validity = function(object){
+           x <- object@x
+           if(!is.numeric(x)){
+             return("not numeric")
+           } else if(nrow(x) != 4){
+             return("must have 4 rows")
+           } else {
+             return(TRUE)
+           }
+         }
          )
 
 setClass("octonion",
          slots    = c(x = "matrix"),
-         contains = "onion"
+         contains = "onion",
+         validity = function(object){
+           x <- object@x
+           if(!is.numeric(x)){
+             return("not numeric")
+           } else if(nrow(x) != 8){
+             return("must have 8 rows")
+           } else {
+             return(TRUE)
+           }
+         }
          )
-
-`valid_quaternion` <- function(object){
-  x <- object@x
-  if(!is.numeric(x)){
-    return("not numeric")
-  } else if(!is.matrix(x)){
-    return("not a matrix")
-  } else if(nrow(x) != 4){
-    return("must have 4 rows")
-  } else {
-    return(TRUE)
-  }
-}
-
-`valid_octonion` <- function(object){
-  x <- object@x
-  if(!is.numeric(x)){
-    return("not numeric")
-  } else if(!is.matrix(x)){
-    return("not a matrix")
-  } else if(nrow(x) != 8){
-    return("must have 8 rows")
-  } else {
-    return(TRUE)
-  }
-}
-
-setValidity("quaternion", valid_quaternion)
-setValidity("octonion", valid_octonion)
 
 "is.quaternion" <- function(x){is(x,"quaternion")}
 "is.octonion" <- function(x){is(x,"octonion")}

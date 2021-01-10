@@ -11,10 +11,6 @@ test_that("Test suite aaq.R, numeric matrix <op> onion",{
     expect_true((diag(4) * Him)[1,1] == Him)
     expect_true((diag(4) * Oim)[1,1] == Oim)
 
-    expect_true(valid_quaternion(rquat()))
-    expect_true(valid_octonion(roct()))
-
-
     expect_true(all(onionmat(Hall,2,3)[1]==Hall))
     expect_true(all(onionmat(Hall,2,3)[1,drop=TRUE]==Hall))
     expect_true(all(onionmat(Hall,2,3)[1,drop=FALSE]==Hall))

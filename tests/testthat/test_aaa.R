@@ -197,4 +197,11 @@ test_that("Test suite aaa.R",{
   expect_true(c(Oil)==Oil)
 
 
+
+  expect_error(new("octonion",x=matrix(1i,5,5)))
+  expect_error(new("octonion",x=matrix(1,5,5)))
+
+  expect_error(new("quaternion",x=matrix(1i,5,5)))
+  expect_error(new("quaternion",x=matrix(1,5,5)))
+
 })
