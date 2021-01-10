@@ -41,5 +41,32 @@ test_that("Test suite aaq.R, numeric matrix <op> onion",{
     expect_true(all(A[1] == 3))
 
 
+    expect_true(all(onionmat(Hall,3,3)==Hall))
+    expect_true(all(onionmat(Oall,3,3)==Oall))
+
     
+
+    jj <- c(Oall,O1,Oi,Oj,Ok)
+    expect_true(all(diag(diag(jj)) == jj))
+
+    D <- diag(jj)
+    expect_true(all(D-14 == -(14-D)))
+    expect_true(all(D+14 == -(-14-D)))
+    expect_true(all(Oi-D == D*(-1)+Oi))
+    expect_true(all(D/1==D))
+    expect_true(all(14-D == D*(-1)+14))
+    expect_true(all(D-14 == -(14-D)))
+    expect_true(all(D/Oi== -D*Oi))
+
+    D <- romat()
+    expect_true(max(Mod(D^(-1)-1/D))<1e-10)
+    expect_true(max(Mod(1/D - D^(-1)))<1e-10)
+
+    expect_error(1i+diag(2) + Oall)
+    expect_error(D^D)
+
+    D <- romat("q",2,2)
+    expect_true(all(D+1 == 1+D))
+    expect_error(D+1i*diag(2))
+
 })
