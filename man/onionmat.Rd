@@ -122,6 +122,7 @@
 \alias{onion_arith_matrix}
 \alias{matrix_plus_onion}
 \alias{matrix_prod_onion}
+\alias{onion_power_matrix}
 \title{Onionic matrices}
 \description{
   Some simple functionality for quaternionic and octonionic matrices,
