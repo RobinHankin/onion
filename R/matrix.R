@@ -119,6 +119,12 @@ setMethod("diag",signature(x="onion"),
     newonionmat(c(e1)*e2,jj) # the meat
 }
 
+`onion_power_matrix` <- function(e1,e2){ # e1 onion, e2 [numeric] matrix
+    jj <- e2
+    jj[] <- seq_along(jj)
+    newonionmat(e1^c(e2),jj) # the meat
+  }
+
 `onionmat_equal_onionmat` <- function(e1,e2){
     jj <- getM(e1) == getM(e2) # traps nonconformant matrices
     out <- getd(e1) == getd(e2)
