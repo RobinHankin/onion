@@ -13,6 +13,7 @@ setReplaceMethod("[",signature(x="onion",i="index",j="missing",value="numeric"),
 
 setReplaceMethod("[",signature(x="onion",i="index",j="missing",value="onion"),
                  function(x,i,j,value){
+                   stopifnot(identical(class(x),class(value)))
                    out <- as.matrix(x)
                    out[,i] <- as.matrix(value)  # the meat
                    return(as.onion(out))
@@ -32,6 +33,7 @@ setReplaceMethod("[",signature(x="onion",i="missing",j="missing",value="numeric"
 
 setReplaceMethod("[",signature(x="onion",i="missing",j="missing",value="onion"),
                  function(x,i,j,value){
+                   stopifnot(identical(class(x),class(value)))
                    out <- as.matrix(x)
                    out[] <- as.matrix(value) # the meat
                    return(as.onion(out))
