@@ -67,6 +67,13 @@ test_that("Test suite aaq.R, numeric matrix <op> onion",{
 
     D <- romat("q",2,2)
     expect_true(all(D+1 == 1+D))
+    expect_true(max(Mod((D+Him) - (D-(-Him)))) < 1e-10)
+
+    expect_true(all(diag(2) + Oim ==  Oim + diag(2)))
+    expect_true(all(diag(2) - Oim == -Oim + diag(2)))
+    expect_true(all(Oim +diag(2) ==   diag(2) + Oim))
+    expect_true(all(Oim -diag(2) ==  -diag(2) + Oim))
+
     expect_error(D+1i*diag(2))
 
 })
