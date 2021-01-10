@@ -36,14 +36,6 @@
     newonionmat(d=dout,M=Mout)
 }
 
-`bind_onion_matrix` <- function(x,y, bind, ...){
-    Mout <- bind(drop(t(getM(t(x)))),-y)
-    dout <- rep(x[1],length(Mout))
-    dout[which(Mout>0)] <- x
-    dout[which(Mout<0)] <- as.onion(c(y),x)
-    newonionmat(d=dout,M=Mout)
-}
-
 setMethod("rbind2",signature(x="onion",y="missing"),function(x,y){bind_onion(x,rbind)})
 setMethod("cbind2",signature(x="onion",y="missing"),function(x,y){bind_onion(x,cbind)})
           
