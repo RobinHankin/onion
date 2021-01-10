@@ -64,6 +64,8 @@ test_that("Test suite aaq.R, numeric matrix <op> onion",{
 
     expect_error(1i+diag(2) + Oall)
     expect_error(D^D)
+    expect_error(diag(2)^D)
+    expect_error(diag(2)^Him)
 
     D <- romat("q",2,2)
     expect_true(all(D+1 == 1+D))
@@ -75,5 +77,14 @@ test_that("Test suite aaq.R, numeric matrix <op> onion",{
     expect_true(all(Oim -diag(2) ==  -diag(2) + Oim))
 
     expect_error(D+1i*diag(2))
+    expect_error(1i*diag(2)+D)
+    expect_error(Oim + 1i*diag(2))
+    expect_error(1i*diag(2) + Oim)
+    expect_error(diag(2)^D[1,1])
+    expect_error(diag(2)%%D[1,1])
 
+    expect_true(Mod((diag(2)/D[1,1])[1,1] - 1/D[1,1]) < 1e-10)
+
+    expect_true(all(Him/matrix(1,2,2) == Him))
+    
 })

@@ -177,8 +177,8 @@ setMethod("diag",signature(x="onion"),
            "+" = matrix_plus_onion(e2,  e1),      # e1+e2
            "-" = matrix_plus_onion(-e2, e1),      # e1-e2
            "*" = matrix_prod_onion(e2,  e1),      # e1*e2
-           "/" = matrix_prod_onion(solve(e2),e1), # e1/e2
-           "^" = onionmat_power_onionmat(e1,e2),
+           "/" = matrix_prod_onion(1/e2,e1), # e1/e2
+           "^" = onion_power_matrix(e1,e2),
            stop(paste("binary operator \"", .Generic, "\" not defined for matrix . onion"))
            )
 }
