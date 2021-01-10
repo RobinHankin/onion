@@ -40,7 +40,6 @@
 }
 \usage{
 bind_onion(x,bind,...)
-bind_onion_matrix(x,y,bind,...)
 bind_onion_onion(x,y,bind,...)
 bind_onion_onionmat(x,y,bind,...)
 bind_onionmat_onion(x,y,bind,...)
