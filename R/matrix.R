@@ -366,3 +366,6 @@ setMethod("%*%", c("onion","onionmat")   , onion_matrixprod_onionmat)
 
 setGeneric("matrix")
 setMethod("matrix","onion",onionmat)
+
+setGeneric("drop")
+setMethod("drop","onionmat",function(x){newonionmat(getd(x),drop(getM(x)))})

@@ -23,6 +23,8 @@
 \alias{getM}
 \alias{getd}
 \alias{herm_onion_mat}
+\alias{drop}
+\alias{drop,onionmat-method}
 \alias{matrix,onion-method}
 \alias{ncol-methods}
 \alias{ncol,ANY-method}
@@ -132,8 +134,17 @@
 \alias{onion_power_matrix}
 \title{Onionic matrices}
 \description{
-  Some simple functionality for quaternionic and octonionic matrices,
-  intended for use in the \code{jordan} package.
+
+  Simple functionality for quaternionic and octonionic matrices,
+  intended for use in the \code{jordan} package.  Use idiom like
+  \code{matrix(Him,4,5)} or \code{matrix(roct(6),2,3)} to create an
+  \code{onionmat} object, a matrix of onions.
+
+  The package is intended to match base \R's matrix functionality in the
+  sense that standard \R idiom just goes through for onionic matrices.
+  Determinants are not well-defined for quaternionic or octonionic
+  matrices, and matrix inverses are not implemented.
+
 }  
 \usage{
 newonionmat(d, M)
@@ -151,6 +162,7 @@ matrix_arith_onion(e1,e2)
 onion_arith_matrix(e1,e2)
 matrix_plus_onion(e1,e2)
 matrix_prod_onion(e1,e2)
+drop(x)
 \S4method{cprod}{onionmat,onionmat}(x,y)
 \S4method{cprod}{onionmat,missing}(x,y)
 \S4method{cprod}{onionmat,ANY}(x,y)
@@ -195,22 +207,18 @@ onionmat_matrixprod_onion(x,y)
 }
 \details{
 
-  The functionality is intended to match base \R's matrix functionality
-  in the sense that standard \R idiom just goes through for onionic
-  matrices.  Determinants are not well-defined for quaternionic or
-  octonionic matrices, and matrix inverses are not implemented.
-
   An object of class \code{onionmat} is a two-element list, the first of
-  which is typically an onionic vector of elements, and the second an
-  integer matrix used for tracking attributes such as dimensions,
-  dimnames.  This device makes the extraction and replacement methods
-  easy.
+  which is an onion, and the second an integer matrix used for tracking
+  attributes such as dimensions and dimnames.  This device makes the
+  extraction and replacement methods easy.  
 
-  The S4 method for matrix simply dispatches to \code{onionmat()}, which
-  is a drop-in replacement for \code{matrix()}.  Function
-  \code{newonionmat()} also creates onionmat objects, but takes two
-  arguments: an onion and a matrix; the matrix argument can be used to
-  specify attributes.
+  The S4 method for \code{matrix()} simply dispatches to
+  \code{onionmat()}, which is a drop-in replacement for \code{matrix()}.
+
+  Function \code{newonionmat()} is lower-level: it also creates onionmat
+  objects, but takes two arguments: an onion and a matrix; the matrix
+  argument can be used to specify additional attributes via
+  \code{attr()}, but this ability is not currently used in the package.
 
   Functions such as \code{onionmat_plus_onionmat()} are low-level helper
   functions, not really designed for the end-user.
