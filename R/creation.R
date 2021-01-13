@@ -13,6 +13,7 @@
       }
     }
   } else {  # type supplied
+    if(is.onionmat(type)){type <- class(type[1])}
     if(is.onion(type)){type <- class(type)}
     if(type == "quaternion"){
       if(is.quaternion(x)){
