@@ -20,7 +20,7 @@
 \alias{dotprod}
 \title{Various products of two onions}
 \description{
-Returns the various inner and outer  products of two onionic vectors.
+Returns various inner and outer products of two onionic vectors.
 }
 \usage{
 x \%<*>\% y
@@ -76,11 +76,9 @@ Note that the returned value is a numeric vector (compare
 \code{\%<.>\%}, \code{e.even()}, which return onionic vectors with zero
 imaginary part).
 
-There is no binary operator for the ordinary Euclidean product (it is
-not defined because there is no natural, consistent notation available;
-and it seems to be rarely needed in practice).  Use \code{Conj(x)*y}
-(and of course if you need \code{Conj(x)*x}, then \code{Norm(x)} is much
-more efficient and accurate).
+There is no binary operator for the ordinary Euclidean product (it seems
+to be rarely needed in practice).  For \code{Conj(x)*x}, \code{Norm(x)}
+is much more efficient and accurate.
 
 Function \code{prod()} is documented at \code{Summary.Rd}.
 
