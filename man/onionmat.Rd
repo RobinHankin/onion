@@ -12,8 +12,12 @@
 \alias{onionmat_power_single}
 \alias{onionmat_plus_onionmat}
 \alias{onionmat_plus_single}
+\alias{onionmat_plus_matrix}
+\alias{matrix_plus_onionmat}
 \alias{onionmat_power_single}
+\alias{onionmat_power_matrix}
 \alias{onionmat_prod_onionmat}
+\alias{onionmat_prod_matrix}
 \alias{single_power_onionmat}
 \alias{Ops.onionmat}
 \alias{getM}
@@ -113,6 +117,8 @@
 \alias{onion_arith_onionmat}
 \alias{onion_arith_single}
 \alias{single_arith_onionmat}
+\alias{matrix_arith_onionmat}
+\alias{onionmat_arith_matrix}
 \alias{onionmat_matrixprod_onionmat}
 \alias{onionmat_matrixprod_onion}
 \alias{onionmat_matrixprod_numeric}
