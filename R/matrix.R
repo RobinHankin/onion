@@ -369,3 +369,5 @@ setMethod("matrix","onion",onionmat)
 
 setGeneric("drop")
 setMethod("drop","onionmat",function(x){newonionmat(getd(x),drop(getM(x)))})
+
+setMethod("zapsmall","onionmat",function(x,digits=getOption("digits")){newonionmat(zapsmall(getd(x),digits=digits),getM(x))})

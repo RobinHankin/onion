@@ -93,3 +93,6 @@ setMethod("rep","onion",function(x,  ...){
 }
 
 `%.%` <- function(x,y){dotprod(x,y)}
+
+setGeneric("zapsmall")
+setMethod("zapsmall","onion",function(x,digits=getOption("digits")){as.onion(zapsmall(as.matrix(x),digits=digits)) })
