@@ -51,6 +51,14 @@ setReplaceMethod("Im",signature(x="onion"),
                    return(as.onion(x))
                  } )
 
+setReplaceMethod("Im",signature(x="onionmat"),
+                 function(x,value){
+                   d <- getd(x)
+                   if(is.onionmat(value)){value <- getd(value)}
+                   Im(d) <- value
+                   return(newonionmat(d,getM(x)))
+                 } )
+
 setGeneric("Norm",function(z){standardGeneric("Norm")})
 setMethod("Norm","onion",function(z){colSums(as.matrix(z)^2)})
 setMethod("Norm","onionmat",function(z){

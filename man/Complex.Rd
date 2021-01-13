@@ -20,6 +20,7 @@
 \alias{Re,onionmat-method}
 \alias{Im,onionmat-method}
 \alias{Re<-,onionmat-method}
+\alias{Im<-,onionmat-method}
 \alias{Conj,onionmat-method}
 \alias{Norm,onionmat-method}
 \alias{onion_complex}
@@ -90,7 +91,8 @@ Im(a)
 
 b <- romat()
 
-
+A <- romat()
+Im(A) <- Im(A)*10
 
 }
 \keyword{math}
