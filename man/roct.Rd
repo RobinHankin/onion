@@ -22,11 +22,11 @@ romat(type="quaternion", nrow=5, ncol=6, ...)
   Function \code{rquat()} returns a quaternionic vector, 
   \code{roct()} returns an octonionic vector, and \code{romat()} a
   quaternionic matrix.
-}
 
-\note{
-  These functions give a quick \dQuote{get you going} random onion
-  to play with.
+  Functions \code{rquat()} and \code{roct()} give a quick \dQuote{get
+    you going} random onion to play with.  Function \code{romat()} gives
+    a simple onionmat, although arguably \code{matrix(roct(4),2,2)} is
+    as convenient.
 
 }
 \author{Robin K. S. Hankin}
