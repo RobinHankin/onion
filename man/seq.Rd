@@ -2,6 +2,7 @@
 \alias{seq}
 \alias{seq.onion}
 \alias{seq_onion}
+\alias{seq,onion-method}
 \alias{slerp}
 \alias{SLERP}
 \title{seq method for onions}
@@ -23,7 +24,7 @@ seq_onion(from=1,to=1,by=((to-from)/(length.out-1)),length.out=NULL,slerp=FALSE,
 }
 \author{Robin K. S. Hankin}
 \examples{
-seq_onion(from=O1,to=Oil,length.out=6)
-seq_onion(from=H1,to=(Hi+Hj)/2,len=10,slerp=TRUE)
+seq(from=O1,to=Oil,length.out=6)
+seq(from=H1,to=(Hi+Hj)/2,len=10,slerp=TRUE)
 }
 \keyword{array}

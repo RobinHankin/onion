@@ -1,3 +1,5 @@
+setGeneric("seq")
+
 `seq_onion` <-
   function (from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, slerp = FALSE, ...) 
 {
@@ -20,8 +22,10 @@
 
   h <- seq(from=0,to=1,len=length.out)
   if(slerp){
-    return(from*(to/from)^h)
+    return(from*(onion_inverse(from)*to)^h)
   } else {
     return(from*(1-h)+ to*h)
   }
 }
+
+setMethod("seq","onion",seq_onion)
