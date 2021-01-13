@@ -19,6 +19,7 @@
 \alias{getM}
 \alias{getd}
 \alias{herm_onion_mat}
+\alias{matrix,onion-method}
 \alias{ncol-methods}
 \alias{ncol,ANY-method}
 \alias{ncol.onionmat}
@@ -199,7 +200,8 @@ onionmat_matrixprod_onion(x,y)
   dimnames.  This device makes the extraction and replacement methods
   easy.
 
-  Use \code{onionmat()} as a replacement for \code{matrix()}.  Function
+  The S4 method for matrix simply dispatches to \code{onionmat()}, which
+  is a drop-in replacement for \code{matrix()}.  Function
   \code{newonionmat()} also creates onionmat objects, but takes two
   arguments: an onion and a matrix; the matrix argument can be used to
   specify attributes.
@@ -213,7 +215,7 @@ onionmat_matrixprod_onion(x,y)
 \author{Robin K. S. Hankin}
 \examples{
 
-onionmat(rquat(28),4,7)
+matrix(rquat(28),4,7)
 
 M <- onionmat(rquat(10),2,5)
 cprod(M) 

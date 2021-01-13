@@ -34,12 +34,12 @@
 as.octonion(1:8,single=TRUE)
 as.quaternion(matrix(runif(20),nrow=4))
 
-H <- onionmat(rquat(21),3,7)
+H <- matrix(rquat(21),3,7)
 dimnames(H) <- list(foo=letters[1:3],bar=state.abb[1:7])
 
 i(H) <- 0.1
 
-I <- onionmat(rquat(14),7,2)
+I <- matrix(rquat(14),7,2)
 dimnames(I) <- list(foo=state.abb[1:7],baz=LETTERS[1:2])
 H \%*\% I
 

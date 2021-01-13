@@ -27,8 +27,7 @@ x <- as.octonion(matrix(sample(0:1,800,TRUE,p=c(9,1)),nrow=8))
 y <- as.octonion(matrix(sample(0:1,800,TRUE,p=c(9,1)),nrow=8))
 x==y
 
-
-onionmat(as.quaternion(100+1:12),3,4) == 102
+matrix(as.quaternion(100+1:12),3,4) == 102
 
 
 

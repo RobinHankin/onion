@@ -55,4 +55,8 @@ bind_onionmat_onion(x,y,bind,...)
 rbind(rquat(3),rquat(3))
 
 cbind(diag(5),roct(1))
+
+
+cbind(matrix(Oil,4,2),matrix(roct(12),4,3))
+
 }

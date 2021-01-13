@@ -333,3 +333,5 @@ setMethod("%*%", c("onionmat","numeric") , onionmat_matrixprod_numeric)
 setMethod("%*%", c("numeric","onionmat") , numeric_matrixprod_onionmat)
 setMethod("%*%", c("onion","onionmat")   , onion_matrixprod_onionmat)
 
+setGeneric("matrix")
+setMethod("matrix","onion",onionmat)
