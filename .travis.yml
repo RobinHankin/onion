@@ -5,6 +5,7 @@ before_install:
     - tlmgr install collection-fontsrecommended
     - tlmgr install bbm
     - tlmgr install wasysym
+    - sudo apt-get install texlive-full 
 
 language: R
 cache: packages
