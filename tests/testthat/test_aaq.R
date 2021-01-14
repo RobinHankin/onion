@@ -84,5 +84,27 @@ test_that("Test suite aaq.R, numeric matrix <op> onion",{
     expect_true(all(Him/matrix(1,2,2) == Him))
     expect_true(all(Mod(Him^matrix(1,2,2) - Him) < 1e-10)) 
     expect_error(Him%%matrix(1,2,2))
-   
+
+    A <- romat()
+    Im(A) <- Im(A)*10
+    Im(A) <- 0
+    expect_true(all(Mod(Im(A))==0))
+
+    A <- matrix(roct(4),2,2)
+    expect_true(is.onionmat(A+diag(2)))
+    expect_true(is.onionmat(A-diag(2)))
+    expect_true(is.onionmat(diag(2)-A))
+    expect_true(is.onionmat(diag(2)+A))
+                            
+    expect_true(is.onionmat(A*diag(2)))
+    expect_true(is.onionmat(A/diag(2)))
+    expect_true(is.onionmat(diag(2)*A))
+    expect_true(is.onionmat(diag(2)/A))
+
+    expect_error(is.onionmat(diag(2)^A))
+    expect_true(is.onionmat(A^diag(2)))
+    expect_error(A %% diag(2))
+    expect_error(diag(2) %% A )
+
+    
 })

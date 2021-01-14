@@ -137,9 +137,6 @@ setMethod("diag",signature(x="onion"),
 }
 
 "onionmat_arith_onionmat" <- function(e1,e2){ # e1, e2 onionmats  ELEMENTWISE
-  if(is.matrix(e1)){e1 <- newonionmat(as.onion(c(e1),e2),e1)}
-  if(is.matrix(e2)){e2 <- newonionmat(as.onion(c(e2),e1),e2)}
-
   switch(.Generic,
          "+" = onionmat_plus_onionmat(e1, e2),
          "-" = onionmat_plus_onionmat(e1, onionmat_negative(e2)),

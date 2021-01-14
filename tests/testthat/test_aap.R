@@ -165,5 +165,16 @@ test_that("Test suite aap.R",{
   expect_false(is.octonion(as.onion(1:4,matrix(rquat(1),2,2))))
   expect_true(is.octonion(as.onion(1:4,matrix(roct(1),2,2))))
 
+  expect_true(is.onion(drop(matrix(Hi,1,3))))
+  expect_false(is.onionmat(drop(matrix(Hi,1,3))))
+
+  o <- as.onion(c(1,1e-20,1e-20,1e-20),single=TRUE)
+  expect_false(Im(o)==0)
+  expect_true(Im(zapsmall(o))==0)
+
+  o <- onionmat(o,2,2)
+  expect_false(all(Im(o)==0))
+  expect_true(all(Im(zapsmall(o))==0))
+
   
 })
