@@ -160,7 +160,10 @@ test_that("Test suite aap.R",{
   expect_false(is.octonion(as.quaternion(rquat(4))))
   expect_false(is.quaternion(as.octonion(roct(4))))
 
-  
+  expect_true(is.quaternion(as.onion(1:4,matrix(rquat(1),2,2))))
+  expect_false(is.quaternion(as.onion(1:4,matrix(roct(1),2,2))))
+  expect_false(is.octonion(as.onion(1:4,matrix(rquat(1),2,2))))
+  expect_true(is.octonion(as.onion(1:4,matrix(roct(1),2,2))))
 
   
 })

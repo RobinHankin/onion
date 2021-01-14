@@ -107,8 +107,8 @@ setMethod("diag",signature(x="onion"),
 `single_power_onionmat` <- function(...){stop("not defined")} 
 `onionmat_power_onionmat` <- function(...){stop("not defined")}
 
-`onionmat_plus_matrix` <- function(e1,e2){newonionmat(getd(e1)+e2,getM(e1)+e2) }
-`onionmat_prod_matrix` <- function(e1,e2){newonionmat(getd(e1)*e2,getM(e1)*e2) }
+`onionmat_plus_matrix` <- function(e1,e2){newonionmat(getd(e1)+c(e2),getM(e1)+e2) }
+`onionmat_prod_matrix` <- function(e1,e2){newonionmat(getd(e1)*c(e2),getM(e1)*e2) }
 `onionmat_power_matrix` <- function(e1,e2){newonionmat(getd(e1)^c(e2),getM(e1)^e2) }
 
 `matrix_plus_onion` <- function(e1,e2){ # e1 [numeric] matrix, e2 onion
