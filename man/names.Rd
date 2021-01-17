@@ -14,7 +14,10 @@
 \alias{colnames,onion-method}
 \alias{colnames,onionmat-method}
 \alias{colnames<-,onionmat-method}
+\alias{dim}
+\alias{dim<-}
 \alias{dim,onionmat-method}
+\alias{dim<-,onionmat-method}
 \alias{dimnames,onionmat-method}
 \alias{dimnames<-,onionmat-method}
 \alias{nrow,onionmat-method}

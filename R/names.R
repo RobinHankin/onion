@@ -43,3 +43,10 @@ setGeneric("dim")
 setMethod("nrow","onionmat", function(x){nrow(getM(x))})
 setMethod("ncol","onionmat", function(x){ncol(getM(x))})
 setMethod("dim" ,"onionmat",function(x){dim  (getM(x))})
+
+setReplaceMethod("dim",signature(x="onionmat"), function(x,value){
+  M <- getM(x)
+  dim(M) <- value
+  newonionmat(getd(x),M)
+} )
+
