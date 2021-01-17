@@ -8,7 +8,7 @@ Quaternions and octonions in R
 [![Build
 Status](https://travis-ci.com/RobinHankin/onion.svg?branch=master)](https://travis-ci.com/RobinHankin/onion)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/onion)](https://cran.r-project.org/package=onion)
-[![Rdoc](http://www.rdocumentation.org/badges/version/onion)](http://www.rdocumentation.org/packages/onion)
+[![Rdoc](https://www.rdocumentation.org/badges/version/onion)](https://www.rdocumentation.org/packages/onion)
 <!-- badges: end -->
 
 # Overview
