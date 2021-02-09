@@ -13,7 +13,7 @@ surface of the bunny.
 }
 \value{as for format}
 \source{
-  \url{http://graphics.stanford.edu/data/3Dscanrep/}
+  \url{https://graphics.stanford.edu/data/3Dscanrep/}
 }
 \examples{
 data(bunny)

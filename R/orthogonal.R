@@ -1,5 +1,5 @@
-#' @details http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm
-#' @details http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+#' @details https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm
+#' @details https://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 
 
 `as.orthogonal` <- function(Q){  # converts a quaternion to an orthogonal matrix
