@@ -4,7 +4,7 @@ test_that("Test suite aac.R, tests on onionmats e.g. romat()",{
 testequal <- function(x,y){testzero(x-y)}
 testzero <- function(x, TOL= 1e-8){expect_true(max(Mod(x))<TOL)}
 
-n <- 4  # number of times to check
+n <- 2  # number of times to check
 checkerA <- function(a){  # following are pointwise operations
   testequal(a,a)
   testzero(a + (-1)*a)
@@ -43,7 +43,7 @@ checkerD <- function(a,b){
 }
 
 
-for(i in 1:10){
+for(i in seq_len(n)){
   checkerA(romat("quaternion",3,4))
   checkerA(romat("quaternion",3,5))
   checkerA(romat("octonion",3,4))

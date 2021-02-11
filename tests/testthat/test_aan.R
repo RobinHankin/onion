@@ -4,7 +4,7 @@ test_that("Test suite aan.R, functionality in matrix.R",{
 testequal <- function(x,y){testzero(x-y)}
 testzero <- function(x, TOL= 1e-8){expect_true(max(Mod(x))<TOL)}
 
-n <- 4  # number of times to check
+n <- 2  # number of times to check
 
 
 checker1 <- function(a){
