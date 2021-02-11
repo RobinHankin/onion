@@ -2,13 +2,14 @@ Quaternions and octonions in R
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![Build
 Status](https://travis-ci.com/RobinHankin/onion.svg?branch=master)](https://travis-ci.com/RobinHankin/onion)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/onion)](https://cran.r-project.org/package=onion)
 [![Rdoc](https://www.rdocumentation.org/badges/version/onion)](https://www.rdocumentation.org/packages/onion)
+[![Codecov test
+coverage](https://codecov.io/gh/RobinHankin/onion/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/onion/branch/master)
 <!-- badges: end -->
 
 # Overview
@@ -17,73 +18,68 @@ The `onion` package provides functionality for working with quaternions
 and octonions in R. A detailed vignette is provided in the package.
 
 Informally, the *quaternions*, usually denoted
-![\\mathbb{H}](https://latex.codecogs.com/png.latex?%5Cmathbb%7BH%7D
-"\\mathbb{H}"), are a generalization of the complex numbers represented
-as a four-dimensional vector space over the reals. An arbitrary
-quaternion ![q](https://latex.codecogs.com/png.latex?q "q") represented
-as
+![\\mathbb{H}](https://latex.codecogs.com/png.latex?%5Cmathbb%7BH%7D "\mathbb{H}"),
+are a generalization of the complex numbers represented as a
+four-dimensional vector space over the reals. An arbitrary quaternion
+![q](https://latex.codecogs.com/png.latex?q "q") represented as
 
-  
-![&#10;q=a + b\\mathbf{i} + c\\mathbf{j}+
-d\\mathbf{k}&#10;](https://latex.codecogs.com/png.latex?%0Aq%3Da%20%2B%20b%5Cmathbf%7Bi%7D%20%2B%20c%5Cmathbf%7Bj%7D%2B%20d%5Cmathbf%7Bk%7D%0A
-"
+![
 q=a + b\\mathbf{i} + c\\mathbf{j}+ d\\mathbf{k}
-")  
+](https://latex.codecogs.com/png.latex?%0Aq%3Da%20%2B%20b%5Cmathbf%7Bi%7D%20%2B%20c%5Cmathbf%7Bj%7D%2B%20d%5Cmathbf%7Bk%7D%0A "
+q=a + b\mathbf{i} + c\mathbf{j}+ d\mathbf{k}
+")
 
 where
-![a,b,c,d\\in\\mathbb{R}](https://latex.codecogs.com/png.latex?a%2Cb%2Cc%2Cd%5Cin%5Cmathbb%7BR%7D
-"a,b,c,d\\in\\mathbb{R}") and
-![\\mathbf{i},\\mathbf{j},\\mathbf{k}](https://latex.codecogs.com/png.latex?%5Cmathbf%7Bi%7D%2C%5Cmathbf%7Bj%7D%2C%5Cmathbf%7Bk%7D
-"\\mathbf{i},\\mathbf{j},\\mathbf{k}") are the quaternion units linked
-by the equations
+![a,b,c,d\\in\\mathbb{R}](https://latex.codecogs.com/png.latex?a%2Cb%2Cc%2Cd%5Cin%5Cmathbb%7BR%7D "a,b,c,d\in\mathbb{R}")
+and
+![\\mathbf{i},\\mathbf{j},\\mathbf{k}](https://latex.codecogs.com/png.latex?%5Cmathbf%7Bi%7D%2C%5Cmathbf%7Bj%7D%2C%5Cmathbf%7Bk%7D "\mathbf{i},\mathbf{j},\mathbf{k}")
+are the quaternion units linked by the equations
 
-  
-![&#10;\\mathbf{i}^2=&#10;\\mathbf{j}^2=&#10;\\mathbf{k}^2=&#10;\\mathbf{i}\\mathbf{j}\\mathbf{k}=-1.](https://latex.codecogs.com/png.latex?%0A%5Cmathbf%7Bi%7D%5E2%3D%0A%5Cmathbf%7Bj%7D%5E2%3D%0A%5Cmathbf%7Bk%7D%5E2%3D%0A%5Cmathbf%7Bi%7D%5Cmathbf%7Bj%7D%5Cmathbf%7Bk%7D%3D-1.
-"
+![
 \\mathbf{i}^2=
 \\mathbf{j}^2=
 \\mathbf{k}^2=
-\\mathbf{i}\\mathbf{j}\\mathbf{k}=-1.")  
+\\mathbf{i}\\mathbf{j}\\mathbf{k}=-1.](https://latex.codecogs.com/png.latex?%0A%5Cmathbf%7Bi%7D%5E2%3D%0A%5Cmathbf%7Bj%7D%5E2%3D%0A%5Cmathbf%7Bk%7D%5E2%3D%0A%5Cmathbf%7Bi%7D%5Cmathbf%7Bj%7D%5Cmathbf%7Bk%7D%3D-1. "
+\mathbf{i}^2=
+\mathbf{j}^2=
+\mathbf{k}^2=
+\mathbf{i}\mathbf{j}\mathbf{k}=-1.")
 
 which, together with distributivity, define quaternion multiplication.
 We can see that the quaternions are not commutative, for while
-![\\mathbf{i}\\mathbf{j}=\\mathbf{k}](https://latex.codecogs.com/png.latex?%5Cmathbf%7Bi%7D%5Cmathbf%7Bj%7D%3D%5Cmathbf%7Bk%7D
-"\\mathbf{i}\\mathbf{j}=\\mathbf{k}"), it is easy to show that
-![\\mathbf{j}\\mathbf{i}=-\\mathbf{k}](https://latex.codecogs.com/png.latex?%5Cmathbf%7Bj%7D%5Cmathbf%7Bi%7D%3D-%5Cmathbf%7Bk%7D
-"\\mathbf{j}\\mathbf{i}=-\\mathbf{k}"). Quaternion multiplication is,
-however, associative (the proof is messy and long).
+![\\mathbf{i}\\mathbf{j}=\\mathbf{k}](https://latex.codecogs.com/png.latex?%5Cmathbf%7Bi%7D%5Cmathbf%7Bj%7D%3D%5Cmathbf%7Bk%7D "\mathbf{i}\mathbf{j}=\mathbf{k}"),
+it is easy to show that
+![\\mathbf{j}\\mathbf{i}=-\\mathbf{k}](https://latex.codecogs.com/png.latex?%5Cmathbf%7Bj%7D%5Cmathbf%7Bi%7D%3D-%5Cmathbf%7Bk%7D "\mathbf{j}\mathbf{i}=-\mathbf{k}").
+Quaternion multiplication is, however, associative (the proof is messy
+and long).
 
 Defining
 
-  
-![&#10;\\left( a+b\\mathbf{i} + c\\mathbf{j}+
-d\\mathbf{k}\\right)^{-1}=&#10;\\frac{1}{a^2 + b^2 + c^2 +
-d^2}&#10;\\left(a-b\\mathbf{i} - c\\mathbf{j}-
-d\\mathbf{k}\\right)&#10;](https://latex.codecogs.com/png.latex?%0A%5Cleft%28%20a%2Bb%5Cmathbf%7Bi%7D%20%2B%20c%5Cmathbf%7Bj%7D%2B%20d%5Cmathbf%7Bk%7D%5Cright%29%5E%7B-1%7D%3D%0A%5Cfrac%7B1%7D%7Ba%5E2%20%2B%20b%5E2%20%2B%20c%5E2%20%2B%20d%5E2%7D%0A%5Cleft%28a-b%5Cmathbf%7Bi%7D%20-%20c%5Cmathbf%7Bj%7D-%20d%5Cmathbf%7Bk%7D%5Cright%29%0A
-"
+![
 \\left( a+b\\mathbf{i} + c\\mathbf{j}+ d\\mathbf{k}\\right)^{-1}=
 \\frac{1}{a^2 + b^2 + c^2 + d^2}
 \\left(a-b\\mathbf{i} - c\\mathbf{j}- d\\mathbf{k}\\right)
-")  
+](https://latex.codecogs.com/png.latex?%0A%5Cleft%28%20a%2Bb%5Cmathbf%7Bi%7D%20%2B%20c%5Cmathbf%7Bj%7D%2B%20d%5Cmathbf%7Bk%7D%5Cright%29%5E%7B-1%7D%3D%0A%5Cfrac%7B1%7D%7Ba%5E2%20%2B%20b%5E2%20%2B%20c%5E2%20%2B%20d%5E2%7D%0A%5Cleft%28a-b%5Cmathbf%7Bi%7D%20-%20c%5Cmathbf%7Bj%7D-%20d%5Cmathbf%7Bk%7D%5Cright%29%0A "
+\left( a+b\mathbf{i} + c\mathbf{j}+ d\mathbf{k}\right)^{-1}=
+\frac{1}{a^2 + b^2 + c^2 + d^2}
+\left(a-b\mathbf{i} - c\mathbf{j}- d\mathbf{k}\right)
+")
 
 shows that the quaternions are a division algebra: division works as
 expected (although one has to be careful about ordering terms).
 
 The *octonions*
-![\\mathbb{O}](https://latex.codecogs.com/png.latex?%5Cmathbb%7BO%7D
-"\\mathbb{O}") are essentially a pair of quaternions, with a general
-octonion written
+![\\mathbb{O}](https://latex.codecogs.com/png.latex?%5Cmathbb%7BO%7D "\mathbb{O}")
+are essentially a pair of quaternions, with a general octonion written
 
-  
-![a+b\\mathbf{i}+c\\mathbf{j}+d\\mathbf{k}+e\\mathbf{l}+f\\mathbf{il}+g\\mathbf{jl}+h\\mathbf{kl}](https://latex.codecogs.com/png.latex?a%2Bb%5Cmathbf%7Bi%7D%2Bc%5Cmathbf%7Bj%7D%2Bd%5Cmathbf%7Bk%7D%2Be%5Cmathbf%7Bl%7D%2Bf%5Cmathbf%7Bil%7D%2Bg%5Cmathbf%7Bjl%7D%2Bh%5Cmathbf%7Bkl%7D
-"a+b\\mathbf{i}+c\\mathbf{j}+d\\mathbf{k}+e\\mathbf{l}+f\\mathbf{il}+g\\mathbf{jl}+h\\mathbf{kl}")  
+![a+b\\mathbf{i}+c\\mathbf{j}+d\\mathbf{k}+e\\mathbf{l}+f\\mathbf{il}+g\\mathbf{jl}+h\\mathbf{kl}](https://latex.codecogs.com/png.latex?a%2Bb%5Cmathbf%7Bi%7D%2Bc%5Cmathbf%7Bj%7D%2Bd%5Cmathbf%7Bk%7D%2Be%5Cmathbf%7Bl%7D%2Bf%5Cmathbf%7Bil%7D%2Bg%5Cmathbf%7Bjl%7D%2Bh%5Cmathbf%7Bkl%7D "a+b\mathbf{i}+c\mathbf{j}+d\mathbf{k}+e\mathbf{l}+f\mathbf{il}+g\mathbf{jl}+h\mathbf{kl}")
 
 (other notations are sometimes used); Baez gives a multiplication table
 for the unit octonions and together with distributivity we have a
 well-defined division algebra. However, octonion multiplication is not
-associative and we have ![x(yz)\\neq
-(xy)z](https://latex.codecogs.com/png.latex?x%28yz%29%5Cneq%20%28xy%29z
-"x(yz)\\neq (xy)z") in general.
+associative and we have
+![x(yz)\\neq (xy)z](https://latex.codecogs.com/png.latex?x%28yz%29%5Cneq%20%28xy%29z "x(yz)\neq (xy)z")
+in general.
 
 # Installation
 
@@ -186,9 +182,9 @@ x*(y*z) - (x*y)*z
 
 # References
 
-  - RKS Hankin (2006). “Normed division algebras with R: introducing the
+-   RKS Hankin (2006). “Normed division algebras with R: introducing the
     onion package”. *R News*, 6(2):49-52
-  - JC Baez (2001). “The octonions”. *Bulletin of the American
+-   JC Baez (2001). “The octonions”. *Bulletin of the American
     Mathematical Society*, 39(5), 145–205
 
 # Further information
