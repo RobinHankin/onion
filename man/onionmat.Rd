@@ -208,9 +208,11 @@ onionmat_matrixprod_onion(x,y)
 \details{
 
   An object of class \code{onionmat} is a two-element list, the first of
-  which is an onion, and the second an integer matrix used for tracking
-  attributes such as dimensions and dimnames.  This device makes the
-  extraction and replacement methods easy.  
+  which is an onion, and the second an index matrix of integers used for
+  tracking attributes such as dimensions and dimnames.  This device
+  makes the extraction and replacement methods easy.  Use \code{getM()}
+  to access the index matrix and \code{getd()} to access the onionic
+  vector.
 
   The S4 method for \code{matrix()} simply dispatches to
   \code{onionmat()}, which is a drop-in replacement for \code{matrix()}.
