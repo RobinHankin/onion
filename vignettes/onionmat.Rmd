@@ -31,12 +31,12 @@ romat()
 
 This illustrates many features of the package.  An `onionmat` object
 has two slots.  The first slot, `x`, is an onion [a vector of
-quaternions or octonions] and the second, `M`, a matrix, which is used
-to store attributes such as dimensions and dimnames.  The elements of
-`M` and `d` are in bijective correspondence; thus element `[b,AR]` is
-number 17 and this is seen to be approximately $-0.81 + 0.24i -1.43j
-+0.37k$.  Most R idiom will work with such objects, here is a brief
-sample.
+quaternions or octonions] and the second, `M`, an integer matrix,
+which is used to store attributes such as dimensions and dimnames.
+The elements of `M` and `d` are in bijective correspondence; thus
+element `[b,AR]` is number 17 and this is seen to be approximately
+$-0.81 + 0.24i -1.43j +0.37k$.  Most R idiom will work with such
+objects, here is a brief sample.
 
 ```{r}
 A <- matrix(rquat(21),7,3)  # matrix() calls onion::onionmat()
@@ -146,7 +146,7 @@ First we define the Jordan product:
 then create a couple of random Hermitian octonionic matrices:
 ```{r}
 x <- cprod(matrix(roct(12),4,3))
-y <- cprod(matrix(roct(12),4,3))
+y <- cprod(matrix(roct(12),4,3)) # x and y are 3-by-3 Hermitian octonionic matrices
 ```
 
 We first verify numerically that the Jordan product of two Hermitian
@@ -166,4 +166,13 @@ max(Mod(LHS-RHS))  # zero to numerical precision
 ```
 
 showing that the Jordan identity is satisfied, up to a small numerical
-tolerance.
+tolerance.  However, $4\times 4$ octonionic matrices do not satisfy
+the Jordan identity:
+
+```{r}
+x <- cprod(matrix(roct(16),4,4))
+y <- cprod(matrix(roct(16),4,4)) # x and y are 4-by-4 Hermitian octonionic matrices
+LHS <- (x %o% y) %o% (x %o% x)
+RHS <- x %o% (y %o% (x %o% x))
+max(Mod(LHS-RHS))  # miles off
+```
