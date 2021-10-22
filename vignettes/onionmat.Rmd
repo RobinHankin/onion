@@ -7,7 +7,7 @@ output:
     df_print: paged
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{involutions}
+  %\VignetteIndexEntry{onionmat}
   %\usepackage[utf8]{inputenc}
 ---
 
@@ -31,7 +31,7 @@ romat()
 
 This illustrates many features of the package.  An `onionmat` object
 has two slots.  The first slot, `x`, is an onion [a vector of
-quaternions or octonions] and the second, `M`, an integer matrix,
+quaternions or octonions] and the second, `M`, an integer matrix
 which is used to store attributes such as dimensions and dimnames.
 The elements of `M` and `d` are in bijective correspondence; thus
 element `[b,AR]` is number 17 and this is seen to be approximately
