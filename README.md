@@ -4,12 +4,7 @@ Quaternions and octonions in R
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
-[![Build
-Status](https://travis-ci.com/RobinHankin/onion.svg?branch=master)](https://travis-ci.com/RobinHankin/onion)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/onion)](https://cran.r-project.org/package=onion)
-[![Rdoc](https://www.rdocumentation.org/badges/version/onion)](https://www.rdocumentation.org/packages/onion)
-[![Codecov test
-coverage](https://codecov.io/gh/RobinHankin/onion/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/onion/branch/master)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/onion)](https://cran.r-project.org/package=onion)
 <!-- badges: end -->
 
 # Overview

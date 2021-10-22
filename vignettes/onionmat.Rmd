@@ -116,8 +116,9 @@ tcprod(A) - A %*% ht(A)
 
 ## Octonions
 
-Consider the following $3\times 3$ octonionic matrices:
-
+Here I consider $3\times 3$ Hermitian octonionic matrices which are
+known be a special case of a Jordan algebra (see the `jordan` package
+for more systematic Jordan algebra R functionality).
 
 ```{r}
 x <- cprod(matrix(roct(12),4,3))
@@ -144,6 +145,7 @@ First we define the Jordan product:
 ```
 
 then create a couple of random Hermitian octonionic matrices:
+
 ```{r}
 x <- cprod(matrix(roct(12),4,3))
 y <- cprod(matrix(roct(12),4,3)) # x and y are 3-by-3 Hermitian octonionic matrices
