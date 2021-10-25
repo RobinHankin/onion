@@ -16,6 +16,7 @@ README.md~
 
 # RStudio files
 .Rproj.user/
+*.Rproj
 
 # produced vignettes
 vignettes/*.html
@@ -55,3 +56,7 @@ inst/*.S~
 *.utf8.md
 *.knit.md
 .Rproj.user
+
+# dll and o files
+src/*.dll
+src/*.o
