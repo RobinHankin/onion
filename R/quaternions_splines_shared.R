@@ -25,7 +25,7 @@
     stop("The interpolating times must be within the range of `keyTimes`.")
   }
   if(t < lastKeyTime){
-    idx <- findInterval(trunc(t), keyTimes, left.open = TRUE)
+    idx <- findInterval(t, keyTimes, left.open = FALSE, rightmost.closed = TRUE)
   }else{ # t = lastKeyTime
     idx <- n_keyTimes - 2L
   }

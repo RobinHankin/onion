@@ -91,7 +91,7 @@ BarryGoldman <- function(keyRotors, keyTimes = NULL, times, n_intertimes){
   keyRotors <- .check_keyRotors(keyRotors, closed = TRUE)
   n_keyRotors <- length(keyRotors)
   if(is.null(keyTimes) && !missing(n_intertimes)){
-    stopifnot(isPositiveInteger(n_intertimes))
+    stopifnot(.isPositiveInteger(n_intertimes))
     times <- seq(
       1, n_keyRotors, length.out = n_intertimes * (n_keyRotors - 1L) + 1L
     )
@@ -106,7 +106,7 @@ BarryGoldman <- function(keyRotors, keyTimes = NULL, times, n_intertimes){
       }
       return(out)
     }
-    idx <- .check_time(t, keyTimes) + 1L
+    idx <- .check_time(t, keyTimes) #+ 1L
     q0 <- keyRotors[idx]
     q1 <- keyRotors[idx + 1L]
     t0 <- keyTimes[idx]

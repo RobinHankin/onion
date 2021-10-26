@@ -1,5 +1,5 @@
 .select_segment_and_normalize_t <- function(segments, keyTimes, t){
-  idx <- .check_time(t, keyTimes) + 1L
+  idx <- .check_time(t, keyTimes) #+ 1L
   t0 <- keyTimes[idx]
   t1 <- keyTimes[idx+1L]
   delta_t <- t1 - t0
