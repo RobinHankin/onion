@@ -32,7 +32,9 @@ of the key times; this parameter can be missing if \code{keyTimes} is
 \code{keyTimes} should be \code{NULL} and \code{times} is constructed by
 linearly interpolating the automatic key times such that there are
 \code{n_intertimes - 1} between two key times (so the times are the key
-times if \code{n_intertimes = 1})}
+times if \code{n_intertimes = 1}); if you don't want to use the automatic
+key times (\code{keyTimes=NULL}), you can perform such an interpolation
+with the function \code{\link{interpolateTimes}}}
 
 \item{endcondition}{start/end conditions, can be \code{"closed"} or
 \code{"natural"}}

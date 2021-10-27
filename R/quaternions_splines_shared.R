@@ -39,3 +39,24 @@
 .isPositiveInteger <- function(x){
   is.numeric(x) && (length(x) == 1L) && (!is.na(x)) && (floor(x) == x)
 }
+
+#' @title Interpolate a vector of times
+#' @description Linearly interpolate an increasing vector of times. This is
+#'   useful to deal with the quaternions splines.
+#'
+#' @param times increasing vector of times
+#' @param n integer, controls the number of interpolations: there will be
+#'   \code{n-1} time values between two consecutive original times
+#'
+#' @return A vector, a refinement of the \code{times} vector.
+#' @export
+#'
+#' @examples
+#' interpolateTimes(1:4, n = 3)
+interpolateTimes <- function(times, n){
+  stopifnot(.isPositiveInteger(n))
+  n_times <- length(times)
+  seq(
+    times[1L], times[n_times], length.out = n * (n_times - 1L) + 1L
+  )
+}

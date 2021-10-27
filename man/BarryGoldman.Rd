@@ -20,7 +20,9 @@ is \code{NULL} and \code{n_intertimes} is not missing}
 \code{keyTimes} should be \code{NULL} and \code{times} is constructed by
 linearly interpolating the automatic key times such that there are
 \code{n_intertimes - 1} between two key times (so the times are the key
-times if \code{n_intertimes = 1})}
+times if \code{n_intertimes = 1}); if you don't want to use the automatic
+key times (\code{keyTimes=NULL}), you can perform such an interpolation
+with the function \code{\link{interpolateTimes}}}
 }
 \value{
 A vector of unit quaternions with the same length as \code{times}.
@@ -83,5 +85,5 @@ spheres3d(points, radius = 0.2, color = "midnightblue")
 spheres3d(keyPoints, radius = 0.25, color = "red")
 }
 \author{
-Stéphane Laurent. Original Python code by Matthias Geier.
+St\u00e9phane Laurent. Original Python code by Matthias Geier.
 }
