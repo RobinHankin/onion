@@ -104,6 +104,14 @@ spheres3d(0, 0, 0, radius = 5, color = "lightgreen")
 spheres3d(points, radius = 0.2, color = "midnightblue")
 spheres3d(keyPoints, radius = 0.25, color = "red")
 }
+\references{
+Doris H. U. Kochanek and Richard H. Bartels.
+  \emph{Interpolating splines with local tension, continuity,
+  and bias control.}.
+  11th Annual Conference on Computer Graphics and Interactive Techniques,
+  33–41, 1984.
+  <doi:10.1145/800031.808575>
+}
 \author{
 Stéphane Laurent. Original Python code by Matthias Geier.
 }
