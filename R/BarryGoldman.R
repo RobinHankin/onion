@@ -106,7 +106,7 @@ BarryGoldman <- function(keyRotors, keyTimes = NULL, times, n_intertimes){
       }
       return(out)
     }
-    idx <- .check_time(t, keyTimes) #+ 1L
+    idx <- .check_time(t, keyTimes, special = TRUE) #+ 1L
     q0 <- keyRotors[idx]
     q1 <- keyRotors[idx + 1L]
     t0 <- keyTimes[idx]

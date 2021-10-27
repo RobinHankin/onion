@@ -89,6 +89,9 @@ DeCasteljau <- function(
     }
     newTimes <- cumsum(integrated_speed)
     s2t <- Vectorize(function(s){
+      if(s == newTimes[length(newTimes)]){
+        return(keyTimes[length(keyTimes)])
+      }
       idx <- .check_time(s, newTimes) #+ 1L
       s <- s - newTimes[idx]
       t0 <- keyTimes[idx]

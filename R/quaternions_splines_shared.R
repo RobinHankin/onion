@@ -18,7 +18,7 @@
   keyTimes
 }
 
-.check_time <- function(t, keyTimes){
+.check_time <- function(t, keyTimes, special = FALSE){
   n_keyTimes <- length(keyTimes)
   lastKeyTime <- keyTimes[n_keyTimes]
   if(t < keyTimes[1L] || t > lastKeyTime){
@@ -27,7 +27,11 @@
   if(t < lastKeyTime){
     idx <- findInterval(t, keyTimes, left.open = FALSE, rightmost.closed = TRUE)
   }else{ # t = lastKeyTime
-    idx <- n_keyTimes - 2L
+    if(special){
+      idx <- n_keyTimes - 2L
+    }else{
+      idx <- n_keyTimes - 1L
+    }
   }
   idx
 }
