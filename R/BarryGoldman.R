@@ -74,9 +74,9 @@ BarryGoldman <- function(keyRotors, keyTimes = NULL, times, n_intertimes){
   n_keyRotors <- length(keyRotors)
   if(is.null(keyTimes) && !missing(n_intertimes)){
     stopifnot(.isPositiveInteger(n_intertimes))
-    times <- seq(
+    times <- head(seq(
       1, n_keyRotors, length.out = n_intertimes * (n_keyRotors - 1L) + 1L
-    )
+    ), -1L)
   }
   keyTimes <- .check_keyTimes(keyTimes, n_keyRotors)
   n_keyTimes <- length(keyTimes)
