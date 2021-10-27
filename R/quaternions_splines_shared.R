@@ -53,10 +53,13 @@
 #'
 #' @examples
 #' interpolateTimes(1:4, n = 3)
+#' interpolateTimes(c(1, 2, 4), n = 3)
 interpolateTimes <- function(times, n){
   stopifnot(.isPositiveInteger(n))
   n_times <- length(times)
-  seq(
-    times[1L], times[n_times], length.out = n * (n_times - 1L) + 1L
-  )
+  newtimes <- numeric(0L)
+  for(i in seq_len(n_times-1L)){
+    newtimes <- c(newtimes, seq(times[i], times[i+1L], length.out = n + 1L))
+  }
+  newtimes
 }

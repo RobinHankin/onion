@@ -19,4 +19,5 @@ Linearly interpolate an increasing vector of times. This is
 }
 \examples{
 interpolateTimes(1:4, n = 3)
+interpolateTimes(c(1, 2, 4), n = 3)
 }
