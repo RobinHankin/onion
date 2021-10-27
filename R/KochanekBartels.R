@@ -292,6 +292,9 @@ KochanekBartels <- function(
     times <- seq(
       1, n_keyRotors, length.out = n_intertimes * (n_keyRotors - 1L) + 1L
     )
+    if(closed){
+      times <- head(times, -1L)
+    }
   }
   keyTimes <- .check_keyTimes(keyTimes, n_keyRotors)
   triples <- .check_endcondition(endcondition, keyRotors, keyTimes)
