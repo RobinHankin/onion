@@ -1,5 +1,5 @@
 .select_segment_and_normalize_t <- function(segments, keyTimes, t){
-  idx <- .check_time(t, keyTimes) #+ 1L
+  idx <- .check_time(t, keyTimes) + 1L
   t0 <- keyTimes[idx]
   t1 <- keyTimes[idx+1L]
   delta_t <- t1 - t0
@@ -33,36 +33,90 @@
 #'   increasing vector of length \code{length(segments)+1}; if \code{NULL},
 #'   it is set to \code{1, 2, ..., length(segments)+1}
 #' @param times the interpolating times, they must lie within the range of
-#'   \code{keyTimes}
+#'   \code{keyTimes}; ignored if \code{constantSpeed=TRUE}
+#' @param constantSpeed Boolean, whether to re-parameterize the spline to
+#'   have constant speed; in this case, \code{"times"} is ignored and a
+#'   function is returned, with an attribute \code{"times"}, the vector of
+#'   new times corresponding to the key rotors
 #'
-#' @return A vector of quaternions having the same length as \code{times}.
+#' @return A vector of quaternions having the same length as \code{times},
+#'   or a function if \code{constantSpeed=TRUE}.
 #' @export
 #'
 #' @note This algorithm is rather for internal purpose. It serves for example
 #'   as a base for the \link[=KochanekBartels]{Konachek-Bartels} algorithm.
-DeCasteljau <- function(segments, keyTimes = NULL, times){
+DeCasteljau <- function(
+  segments, keyTimes = NULL, times, constantSpeed = FALSE
+){
   n_segments <- length(segments)
   if(is.null(keyTimes)){
     keyTimes <- seq_len(n_segments + 1L)
   }else if(length(keyTimes) != n_segments + 1L){
     stop("Number of key times must be one more than number of segments.")
   }
-  evaluate <- function(t){
+  evaluate <- function(t, value){
     if((n_times <- length(t)) > 1L){
       out <- quaternion(n_times)
       for(j in seq_len(n_times)){
-        out[j] <- evaluate(t[j])
+        out[j] <- evaluate(t[j], value)
       }
       return(out)
     }
     x <- .select_segment_and_normalize_t(segments, keyTimes, t)
     segment <- x[["segment"]]
     s       <- x[["time"]]
-    # delta_t <- x[["difftime"]]
     quats <- .reduce_de_casteljau(segment, s)
-    .slerp(quats[1L], quats[2L], s)
+    if(!value){
+      tangent <- log(quats[2L] * onion_inverse(quats[1L]))
+      degree <- length(segment) - 1L
+      tangent * 2 * degree / x[["difftime"]]
+    }else{
+      .slerp(quats[1L], quats[2L], s)
+    }
   }
-  evaluate(times)
+  if(constantSpeed){
+    f <- function(t) evaluate(t, FALSE)
+    t0 <- head(keyTimes, -1L)
+    t1 <- keyTimes[-1L]
+    intervals <- cbind(t0, t1)
+    speed <- function(t){
+      sqrt(apply(as.matrix(f(t))[-1L,], 2L, crossprod))
+    }
+    integrated_speed <- 0
+    for(i in seq_len(nrow(intervals))){
+      integral <- integrate(speed, intervals[i, 1L], intervals[i, 2L])
+      integrated_speed <- c(integrated_speed, integral[["value"]])
+    }
+    newTimes <- cumsum(integrated_speed)
+    s2t <- Vectorize(function(s){
+      idx <- .check_time(s, newTimes) #+ 1L
+      s <- s - newTimes[idx]
+      t0 <- keyTimes[idx]
+      t1 <- keyTimes[idx+1L]
+      l <- function(t){
+        integrate(speed, t0, t)[["value"]] - s
+      }
+      uniroot(l, c(t0, t1))[["root"]]
+    })
+    feval <- function(s){
+      if((n_s <- length(s)) > 1L){
+        out <- quaternion(n_s)
+        for(j in seq_len(n_s)){
+          out[j] <- feval(s[j])
+        }
+        return(out)
+      }
+      if(s < newTimes[1L] || s >= newTimes[length(newTimes)]){
+        warning("Evaluation of function outside its range, returning `NA`.")
+        return(NA_real_)
+      }
+      evaluate(s2t(s), value = TRUE)
+    }
+    attr(feval, "times") <- newTimes
+    feval
+  }else{
+    evaluate(times, value = TRUE)
+  }
 }
 
 .calculate_control_quaternions <- function(quaternions, times, tcb){
@@ -154,7 +208,8 @@ DeCasteljau <- function(segments, keyTimes = NULL, times){
 #'   continuity and bias
 #' @param times the times of interpolation; each time must lie within the range
 #'   of the key times; this parameter can be missing if \code{keyTimes} is
-#'   \code{NULL} and \code{n_intertimes} is not missing
+#'   \code{NULL} and \code{n_intertimes} is not missing, and it is ignored if
+#'   \code{constantSpeed=TRUE}
 #' @param n_intertimes should be missing if \code{times} is given; otherwise,
 #'   \code{keyTimes} should be \code{NULL} and \code{times} is constructed by
 #'   linearly interpolating the automatic key times such that there are
@@ -162,9 +217,13 @@ DeCasteljau <- function(segments, keyTimes = NULL, times){
 #'   times if \code{n_intertimes = 1})
 #' @param endcondition start/end conditions, can be \code{"closed"} or
 #'   \code{"natural"}
+#' @param constantSpeed Boolean, whether to re-parameterize the spline to
+#'   have constant speed; in this case, \code{"times"} is ignored and a
+#'   function is returned, with an attribute \code{"times"}, the vector of
+#'   new times corresponding to the key rotors
 #'
-#' @return A vector of unit quaternions of the same length as the \code{times}
-#'   vector.
+#' @return A vector of quaternions having the same length as the \code{times}
+#'   vector, or a (slow) function if \code{constantSpeed=TRUE}.
 #' @export
 #'
 #' @examples library(onion)
@@ -218,7 +277,8 @@ DeCasteljau <- function(segments, keyTimes = NULL, times){
 #' spheres3d(keyPoints, radius = 0.25, color = "red")
 KochanekBartels <- function(
   keyRotors, keyTimes = NULL, tcb = c(0, 0, 0),
-  times, n_intertimes, endcondition = "natural"
+  times, n_intertimes, endcondition = "natural",
+  constantSpeed = FALSE
 ){
   endcondition <- match.arg(endcondition, c("closed", "natural"))
   closed <- endcondition == "closed"
@@ -278,5 +338,5 @@ KochanekBartels <- function(
   segments <- lapply(4L*seq_len(length(control_points) %/% 4L)-3L, function(i){
     control_points[c(i, i+1L, i+2L, i+3L)]
   })
-  DeCasteljau(segments, keyTimes, times = times)
+  DeCasteljau(segments, keyTimes, times = times, constantSpeed = constantSpeed)
 }
