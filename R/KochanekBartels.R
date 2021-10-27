@@ -109,7 +109,7 @@ DeCasteljau <- function(
         }
         return(out)
       }
-      if(s < newTimes[1L] || s >= newTimes[length(newTimes)]){
+      if(s < newTimes[1L] || s > newTimes[length(newTimes)]){
         warning("Evaluation of function outside its range, returning `NA`.")
         return(NA_real_)
       }

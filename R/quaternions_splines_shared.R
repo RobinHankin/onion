@@ -51,6 +51,7 @@
 #' @param times increasing vector of times
 #' @param n integer, controls the number of interpolations: there will be
 #'   \code{n-1} time values between two consecutive original times
+#' @param last Boolean, whether to include or exclude the last element
 #'
 #' @return A vector, a refinement of the \code{times} vector.
 #' @export
@@ -58,12 +59,16 @@
 #' @examples
 #' interpolateTimes(1:4, n = 3)
 #' interpolateTimes(c(1, 2, 4), n = 3)
-interpolateTimes <- function(times, n){
+interpolateTimes <- function(times, n, last = TRUE){
   stopifnot(.isPositiveInteger(n))
   n_times <- length(times)
   newtimes <- numeric(0L)
   for(i in seq_len(n_times-1L)){
-    newtimes <- c(newtimes, seq(times[i], times[i+1L], length.out = n + 1L))
+    newtimes <- 
+      c(newtimes, seq(times[i], times[i+1L], length.out = n + 1L)[-n-1L])
+  }
+  if(last){
+    newtimes <- c(newtimes, times[n_times])
   }
   newtimes
 }
