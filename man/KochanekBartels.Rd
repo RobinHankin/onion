@@ -127,7 +127,7 @@ for(i in seq_len(n_keyPoints - 1L)){
 
 # Kochanek-Bartels quaternions spline with constant speed
 spline <- KochanekBartels(
-  keyRotors, endcondition = "closed", constantSpeed = TRUE, tcb = c(-1, 1, 0)
+  keyRotors, endcondition = "closed", constantSpeed = TRUE, tcb = c(-2, 1, 0)
 )
 times <- interpolateTimes(attr(spline, "times"), n = 10L)
 rotors1 <- spline(head(times, -1L)) # this step takes a while
@@ -141,7 +141,7 @@ for(i in seq_along(rotors1)){
 
 # Comparison with the non-constant speed Kochanek-Bartels quaternions spline
 rotors2 <- KochanekBartels(
-  keyRotors, n_intertimes = 10L, endcondition = "closed", tcb = c(-3, 1, 0)
+  keyRotors, n_intertimes = 10L, endcondition = "closed", tcb = c(-2, 1, 0)
 )
 points2 <- matrix(nrow = 0L, ncol = 3L)
 for(i in seq_along(rotors2)){
