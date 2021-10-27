@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{BarryGoldman}
 \alias{BarryGoldman}
 \title{Barry-Goldman quaternions spline}
@@ -85,5 +86,5 @@ spheres3d(points, radius = 0.2, color = "midnightblue")
 spheres3d(keyPoints, radius = 0.25, color = "red")
 }
 \author{
-St\u00e9phane Laurent. Original Python code by Matthias Geier.
+Stéphane Laurent. Original Python code by Matthias Geier.
 }

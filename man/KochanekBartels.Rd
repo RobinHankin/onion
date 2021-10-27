@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{KochanekBartels}
 \alias{KochanekBartels}
 \title{Kochanek-Bartels quaternions spline}

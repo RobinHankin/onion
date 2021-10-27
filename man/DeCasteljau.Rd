@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{DeCasteljau}
 \alias{DeCasteljau}
 \title{Spline using the De Casteljau algorithm}
