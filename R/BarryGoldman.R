@@ -1,21 +1,3 @@
-#' @description Adapter to ensure minimal angles between two successive
-#'   quaternions.
-#' @noRd
-.canonicalized <- function(quaternions){
-  n_quaternions <- length(quaternions)
-  out <- quaternion(length.out = n_quaternions)
-  p <- H1
-  for(i in seq_len(n_quaternions)){
-    q <- quaternions[i]
-    if(dotprod(p, q) < 0){
-      q <- -q
-    }
-    out[i] <- q
-    p <- q
-  }
-  out
-}
-
 #' @title Barry-Goldman quaternions spline
 #' @description Constructs a spline of unit quaternions by the Barry-Goldman
 #'   method.
