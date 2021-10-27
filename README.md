@@ -175,6 +175,21 @@ x*(y*z) - (x*y)*z
 #> kl -2.031907  1.159402e+01 -1.147093e+01 -1.264476e+00 -2.728531e+00
 ```
 
+## Quaternion splines
+
+The `onion` package allows to construct quaternion splines by
+interpolation. They can be used to construct spherical curves. Here is
+for example a spherical curve constructed with the help of a
+Barry-Goldman quaternion spline:
+
+![](https://raw.githubusercontent.com/RobinHankin/onion/master/inst/gifs/BarryGoldman.gif)
+
+And here is a spherical curve constructed with the help of a
+Kochanek-Bartels quaternion spline with non-zero values of the tension
+and the continuity parameters:
+
+![](https://raw.githubusercontent.com/RobinHankin/onion/master/inst/gifs/KochanekBartels.gif)
+
 # References
 
 -   RKS Hankin (2006). “Normed division algebras with R: introducing the
