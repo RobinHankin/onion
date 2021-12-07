@@ -13,7 +13,7 @@ Description:
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 License: GPL-2
 Depends: methods, R (>= 3.5.0)
-Suggests: testthat,knitr,rmarkdown,rgl
+Suggests: testthat, knitr, rmarkdown, rgl
 VignetteBuilder: knitr
 Imports: emulator
 URL: https://github.com/RobinHankin/onion

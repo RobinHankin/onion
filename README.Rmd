@@ -132,6 +132,12 @@ And here is a spherical curve constructed with the help of a Kochanek-Bartels qu
 
 ![](https://raw.githubusercontent.com/RobinHankin/onion/master/inst/gifs/KochanekBartels.gif)
 
+Finally, here are some spherical curves obtained with the help of a Kochanek-Bartels quaternion spline with a varying continuity parameter:
+
+![](https://raw.githubusercontent.com/RobinHankin/onion/master/inst/gifs/KochanekBartels_varyingContinuity.gif)
+
+
+
 
 # References
 
