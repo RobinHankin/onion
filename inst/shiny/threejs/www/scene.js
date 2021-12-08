@@ -5,6 +5,23 @@ $(document).ready(function () {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
 
+  //  var ambientLight = new THREE.AmbientLight(0x0000ff, 0.9);
+  //  scene.add(ambientLight);
+  const lights = [];
+  lights[0] = new THREE.PointLight(0xffffff, 1, 0);
+  lights[1] = new THREE.PointLight(0xffffff, 1, 0);
+  lights[2] = new THREE.PointLight(0xffffff, 1, 0);
+
+  lights[0].position.set(0, 200, 0);
+  lights[1].position.set(100, 200, 100);
+  lights[2].position.set(-100, -200, -100);
+
+  scene.add(lights[0]);
+  scene.add(lights[1]);
+  scene.add(lights[2]);
+
+  scene.add(camera);
+
   // dat.gui controls -------------------------------------------------
   var dgcontrols = new (function () {
     this.rotationSpeed = 0.01;
@@ -15,14 +32,43 @@ $(document).ready(function () {
   var object = new THREE.Object3D();
   scene.add(object);
 
-  const renderer = new THREE.WebGLRenderer();
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(width, height);
   div.appendChild(renderer.domElement);
 
-  const geomSphere = new THREE.SphereGeometry(5, 128, 128);
-  const materialSphere = new THREE.MeshNormalMaterial();
-  const meshSphere = new THREE.Mesh(geomSphere, materialSphere);
-  object.add(meshSphere);
+  const geomIco = new THREE.IcosahedronGeometry(5, 4);
+  //  const geomSphere = new THREE.SphereGeometry(5, 128, 128);
+  //  const materialSphere = new THREE.MeshNormalMaterial();
+  //var map = new THREE.TextureLoader().load("Rladies2.jpeg");
+  //map.wrapS = map.wrapT = THREE.RepeatWrapping;
+  //map.anisotropy = 16;
+  //map.repeat = new THREE.Vector2(7, 7);
+  //map.rotation = Math.PI / 2;
+  //var materialSphere = new THREE.MeshPhongMaterial({ map: map });
+  //  const meshSphere = new THREE.Mesh(geomSphere, materialSphere);
+  //  object.add(meshSphere);
+  const matIco = new THREE.MeshPhongMaterial({
+    color: 0x156289,
+    emissive: 0x072534, //  specular   :  new THREE.Color("rgb(0,0,128)"),
+    shininess: 2,
+    flatShading: true,
+    transparent: 1,
+    opacity: 1
+  });
+
+  const meshIco = new THREE.Mesh(geomIco, matIco);
+  object.add(meshIco);
+
+  const edges = new THREE.EdgesGeometry(geomIco);
+  const line = new THREE.LineSegments(
+    edges,
+    new THREE.LineBasicMaterial({
+      color: 0xffffff,
+      transparent: false,
+      opacity: 1
+    })
+  );
+  object.add(line);
 
   function sph2cart(rho, theta, phi) {
     return [
@@ -84,7 +130,8 @@ $(document).ready(function () {
 
   // equator
   const equatorMaterial = new THREE.LineBasicMaterial({
-    color: 0x000000
+    color: 0x000000,
+    linewidth: 3
   });
   const npoints = 100;
   var pts = [];
