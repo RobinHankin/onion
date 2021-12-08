@@ -67,5 +67,41 @@ $(document).ready(function () {
     renderer.render(scene, camera);
   };
 
+  var isDragging = false;
+  var previousMousePosition = { x: 0, y: 0 };
+
+  $(renderer.domElement)
+    .on("mousedown", function (e) {
+      isDragging = true;
+    })
+    .on("mousemove", function (e) {
+      var deltaMove = {
+        x: e.offsetX - previousMousePosition.x,
+        y: e.offsetY - previousMousePosition.y
+      };
+      if (isDragging) {
+        var deltaRotationQuaternion = new THREE.Quaternion().setFromEuler(
+          new THREE.Euler(
+            (Math.PI / 180) * (deltaMove.y * 1),
+            (Math.PI / 180) * (deltaMove.x * 1),
+            0,
+            "XYZ"
+          )
+        );
+        object.quaternion.multiplyQuaternions(
+          deltaRotationQuaternion,
+          object.quaternion
+        );
+      }
+      previousMousePosition = {
+        x: e.offsetX,
+        y: e.offsetY
+      };
+    });
+
+  $(document).on("mouseup", function (e) {
+    isDragging = false;
+  });
+
   animate();
 });
