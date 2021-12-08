@@ -32,6 +32,14 @@ $(document).ready(function () {
     ];
   }
 
+  function equator(rho, t) {
+    return new THREE.Vector3(
+      rho * Math.cos(2 * Math.PI * t),
+      rho * Math.sin(2 * Math.PI * t),
+      0
+    );
+  }
+
   // construction of the key points on the sphere
   const redmat = new THREE.MeshBasicMaterial({ color: 0xff0000 });
   var phi = 1.3;
@@ -73,6 +81,22 @@ $(document).ready(function () {
 
     renderer.render(scene, camera);
   };
+
+  // equator
+  const equatorMaterial = new THREE.LineBasicMaterial({
+    color: 0x000000
+  });
+  const npoints = 100;
+  var pts = [];
+  for (let i = 0; i <= npoints; i++) {
+    pts.push(equator(5, i / npoints));
+  }
+  const curve = new THREE.CatmullRomCurve3(pts);
+  const bgeometry = new THREE.BufferGeometry().setFromPoints(
+    curve.getPoints(200)
+  );
+  const curveObject = new THREE.Line(bgeometry, equatorMaterial);
+  object.add(curveObject);
 
   var isDragging = false;
   var previousMousePosition = { x: 0, y: 0 };
