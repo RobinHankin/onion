@@ -5,6 +5,13 @@ $(document).ready(function () {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
 
+  // dat.gui controls -------------------------------------------------
+  var dgcontrols = new (function () {
+    this.rotationSpeed = 0.01;
+  })();
+  var gui = new dat.GUI({ autoplace: false, width: 300 });
+  gui.add(dgcontrols, "rotationSpeed").min(0).max(0.05).name("Rotation speed");
+
   var object = new THREE.Object3D();
   scene.add(object);
 
@@ -61,8 +68,8 @@ $(document).ready(function () {
   const animate = function () {
     requestAnimationFrame(animate);
 
-    object.rotation.x += 0.01;
-    object.rotation.y += 0.01;
+    object.rotation.x += dgcontrols.rotationSpeed;
+    object.rotation.y += dgcontrols.rotationSpeed;
 
     renderer.render(scene, camera);
   };

@@ -4,6 +4,7 @@ shinyUI(
   fluidPage(
     tags$head(
       tags$script(src = "three.min.js"),
+      tags$script(src = "dat.gui.min.js"),
       tags$script(src = "scene.js")
     ),
     add_busy_spinner(
