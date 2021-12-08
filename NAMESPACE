@@ -6,5 +6,6 @@ importFrom("graphics", "persp", "plot", "points")
 importFrom("stats", "rbinom", "rnorm", "rpois", "runif", "uniroot", "integrate")
 importFrom("emulator", "cprod","tcprod","ht")
 importFrom("utils", "head")
+importFrom("shiny", "shinyAppDir")
 
 import("methods")
