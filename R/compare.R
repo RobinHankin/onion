@@ -10,7 +10,7 @@
   switch(.Generic,
          "==" =  out,
          "!=" = !out,
-         stop(paste("comparison operator \"", .Generic, "\" not defined for onions"))
+         stop(gettextf("comparison operator %s not defined for onions", dQuote(.Generic)))
          )
 }
 
@@ -36,7 +36,7 @@ setMethod("Compare",signature(e1 = "numeric", e2="onion"  ), onion_compare)
   switch(.Generic,
          "==" = return( onionmat_equal_onionmat(e1,e2)),
          "!=" = return(!onionmat_equal_onionmat(e1,e2)),
-         stop(paste("comparision operator \"", .Generic, "\" not defined for onionmat objects"))
+         stop(gettextf("comparison operator %s not defined for onionmats", dQuote(.Generic)))
          )
 }
 
@@ -44,7 +44,7 @@ setMethod("Compare",signature(e1 = "numeric", e2="onion"  ), onion_compare)
   switch(.Generic,
          "==" = return( onionmat_equal_single(e1,e2)),
          "!=" = return(!onionmat_equal_single(e1,e2)),
-         stop(paste("comparision operator \"", .Generic, "\" not defined for onionmat objects"))
+         stop(gettextf("comparison operator %s not defined for onionmats", dQuote(.Generic)))
          )
 }
 
@@ -52,7 +52,7 @@ setMethod("Compare",signature(e1 = "numeric", e2="onion"  ), onion_compare)
   switch(.Generic,
          "==" = return( onionmat_equal_single(e2,e1)),
          "!=" = return(!onionmat_equal_single(e2,e1)),
-         stop(paste("comparision operator \"", .Generic, "\" not defined for onionmat objects"))
+         stop(gettextf("comparison operator %s not defined for onionmats", dQuote(.Generic)))
          )
 }
 

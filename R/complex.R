@@ -1,3 +1,4 @@
+
 "onion_complex" <- function(z){
   switch(.Generic,
          Arg  = stop("not defined for onions"),
@@ -5,7 +6,7 @@
          Im   = onion_imag(z),
          Mod  = onion_mod(z),
          Re   = onion_re(z),
-         stop(paste("Complex operator \"", .Generic, "\" not defined for onions"))
+         stop(gettextf("comparison operator %s not defined for onions", dQuote(.Generic)))
          )
 }
 
@@ -91,7 +92,7 @@ setMethod("Norm","onionmat",function(z){
          Im   = onionmat_imag(z),
          Mod  = onionmat_mod(z),
          Re   = onionmat_re(z),
-         stop(paste("Complex operator \"", .Generic, "\" not defined for onions"))
+         stop(gettextf("Complex operator %s not defined for onionmats", dQuote(.Generic)))
          )
 }
 

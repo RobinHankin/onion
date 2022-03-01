@@ -1,6 +1,9 @@
 setMethod("+", signature(e1 = "onion", e2 = "missing"), function(e1,e2){e1})
 setMethod("-", signature(e1 = "onion", e2 = "missing"), function(e1,e2){onion_negative(e1)})
 
+
+
+
 ## unary operators:
 `onion_negative` <- function(z){as.onion(-as.matrix(z))}
 `onion_inverse` <- function(z){as.onion(sweep(as.matrix(Conj(z)),2,Norm(z),FUN = "/"))}
@@ -12,7 +15,7 @@ setMethod("-", signature(e1 = "onion", e2 = "missing"), function(e1,e2){onion_ne
          "*" = onion_prod_onion(e1, e2),
          "/" = onion_prod_onion(e1, onion_inverse(e2)),
          "^" = stop("onion^onion not defined"),
-         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         stop(gettextf("binary operator %s not defined for onions", dQuote(.Generic)))
          )
 }
 
@@ -23,7 +26,7 @@ setMethod("-", signature(e1 = "onion", e2 = "missing"), function(e1,e2){onion_ne
          "*" = onion_prod_numeric (e1,  e2),
          "/" = onion_prod_numeric (e1,1/e2),
          "^" = onion_power_numeric(e1,  e2),
-         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+         stop(gettextf("binary operator %s not defined for onions", dQuote(.Generic)))
          )
 }
 
@@ -34,7 +37,7 @@ setMethod("-", signature(e1 = "onion", e2 = "missing"), function(e1,e2){onion_ne
          "*" = onion_prod_numeric(e2,  e1),
          "/" = onion_prod_numeric(onion_inverse(e2),e1),  # onions commute with numeric multiplication
          "^" = stop("x^onion not defined"),
-         stop(paste("binary operator \"", .Generic, "\" not defined for onions"))
+          stop(gettextf("binary operator %s not defined for onions", dQuote(.Generic)))
          )
 }
 
