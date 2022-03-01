@@ -2,6 +2,9 @@ Quaternions and octonions in R
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<img src="man/figures/onion.png" width = "150" align="right" />
+
 <!-- badges: start -->
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/onion)](https://cran.r-project.org/package=onion)

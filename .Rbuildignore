@@ -2,3 +2,8 @@
 ^\.Rproj\.user$
 ^README\.Rmd
 ^\.travis\.yml$
+^inst/BarryGoldman.R$
+^inst/onion_blue.png$
+^inst/onion.png$
+^inst/onion.svg$
+^inst/onion_stickermaker.R$
