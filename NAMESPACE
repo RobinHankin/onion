@@ -7,3 +7,4 @@ importFrom("stats", "rbinom", "rnorm", "rpois", "runif")
 importFrom("emulator", "cprod","tcprod","ht")
 
 import("methods")
+importClassesFrom(Matrix,index)

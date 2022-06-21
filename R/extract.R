@@ -1,5 +1,3 @@
-setClassUnion("index", members =  c("numeric", "logical", "character")) # taken from the Matrix package.
-
 setMethod("[", signature("onion",i="index",j="missing",drop="ANY"),function(x,i,j,drop){as.onion(as.matrix(x)[,i,drop=FALSE])})
 setMethod("[", signature("onion",i="index",j="ANY"    ,drop="ANY"),function(x,i,j,drop){stop('signature("onion",i="index",j="ANY",drop="ANY") infelicitous')})
 
