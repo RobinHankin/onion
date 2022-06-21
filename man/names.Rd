@@ -20,6 +20,7 @@
 \alias{dim<-,onionmat-method}
 \alias{dimnames,onionmat-method}
 \alias{dimnames<-,onionmat-method}
+\alias{dimnames<-,onionmat,ANY-method}
 \alias{nrow,onionmat-method}
 \alias{ncol,onionmat-method}
 \title{Names of an onionic vector}
