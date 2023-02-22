@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Hankin"
+  given-names: "Robin K. S."
+  orcid: "https://orcid.org/0000-0001-5982-0415"
+title: "Normed division algebras with R: Introducing the onion package,"
+version: 2.0-1
+url: "https://github.com/RobinHankin/onion"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Hankin"
+    given-names: "Robin K. S."
+    orcid: "https://orcid.org/0000-0001-5982-0415"
+  journal: "R News"
+  title: "Normed division algebras with R: Introducing the onion package,"
+  volume: 6
+  issue: 2
+  start: 49
+  end: 52
+  year: 2006
