@@ -44,12 +44,13 @@
   The \dfn{sign} of onion \eqn{O} is the onion with the same direction
   as \eqn{O} but with unit Norm: \code{sign(O)=O/Mod(O)}.
 
-  Function \code{Im()} sets the real component of its argument to zero,
-  and \code{Conj()} flips the sign of its argument's non-real
-  components.
-   
- }
- \usage{
+  Function \code{Im()} sets the real component of its argument to zero
+  and returns that; \code{Conj()} flips the sign of its argument's
+  non-real components.  Function \code{Re()} returns the real component
+  (first row) of its argument as a numeric vector.  If \code{x} is an
+  onion, then \code{x == Re(x) + Im(x)}.
+}
+\usage{
 \S4method{Re}{onion}(z)
 \S4method{Im}{onion}(z)
 Re(z) <- value
@@ -72,13 +73,15 @@ onion_conjugate(z)
 }
 \author{Robin K. S. Hankin}
 \note{
-  If \code{x} is a numeric vector and \code{y} an onion, one might expect
-  typing \code{x[1] <- y} to result in \code{x} being a onion.  This is
-  impossible, according to John Chambers.
+  If \code{x} is a numeric vector and \code{y} an onion, one might
+  expect typing \code{x[1] <- y} to result in \code{x} being a onion.
+  This is impossible, according to John Chambers.
 
-Extract and set methods for components such as \code{i,j,k} are
-documented at \code{Extract.Rd}
-  }
+  Extract and set methods for components such as \code{i,j,k} are
+  documented at \code{Extract.Rd}
+
+  Compare \code{clifford::Conj()}, which is more complicated.
+}
 \seealso{\code{\link{Extract}}}
 
 \examples{
