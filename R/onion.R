@@ -96,3 +96,6 @@ setMethod("rep","onion",function(x,  ...){
 
 setGeneric("zapsmall")
 setMethod("zapsmall","onion",function(x,digits=getOption("digits")){as.onion(zapsmall(as.matrix(x),digits=digits)) })
+
+`ad` <- function(x){ function(y){new("dot")[x,y] } }
+

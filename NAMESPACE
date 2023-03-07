@@ -7,4 +7,9 @@ importFrom("stats", "rbinom", "rnorm", "rpois", "runif")
 importFrom("emulator", "cprod","tcprod","ht")
 
 import("methods")
+import("mathjaxr")
+
 importClassesFrom(Matrix,index)
+
+importClassesFrom("freealg", "dot")
+importMethodsFrom("freealg", "[")

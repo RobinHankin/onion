@@ -1,0 +1,58 @@
+---
+title: "The dot: commutators and the Jacobi identity in the onion package"
+output: bookdown::html_document2
+---
+
+```{r setup,include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(echo = TRUE)
+library("onion")
+```
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/onion.png", package = "onion")`){width=10%}
+</p>
+
+This short document introduces the dot object in the `onion` package
+and shows how it can be used to work with commutators and verify the
+Jacobi identity.  The prototypical `dot.Rmd` is that of the `freealg`
+package.  The dot object is a (trivial) `S4` object of class `dot`:
+
+```{r}
+`.` <- new("dot")
+```
+
+The point of the dot (!) is that it allows one to calculate the Lie
+bracket $[x,y]=xy-yx$ using R idiom `.[x,y]`.  This is equivalent to
+`commutator(x,y)` but has more flexible syntax.  Thus:
+
+```{r}
+x <- rquat()
+y <- rquat()
+z <- rquat()
+commutator(x,y)
+.[x,y]
+```
+
+This is nonassociative:
+
+```{r nonassociative}
+.[x,.[y,z]] == .[.[x,y],z]
+```
+
+However, it does satisfy the Jacobi identity
+$\left[x,\left[y,z\right]\right]+\left[y,\left[z,x\right]\right]+
+\left[z,\left[x,y\right]\right]=0$:
+
+```{r verifyJacobi}
+.[x,.[y,z]] + .[y,.[z,x]] + .[z,.[x,y]]
+```
+
+### Package dataset {-}
+
+Following lines create `dot.rda`, residing in the `data/` directory
+of the package.
+
+```{r,label=saverowingingdataset}
+save(`.`,file="dot.rda")
+```

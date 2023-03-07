@@ -22,10 +22,9 @@ commutator(x1, x2)
 
   the commutator is \code{x1 * x2 - x2 * x1}.
 }
-\value{
-Returns an octonionic vector.
-}
+\value{Returns an octonionic vector}
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{dot}}}
 \examples{
 x <- roct(7) ; y <- roct(7) ; z <- roct(7)
 associator(x,y,z)
