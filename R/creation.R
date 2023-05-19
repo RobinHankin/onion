@@ -75,7 +75,7 @@
       out <- kronecker(t(x),c(1,rep(0,3)))
     }
   }
-  rownames(out) <- c("Re","i","j","k")
+  dimnames(out) <- list(NULL,colnames(out))
   return(new("quaternion",x=out))  # this is the only place new("quaternion",...) is called
 }
 
@@ -151,7 +151,7 @@
       out <- kronecker(t(x),c(1,rep(0,7)))
     }
   }
-  rownames(out) <- c("Re","i","j","k","l","il","jl","kl")
+  dimnames(out) <- list(NULL,colnames(out))
   return(new("octonion",x=out))  # this is the only place new("octonion",...) is called
 }
 

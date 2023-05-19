@@ -17,21 +17,35 @@ onion_show(x,h=getOption("show_onions_horizontally"))
 }
 \arguments{
   \item{x,object}{Onions}
-  \item{h}{Boolean, with default \code{FALSE} meaning to print
-    horizontally and \code{TRUE} meaning to print by columns.}
+  \item{h}{Boolean, with \code{TRUE} meaning to print by columns and any
+    other value  meaning to print horizontally}
 }
 \details{
-  If \code{options("horiz")} is \code{TRUE}, then print by rows rather
-  than columns (provided that the default value of argument \code{h} is
-  not overridden).  The default behaviour is to print by columns; do
-  this by setting \code{horiz} to anything other than \code{TRUE}, including
-  leaving it unset.
-  }
+
+  Default behaviour is to print by rows.   To print by columns, set
+  option \code{show_onions_horizontally} to \code{TRUE}:
+
+  \code{options("show_onions_horizontally" = TRUE)}
+
+  Any non-\code{TRUE} value (including \code{NULL} and its being unset)
+  will restore the default.
+  
+}
   
 \author{Robin K. S. Hankin}
-\note{Print method for \code{onionmat} objects is also sensitive to
+\note{The print method for \code{onionmat} objects is also sensitive to
   this option.}
 \examples{
-roct(4)
+
+
+x <- roct(15)
+x  #default
+
+options("show_onions_horizontally" = TRUE)
+roct(4) 
+
+options("show_onions_horizontally" = FALSE)  # restore default
+
+
 }
 \keyword{array}
