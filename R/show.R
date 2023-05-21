@@ -1,7 +1,5 @@
 setMethod("show", "onion", function(object){onion_show(object)})
 
-`.quatnames` <- c("Re","i","j","k")
-`.octnames`  <- c("Re","i","j","k","l","il","jl","kl")
 
 onion_to_string_lowlevel <- function(x,onames){
     if(all(x==0)){return("0")}
@@ -32,9 +30,9 @@ onion_to_string <- function(x){
     return(x)
   }
   if(nrow(x)==4){
-    rownames(x) <- .quatnames
+    rownames(x) <- c("Re","i","j","k")
   } else if (nrow(x)==8){
-    rownames(x) <- .octnames
+    rownames(x) <- c("Re","i","j","k","l","il","jl","kl")
   } else {
     stop()
   }

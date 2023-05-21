@@ -26,6 +26,11 @@ onion_show(x,comp=getOption("show_onions_compactly"),h=getOption("show_onions_ho
 }
 \details{
 
+  The names of the components of an onion (viz \code{Re}, \code{i},
+  \code{j}, \code{k} for quaternions and \code{Re}, \code{i}, \code{j},
+  \code{k}, \code{l},\code{il},\code{jl},\code{kl} for octonions) are
+  hard-wired in to function \code{onion_show()}.
+
   Default behaviour is to print by rows.   To print by columns, set
   option \code{show_onions_horizontally} to \code{TRUE}:
 
@@ -38,6 +43,10 @@ onion_show(x,comp=getOption("show_onions_compactly"),h=getOption("show_onions_ho
   \code{show_onions_compactly} to \code{TRUE}:
   
   \code{options("show_onions_compactly" = TRUE)}
+
+  This option works best for simple onions with integer entries (or at
+  least values with few decimal places), and especially if there are
+  many zero entries.
   
 }
   
