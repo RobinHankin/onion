@@ -1,5 +1,4 @@
-setMethod("show", "onion", function(object){onion_show(object)})
-
+setMethod("show", "onion", function(object){invisible(print(onion_show(object)))})
 
 onion_to_string_lowlevel <- function(x,onames){
     if(all(x==0)){return("0")}
@@ -47,7 +46,5 @@ onion_to_string <- function(x){
           out <- x
       }
   }
-  return(invisible(print(out)))
+  return(out)
 }
-
-
