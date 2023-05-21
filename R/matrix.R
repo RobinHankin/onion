@@ -68,6 +68,17 @@ romat <- function(type="quaternion",nrow=5, ncol=6, ...){
   return(out)
 }
 
+rsomat  <- function(type="quaternion",nrow=5, ncol=6, ...){
+  out <- romat(type=type,nrow=nrow,ncol=ncol, ...)
+  jj <- switch(type,
+              octonion = rsoct(nrow*ncol,...),
+              rsquat(nrow*ncol,...)  # quaternion
+              )
+  out[] <- jj
+  return(out)
+}
+
+
 setGeneric("nrow")
 setGeneric("ncol")
 setMethod("nrow","onionmat",function(x){nrow(getM(x))})
@@ -300,13 +311,25 @@ setMethod("t","onionmat",function(x){ # NB1: this  ensures that emulator::ht() w
   return(out)
 }
 
-setMethod("show", "onionmat", function(object){onionmat_show(object)})
+setMethod("show", "onionmat", function(object){
+  if(isTRUE(getOption("show_onionmat_entries_in_place"))){
+    onionmat_show(object)
+  } else {
+    onionmat_show_in_place(object)
+  }
+})
+
 
 `onionmat_show` <- function(object,...){
   print(getd(object))
   print(getM(object))
   return(object)
 }
+
+`onionmat_show_in_place` <- function(object,...){
+  object[] <- onion_to_string(object)
+  print(object)
+  return(object)
 
 setGeneric("cprod",function(x,y){standardGeneric("cprod")})
 setMethod("cprod",signature=c(x="onionmat",y="onionmat"),function(x,y){om_cprod(x,y)})
