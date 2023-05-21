@@ -16,8 +16,19 @@ onion_to_string <- function(x){
     noquote(apply(as.matrix(x),2,onion_to_string_lowlevel,onames=rownames(x)))
 }
 
+comp_names <- function(x){
+  if(is.onion(x)){x <- as.character(class(x))}  # otherwise we assume it is a string, e.g. "quat"
+  switch(x,
+         quaternion = c("Re","i","j","k"),
+         octonion = c("Re","i","j","k","l","il","jl","kl"),
+         stop("currently, only quaternions and octonions have component names")
+         )
+}
+
 `onion_show` <- function(x,comp=getOption("show_onions_compactly"),h=getOption("show_onions_horizontally")){
+  jjnames <- comp_names(x)
   x <- as.matrix(x)
+
   if(ncol(x)==0){
     if(nrow(x)==4){
       cat("the NULL quaternion\n")
@@ -28,13 +39,8 @@ onion_to_string <- function(x){
     }
     return(x)
   }
-  if(nrow(x)==4){
-    rownames(x) <- c("Re","i","j","k")
-  } else if (nrow(x)==8){
-    rownames(x) <- c("Re","i","j","k","l","il","jl","kl")
-  } else {
-    stop()
-  }
+
+  rownames(x) <- jjnames
 
   if(isTRUE(comp)){
       out <- onion_to_string(x)

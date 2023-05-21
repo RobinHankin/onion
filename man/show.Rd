@@ -11,11 +11,13 @@
 \alias{onionmat_show}
 \alias{onion_to_string_lowlevel}
 \alias{onion_to_string}
+\alias{comp_names}
 \title{Print method for onions}
 \description{Show methods for onions}
 \usage{
 \S4method{show}{onion}(object)
 onion_show(x,comp=getOption("show_onions_compactly"),h=getOption("show_onions_horizontally"))
+comp_names(x)
 }
 \arguments{
   \item{x,object}{Onions}
@@ -26,12 +28,7 @@ onion_show(x,comp=getOption("show_onions_compactly"),h=getOption("show_onions_ho
 }
 \details{
 
-  The names of the components of an onion (viz \code{Re}, \code{i},
-  \code{j}, \code{k} for quaternions and \code{Re}, \code{i}, \code{j},
-  \code{k}, \code{l},\code{il},\code{jl},\code{kl} for octonions) are
-  hard-wired in to function \code{onion_show()}.
-
-  Default behaviour is to print by rows.   To print by columns, set
+  Default behaviour is to print by rows.  To print by columns, set
   option \code{show_onions_horizontally} to \code{TRUE}:
 
   \code{options("show_onions_horizontally" = TRUE)}
@@ -47,6 +44,12 @@ onion_show(x,comp=getOption("show_onions_compactly"),h=getOption("show_onions_ho
   This option works best for simple onions with integer entries (or at
   least values with few decimal places), and especially if there are
   many zero entries.
+
+  The \dQuote{names} of the components of an onion (viz \code{Re},
+  \code{i}, \code{j}, \code{k} for quaternions and \code{Re}, \code{i},
+  \code{j}, \code{k}, \code{l},\code{il},\code{jl},\code{kl} for
+  octonions) are given by function \code{comp_names()} which takes
+  either a character string or an onion.
   
 }
   
