@@ -55,7 +55,7 @@ comp_names(x)
   
 \author{Robin K. S. Hankin}
 \note{The print method for \code{onionmat} objects is also sensitive to
-  this option.}
+  these options.}
 \examples{
 
 
