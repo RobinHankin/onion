@@ -314,9 +314,16 @@ setMethod("t","onionmat",function(x){ # NB1: this  ensures that emulator::ht() w
 setMethod("show", "onionmat", function(object){onionmat_show(object)})
 
 `onionmat_show` <- function(object,...){
-  print(getd(object))
-  print(getM(object))
-  return(object)
+  if(isTRUE(getOption("show_onionmats_in_place"))){
+    out <- onion_to_string(getd(object))
+    attributes(out) <- attributes(getM(object))
+    print(noquote(out))
+    return(invisible(out))
+  } else {
+    print(getd(object))
+    print(getM(object))
+    return(object)
+  }
 }
 
 setGeneric("cprod",function(x,y){standardGeneric("cprod")})

@@ -41,7 +41,12 @@ setClass("octonion",
 "is.onion" <- function(x){is(x,"onion")}
 "is.onionmat" <- function(x){is(x,"onionmat")}
 
-setAs("onion", "matrix", function(from){ from@x} )
+setAs("onion", "matrix", function(from){
+  out <-   from@x
+  rownames(out) <- comp_names(from)
+  return(out)
+} )
+
 setMethod("as.matrix",signature(x="onion"),function(x){as(x,"matrix")})
 
 setAs("onion", "double", function(from){ as.double(from@x)})  # there are no occurences of "@" below this line or elsewhere in this directory
@@ -73,4 +78,5 @@ setReplaceMethod("length","onion",function(x,value){
      return("scalar")
    }
 }
+
 

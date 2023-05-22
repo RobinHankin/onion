@@ -227,6 +227,10 @@ onionmat_matrixprod_onion(x,y)
 
   Vignette \code{onionmat} shows some use-cases.
 
+  The print method for \code{onionmat} objects is sensitive to option
+  \code{show_onionmats_in_place}.  If \code{TRUE}, it prints the matrix
+  elements in-place, using \code{onion_to_string()}.  It works best when
+  option \code{show_onions_compactly} is effective.
 }
 \author{Robin K. S. Hankin}
 \examples{
@@ -240,5 +244,12 @@ Re(M)
 Re(M) <- 0.3
 
 romat() \%*\% rquat(6)
+
+a <- rsomat()
+a            # default
+options("show_onionmats_in_place" = TRUE)
+a
+options("show_onionmats_in_place" = FALSE) # restore default
+
 
 }

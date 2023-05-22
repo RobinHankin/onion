@@ -13,11 +13,21 @@ onion_to_string_lowlevel <- function(x,onames){
 }
 
 onion_to_string <- function(x){
-    noquote(apply(as.matrix(x),2,onion_to_string_lowlevel,onames=rownames(x)))
+    noquote(apply(as.matrix(x),2,onion_to_string_lowlevel,onames=comp_names(x)))
 }
 
 comp_names <- function(x){
   if(is.onion(x)){x <- as.character(class(x))}  # otherwise we assume it is a string, e.g. "quat"
+  if(is.matrix(x)){
+    if(nrow(x)==4){
+      return(Recall("quaternion"))
+    } else if(nrow(x)==8){
+      return(Recall("octonion"))
+    } else {
+      stop("matrix must have 4 or 8 rows")
+    }
+  }
+    
   switch(x,
          quaternion = c("Re","i","j","k"),
          octonion = c("Re","i","j","k","l","il","jl","kl"),
@@ -42,7 +52,7 @@ comp_names <- function(x){
 
   rownames(x) <- jjnames
 
-  if(isTRUE(comp)){
+  if(isTRUE(comp)){ 
       out <- onion_to_string(x)
   } else {
       if(is.null(colnames(x))){colnames(x) <- paste("[",seq_len(ncol(x)),"]",sep="")}
