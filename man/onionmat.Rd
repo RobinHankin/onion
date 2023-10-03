@@ -23,8 +23,6 @@
 \alias{getM}
 \alias{getd}
 \alias{herm_onion_mat}
-\alias{drop}
-\alias{drop,onionmat-method}
 \alias{matrix,onion-method}
 \alias{ncol-methods}
 \alias{ncol,ANY-method}
@@ -162,7 +160,6 @@ matrix_arith_onion(e1,e2)
 onion_arith_matrix(e1,e2)
 matrix_plus_onion(e1,e2)
 matrix_prod_onion(e1,e2)
-drop(x)
 \S4method{cprod}{onionmat,onionmat}(x,y)
 \S4method{cprod}{onionmat,missing}(x,y)
 \S4method{cprod}{onionmat,ANY}(x,y)
@@ -217,6 +214,8 @@ onionmat_matrixprod_onion(x,y)
   The S4 method for \code{matrix()} simply dispatches to
   \code{onionmat()}, which is a drop-in replacement for \code{matrix()}.
 
+  Function \code{drop()} has a method for \code{onionmat} objects.
+  
   Function \code{newonionmat()} is lower-level: it also creates onionmat
   objects, but takes two arguments: an onion and a matrix; the matrix
   argument can be used to specify additional attributes via

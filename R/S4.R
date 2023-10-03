@@ -80,3 +80,8 @@ setReplaceMethod("length","onion",function(x,value){
 }
 
 
+setGeneric("drop")
+setMethod("drop","onion",function(x){
+  if(all(Im(x)==0)){x <- Re(x)}
+  return(x)
+} )
