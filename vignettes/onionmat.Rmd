@@ -1,27 +1,36 @@
 ---
-title: "Onionic matrices"
+title: "Matrices with quaternion or octonion entries: class `onionmat` in the `onion` package"
 author: "Robin K. S. Hankin"
-output:
-  pdf_document: default
-  html_document:
-    df_print: paged
+output: html_vignette
+bibliography: onionpaper.bib
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{onionmat}
   %\usepackage[utf8]{inputenc}
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library("onion") 
+options(rmarkdown.html_vignette.check_title = FALSE)
+library("onion")
+set.seed(1)
 ```
 
-## Onionic matrices 
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/onion.png", package = "onion"))
+```
 
-The onion package allows one to define and manipulate matrices whose
-elements are quaternions or octonions.  Function `romat()` creates a
-simple `onionmat` object:
+## Introduction
+
+To cite the `onion` package in publications please use
+@hankin2006_onion.  This short document shows how matrices with
+octonion or quaternion entries may be created and manipulated with the
+`onionmat` class of the `onion` R package.
+
+## `onionmat` objects
+
+A good place to start is function `romat()`, which creates a simple
+`onionmat` object:
 
 ```{r}
 set.seed(0)
@@ -177,4 +186,19 @@ y <- cprod(matrix(roct(16),4,4)) # x and y are 4-by-4 Hermitian octonionic matri
 LHS <- (x %o% y) %o% (x %o% x)
 RHS <- x %o% (y %o% (x %o% x))
 max(Mod(LHS-RHS))  # miles off
+```
+
+
+## Note on the print method
+
+Above we have been using the default print method but it is possible
+to use a more compact notation, which is useful if a matrix has many
+short entries.
+
+
+```{r}
+o <- rsomat()
+o
+options(show_onionmats_in_place = TRUE)
+o
 ```
