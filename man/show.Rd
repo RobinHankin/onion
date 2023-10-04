@@ -16,7 +16,10 @@
 \description{Show methods for onions}
 \usage{
 \S4method{show}{onion}(object)
-onion_show(x,comp=getOption("show_onions_compactly"),h=getOption("show_onions_horizontally"))
+onion_show(x,
+     comp = getOption("show_onions_compactly"),
+     h    = getOption("show_onions_horizontally")
+)
 comp_names(x)
 }
 \arguments{
@@ -44,6 +47,9 @@ comp_names(x)
   This option works best for simple onions with integer entries (or at
   least values with few decimal places), and especially if there are
   many zero entries.
+
+  Function \code{onion_show()} is a helper function, not really intended
+  for the end-user.
 
   The \dQuote{names} of the components of an onion (viz \code{Re},
   \code{i}, \code{j}, \code{k} for quaternions and \code{Re}, \code{i},
