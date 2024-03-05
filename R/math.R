@@ -172,3 +172,14 @@ setMethod("Math","onion",
 }
 
 `onion_sign` <- function(x){x/Mod(x)}
+
+setMethod("round","onion",
+          function(x,digits=0){
+              as.onion(round(as.matrix(x),digits=digits))
+          })
+
+setMethod("round","onionmat",
+          function(x,digits=0){
+              newonionmat(round(getd(x),digits=digits),getM(x))
+          })
+
