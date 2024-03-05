@@ -4,7 +4,6 @@
 \alias{Compare,onion,onion-method}
 \alias{Compare,onion,numeric-method}
 \alias{Compare,numeric,onion-method}
-
 \alias{Compare,onionmat,onionmat-method}
 \alias{Compare,onionmat,ANY-method}
 \alias{Compare,ANY,onionmat-method}
