@@ -14,6 +14,9 @@ test_that("Test suite aag.R, show methods",{
     expect_output(print(rsquat()))
     expect_output(print(rsoct()))
 
+    expect_output(print(rsomat("quaternion")))
+    expect_output(print(rsomat("octonion")))
+
     ## restore default:
     options("show_onions_horizontally" = FALSE) 
     options("show_onions_compactly" = TRUE)
