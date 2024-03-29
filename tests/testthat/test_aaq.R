@@ -106,5 +106,13 @@ test_that("Test suite aaq.R, numeric matrix <op> onion",{
     expect_error(A %% diag(2))
     expect_error(diag(2) %% A )
 
+    A <- romat("quaternion",5,6)
+    dim(A) <- c(15,2)
+    expect_true(all(dim(A) == c(15,2)))
+
+    A <- romat("octonion",5,6)
+    dim(A) <- c(15,2)
+    expect_true(all(dim(A) == c(15,2)))
+
     
 })
