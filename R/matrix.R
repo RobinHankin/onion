@@ -331,8 +331,8 @@ setMethod("cprod",signature=c(x="onionmat",y="onionmat"),function(x,y){om_cprod(
 setMethod("cprod",signature=c(x="onionmat",y="missing"),function(x,y){om_cprod(x,x)}) # NB x
 setMethod("cprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_cprod(x,y)})
 setMethod("cprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_cprod(x,y)})
-setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::cprod(x,y)})
-setMethod("cprod",signature=c(x="ANY",y="missing"),function(x,y){emulator::cprod(x,x)}) # NB x
+setMethod("cprod",signature=c(x="ANY",y="ANY"),function(x,y){quadform::cprod(x,y)})
+setMethod("cprod",signature=c(x="ANY",y="missing"),function(x,y){quadform::cprod(x,x)}) # NB x
 setMethod("cprod",signature=c(x="onion",y="onion"),function(x,y){om_cprod(x,y)})
 setMethod("cprod",signature=c(x="onion",y="onion"),function(x,y){om_cprod(x,y)})
 setMethod("cprod",signature=c(x="onionmat",y="onion"),function(x,y){om_cprod(x,y)})
@@ -345,8 +345,8 @@ setMethod("tcprod",signature=c(x="onionmat",y="onionmat"),function(x,y){om_tcpro
 setMethod("tcprod",signature=c(x="onionmat",y="missing"),function(x,y){om_tcprod(x,x)})  # NB x
 setMethod("tcprod",signature=c(x="onionmat",y="ANY"),function(x,y){om_tcprod(x,y)})
 setMethod("tcprod",signature=c(x="ANY",y="onionmat"),function(x,y){om_tcprod(x,y)})
-setMethod("tcprod",signature=c(x="ANY",y="ANY"),function(x,y){emulator::tcprod(x,y)})
-setMethod("tcprod",signature=c(x="ANY",y="missing"),function(x,y){emulator::tcprod(x,x)}) # NB x
+setMethod("tcprod",signature=c(x="ANY",y="ANY"),function(x,y){quadform::tcprod(x,y)})
+setMethod("tcprod",signature=c(x="ANY",y="missing"),function(x,y){quadform::tcprod(x,x)}) # NB x
 setMethod("tcprod",signature=c(x="onion",y="onion"),function(x,y){om_tcprod(x,y)})
 setMethod("tcprod",signature=c(x="onionmat",y="onion"),function(x,y){om_tcprod(x,y)})
 setMethod("tcprod",signature=c(x="onion",y="onionmat"),function(x,y){om_tcprod(x,y)})

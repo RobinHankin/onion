@@ -4,7 +4,7 @@ useDynLib(onion)
 importFrom("grDevices", "hsv")
 importFrom("graphics", "persp", "plot", "points")
 importFrom("stats", "rbinom", "rnorm", "rpois", "runif")
-importFrom("emulator", "cprod","tcprod","ht")
+importFrom("quadform", "cprod","tcprod","ht")
 
 import("methods")
 import("mathjaxr")
