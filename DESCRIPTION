@@ -15,7 +15,7 @@ License: GPL-2
 Depends: methods, R (>= 3.5.0)
 Suggests: testthat,knitr,rmarkdown,covr
 VignetteBuilder: knitr
-Imports: quadform, Matrix, freealg (>= 1.0-4), mathjaxr
+Imports: quadform (>= 0.0-2), Matrix, freealg (>= 1.0-4), mathjaxr
 URL: https://github.com/RobinHankin/onion
 BugReports: https://github.com/RobinHankin/onion/issues
 RdMacros: mathjaxr
