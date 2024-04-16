@@ -292,7 +292,7 @@ setMethod("t","onion",function(x){
   newonionmat(x,t(jj)) # the meat
 })
 
-setMethod("t","onionmat",function(x){ # NB1: this  ensures that emulator::ht() works; NB2: t(x) DOES NOT TAKE CONJUGATE
+setMethod("t","onionmat",function(x){ # NB1: this  ensures that quadform::ht() works; NB2: t(x) DOES NOT TAKE CONJUGATE
   jj <- t(getM(x))
   newonionmat(getd(x)[c(jj)],jj)
 })
