@@ -7,7 +7,6 @@ importFrom("stats", "rbinom", "rnorm", "rpois", "runif")
 importFrom("quadform", "cprod","tcprod","ht")
 
 import("methods")
-import("mathjaxr")
 
 importClassesFrom(Matrix,index)
 
