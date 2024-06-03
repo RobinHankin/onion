@@ -7,7 +7,7 @@
 \usepackage{wasysym}
 
 %% just as usual
-\author{Robin K. S. Hankin\\Auckland University of Technology}
+\author{Robin K. S. Hankin\\University of Stirling}
 \title{Normed division algebras with \proglang{R}: introducing the \pkg{onion} package}
 %\VignetteIndexEntry{The onion package}
 
@@ -42,7 +42,7 @@
 %% in the following format:
 \Address{
   Robin K. S. Hankin\\
-  Auckland University of Technology\\
+  University of Stirling\\
   New Zealand\\
   E-mail: \email{hankin.robin@gmail.com}
 }
