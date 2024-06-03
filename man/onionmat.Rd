@@ -216,9 +216,9 @@ onionmat_matrixprod_onion(x,y)
 
   Function \code{drop()} has a method for \code{onionmat} objects.
   
-  Function \code{newonionmat()} is lower-level: it also creates onionmat
-  objects, but takes two arguments: an onion and a matrix; the matrix
-  argument can be used to specify additional attributes via
+  Function \code{newonionmat()} is lower-level.  It also creates
+  onionmat objects, but takes two arguments: an onion and a matrix; the
+  matrix argument can be used to specify additional attributes via
   \code{attr()}, but this ability is not currently used in the package.
 
   Functions such as \code{onionmat_plus_onionmat()} are low-level helper
