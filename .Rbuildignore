@@ -8,3 +8,5 @@
 ^inst/onion.svg$
 ^inst/onion_stickermaker.R$
 CITATION.cff
+^.github$
+^.devcontainer$
