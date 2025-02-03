@@ -43,7 +43,7 @@
 \Address{
   Robin K. S. Hankin\\
   University of Stirling\\
-  New Zealand\\
+  Scotland\\
   E-mail: \email{hankin.robin@gmail.com}
 }
 %% It is also possible to add a telephone and fax number
