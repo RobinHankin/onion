@@ -2,7 +2,7 @@
 title: "Matrices with quaternion or octonion entries: class `onionmat` in the `onion` package"
 author: "Robin K. S. Hankin"
 output: html_vignette
-bibliography: onionpaper.bib
+bibliography: onion.bib
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{onionmat}

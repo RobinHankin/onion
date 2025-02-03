@@ -298,5 +298,5 @@ truth.  When this happens, the \pkg{onion} package ensures that
 I would like to acknowledge the many stimulating and helpful comments
 made by the \proglang{R}-help list over the years.
 
-\bibliography{onionpaper}
+\bibliography{onion}
 \end{document}
