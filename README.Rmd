@@ -134,4 +134,4 @@ x*(y*z) - (x*y)*z
 
 For more detail, see the package vignette
 
-`vignette("onionpaper")`
+`vignette("onion")`
