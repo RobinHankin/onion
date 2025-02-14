@@ -31,6 +31,12 @@ comp_names(x)
 }
 \details{
 
+  TLDR: the print method uses \code{onion_show()}.  This converts its
+  argument to an appropriate matrix by adjusting the column names if
+  necessary.  This matrix is printed to the console using the standard
+  print method for matrices, and hence is sensitive to
+  \code{getOption("digits")}.
+
   Default behaviour is to print by rows.  To print by columns, set
   option \code{show_onions_horizontally} to \code{TRUE}:
 
