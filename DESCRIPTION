@@ -12,9 +12,9 @@ Description:
   nonassociative.  See the package vignette for more details.
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 License: GPL-2
-Depends: methods, R (>= 3.5.0)
+Depends: R (>= 3.5.0)
 Suggests: testthat,knitr,rmarkdown,covr
 VignetteBuilder: knitr
-Imports: quadform, Matrix, freealg (>= 1.0-4)
+Imports: quadform, Matrix, freealg (>= 1.0-4), methods
 URL: https://github.com/RobinHankin/onion
 BugReports: https://github.com/RobinHankin/onion/issues
