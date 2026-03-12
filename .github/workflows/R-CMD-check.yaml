@@ -34,11 +34,9 @@ jobs:
 
       - uses: r-lib/actions/setup-tinytex@v2
 
-
-      # Install specific LaTeX dependencies for your vignettes
       - name: Install LaTeX dependencies
         run: |
-          tinytex::tlmgr_install(c("bbm", "doublestroke"))
+          tinytex::tlmgr_install(c("bbm", "bbm-macros", "amsfonts", "doublestroke"))
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
