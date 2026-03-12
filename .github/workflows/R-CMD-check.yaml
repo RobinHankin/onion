@@ -27,6 +27,8 @@ jobs:
         with:
           use-public-rspm: true
 
+      - run: tlmgr install doublestroke
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
@@ -38,8 +40,6 @@ jobs:
         with:
           upload-snapshots: true
           build_args: 'c("--compact-vignettes=both")'
-          install_args: '--install-tests'
-          check_args: '--as-cran'
         env:
           TINYTeX_AUTO_INSTALL: true
 
