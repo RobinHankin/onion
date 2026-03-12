@@ -33,14 +33,19 @@ jobs:
           needs: check
 
       - uses: r-lib/actions/setup-tinytex@v2
-      - run: Rscript -e 'tinytex::tlmgr_install(c("bbm", "doublestroke"))'
+
+
+      # Install specific LaTeX dependencies for your vignettes
+      - name: Install LaTeX dependencies
+        run: |
+          tinytex::tlmgr_install(c("bbm", "doublestroke"))
+        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-          build_args: 'c("--compact-vignettes=both")'
-        env:
-          TINYTeX_AUTO_INSTALL: true
+          args: 'c("--no-manual", "--compact-vignettes=both")'
+          error-on: '"warning"'
 
       - uses: actions/upload-artifact@v4
         if: failure()
