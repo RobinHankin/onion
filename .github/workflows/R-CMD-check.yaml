@@ -34,6 +34,7 @@ jobs:
 
       - uses: r-lib/actions/setup-tinytex@v2
 
+      - run: tlmgr update --self
       - run: tlmgr install bbm doublestroke
 
       - uses: r-lib/actions/check-r-package@v2
