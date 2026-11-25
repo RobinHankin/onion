@@ -10,13 +10,9 @@ at the R command line
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/* FIXME: 
-   Check these declarations against the C/Fortran source code.
-*/
-
 /* .C calls */
-extern void octonion_prod(void *, void *, void *, void *);
-extern void quaternion_prod(void *, void *, void *, void *);
+extern void octonion_prod(const double *, const double *, const int *, double *);
+extern void quaternion_prod(const double *, const double *, const int *, double *);
 
 static const R_CMethodDef CEntries[] = {
     {"octonion_prod",   (DL_FUNC) &octonion_prod,   4},
